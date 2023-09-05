@@ -2,15 +2,22 @@
 <h3>Car List</h3>
 
 @inherits CarListComponent
+@if (ListOfCars != null && ListOfCars.Count == 0)
+{
+	<p>No Cars for that year</p>
 
-<ol>
-    @foreach (var cars in ListOfCars)
-    {
-       <li>@cars</li>
-    }
-</ol>
+}
+else
+{
+	<ol>
+		@foreach (var cars in ListOfCars)
+		{
+			<li>@cars</li>
+		}
+	</ol>
+}
 
-
-
-<InputNumber @bind-Value = "@carYear"/> 
-<button onchange="FilterByYear">Submit Car</button>
+<EditForm Model="@carYear" OnSubmit="@FilterByYear">
+	<InputNumber @bind-Value="@carYear" />
+	<button type="submit">Submit</button>
+</EditForm>
