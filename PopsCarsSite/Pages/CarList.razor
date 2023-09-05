@@ -1,0 +1,16 @@
+﻿@page "/CarList"
+<h3>Car List</h3>
+
+@inherits CarListComponent
+
+<ol>
+    @foreach (var cars in ListOfCars)
+    {
+       <li>@cars</li>
+    }
+</ol>
+
+
+
+<InputNumber @bind-Value = "@carYear"/> 
+<button onchange="FilterByYear">Submit Car</button>
