@@ -18,6 +18,8 @@ else
 }
 
 <EditForm Model="@carYear" OnSubmit="@FilterByYear">
-	<InputNumber @bind-Value="@carYear" />
-	<button type="submit">Submit</button>
+	<input type="number" @bind="@carYear" placeholder="Enter Car Year" />
+	<button onclick="@(async () => await FilterByYear())">
+		Search By Year
+	</button>
 </EditForm>

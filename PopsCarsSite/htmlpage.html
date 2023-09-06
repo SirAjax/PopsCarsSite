@@ -54,12 +54,14 @@
         </ol>
         </section>
         <section>
-        <h2>Submit Your Own Cars!</h2>
-        <h3>Submit a Car</h3>
+            <h2>Submit Your Own Cars!</h2>
+            <h3>Submit a Car</h3>
             <form action="Data/"></form>
-                <input type="text" name="Car" placeholder="Enter a Vehicle">
-                <button>Submit</button>
-       
+            <input type="number" @bind="@carYear" placeholder="Enter Car Year" />
+            <button onclick="@(async () => await FilterByYear())">
+                Search By Year
+            </button>
+
         </section>
     </main>
 </body>
