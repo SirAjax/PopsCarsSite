@@ -23,3 +23,9 @@ else
 		Search By Year
 	</button>
 </EditForm>
+
+<EditForm Model="@carMake" OnSubmit="@FilterByMake">
+	<input type="text" @bind="@carMake" placeholder="Enter Car Make" />
+	<button onclick="@(async () => await FilterByMake())">
+		Search By Make
+	</button>

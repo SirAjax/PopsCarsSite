@@ -7,6 +7,9 @@ namespace PopsCarsSite.Pages
     {
         protected List<Cars> ListOfCars = new();
         protected int carYear;
+        protected string carModel;
+        protected string carMake;
+        protected string carColor;
         private Service service = new();
         protected override async Task OnInitializedAsync()
         {
@@ -14,8 +17,23 @@ namespace PopsCarsSite.Pages
         }
         protected async Task FilterByYear()
         {
-            ListOfCars = service.GetCarsByYear(carYear);
+            ListOfCars = await service.GetCarsByYear(carYear);
             StateHasChanged();
+        }
+
+        protected async Task FilterByModel()
+        {
+            ListOfCars = await service.GetCarsByModel(carModel);
+        }
+
+        protected async Task FilterByMake()
+        {
+            ListOfCars = await service.GetCarsByMake(carMake);
+        }
+
+        protected async Task FilterByColor()
+        {
+            ListOfCars = await service.GetCarsByColor(carColor);
         }
     }
 
