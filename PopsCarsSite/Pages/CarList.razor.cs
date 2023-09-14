@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Pop_s_Cars;
+using PopsCars;
 
 namespace PopsCarsSite.Pages
 {
