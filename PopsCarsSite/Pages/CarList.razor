@@ -3,44 +3,10 @@
 
 @inherits CarListComponent
 
-<div>
-	<input type="number" @bind="@carYear" placeholder="Enter Car Year" />
-	<button onclick="@(async () => await FilterByYear())">
-		Search By Year
-	</button>
-</div>
-
-<div>
-	<input type="text" @bind="@carMake" placeholder="Enter Car Make" />
-	<button onclick="@(async () => await FilterByMake())">
-		Search By Make
-	</button>
-</div>
-
-<div>
-	<input type="text" @bind="@carModel" placeholder="Enter Car Model" />
-	<button onclick="@(async () => await FilterByModel())">
-		Search By Model
-	</button>
-</div>
 
 <div style="padding: 10px;">
-	<EditForm Model="@ListOfCars" OnSubmit="@FilterByModel">
-		<InputText @bind-Value="@carModel" placeholder="Enter Car Model" />
-		<button type="submit">Filter By Model</button>
-	</EditForm>
-</div>
-
-<div>
-	<input type="text" @bind="@carColor" placeholder="Enter Car Color" />
-	<button onclick="@(async () => await FilterByColor())">
-		Search By Color
-	</button>
-</div>
-
-<div style="padding: 10px;">
-	<EditForm Model="@ListOfCars" OnSubmit="@FilterByColor">
-		<InputText @bind-Value="@carColor" placeholder="Enter Car Color" />
+	<EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
+		<InputText @bind-Value="@search" placeholder="Enter Car" />
 		<button type="submit">Filter By Color</button>
 	</EditForm>
 </div>

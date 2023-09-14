@@ -1,42 +1,28 @@
-﻿namespace PopsCars
+﻿using System.Drawing;
+using System.Reflection.Metadata;
+
+namespace PopsCars
 {
     public class Service
     {
-        private readonly Data data;
-        public Service() 
-        {
-            data = new Data();
-        }
-        public List<Cars> GetCarById(int id)
-        {           
-            return data.carList.Where(c => c.id.ToString().Contains(id.ToString())).ToList();
-        }
-
-        public List<Cars> GetCarsByYear(int year)
-        {           
-            return data.carList.Where(c => c.year.ToString().Contains(year.ToString())).ToList();
-        }
-
         public List<Cars> GetAllCars()
-        {            
+        {   
+            Data data = new Data();
             return data.carList;
         }
+      
+      public List<Cars> MainSearch(string search)
+{
+        Data data = new Data();
+        var searchResults = data.carList.Where(c =>
+        c.color.Contains(search, StringComparison.InvariantCultureIgnoreCase) ||
+        c.make.Contains(search, StringComparison.InvariantCultureIgnoreCase) ||
+        c.model.Contains(search, StringComparison.InvariantCultureIgnoreCase) ||
+        c.year.ToString().Contains(search)).ToList();
 
-        public List<Cars> GetCarsByModel(string model)
-        {
-            return data.carList.Where(c => c.model.Contains(model, StringComparison.InvariantCultureIgnoreCase)).ToList();
-        }
+        return searchResults;
+}
 
-        public List<Cars> GetCarsByMake(string make)
-        {            
-            return data.carList.Where(c => c.make.Contains(make, StringComparison.InvariantCultureIgnoreCase)).ToList();
-        }
-
-        public List<Cars> GetCarsByColor(string color)
-        {           
-            return data.carList.Where(c => c.color.Contains(color, StringComparison.InvariantCultureIgnoreCase)).ToList();
-        }
-
-
+        
     }
 }

@@ -6,41 +6,19 @@ namespace PopsCarsSite.Pages
 	public class CarListComponent : ComponentBase
 	{
 		protected List<Cars> ListOfCars = new();
-		protected int? carYear;
-		protected string carModel;
-		protected string carMake;
-		protected string carColor;
+		protected string search;
 		private Service service = new();
 		protected override async Task OnInitializedAsync()
 		{
 			ListOfCars = service.GetAllCars();
 		}
-		protected async Task FilterByYear()
-		{
-			if (carYear.HasValue)
-			{
-				ListOfCars = service.GetCarsByYear(carYear.Value);
-			}
-			else
-			{
-				ListOfCars = new();
-			}
-		}
+		
 
-		protected async Task FilterByModel()
+		protected async Task FilterBySearch()
 		{
-			ListOfCars = service.GetCarsByModel(carModel);
-		}
-
-		protected async Task FilterByMake()
-		{
-			ListOfCars = service.GetCarsByMake(carMake);
-		}
-
-		protected async Task FilterByColor()
-		{
-			ListOfCars = service.GetCarsByColor(carColor);
+			ListOfCars = service.MainSearch(search);
 		}
 	}
-
 }
+
+
