@@ -16,7 +16,7 @@ namespace PopsCars
             Data data = new Data();
 
             var searchResults = data.carList.Where(c =>
-                search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Any(term =>   //received help for line 19
+                search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).All(term =>   //received help for line 19 
                     c.color.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
                     c.make.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
                     c.model.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
@@ -27,5 +27,20 @@ namespace PopsCars
         }
 
 
-    }
+        /* public List<Cars> MainSearch(string search)
+        {
+            Data data = new Data();
+
+        var searchResults = data.carList.Where(c =>
+            search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Any(term => 
+                c.color.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
+                c.make.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
+                c.model.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
+                c.year.ToString().Contains(term))
+        ).ToList();
+
+            return searchResults;
+        }
+        */
+}
 }
