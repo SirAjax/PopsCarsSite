@@ -1,9 +1,8 @@
-﻿using System.Drawing;
-using System.Reflection.Metadata;
+﻿using EFTest.Models;
 
 namespace PopsCars
 {
-    public class Service
+	public class Service
     {
         public List<Cars> GetAllCars()
         {   
@@ -11,6 +10,7 @@ namespace PopsCars
             return data.carList;
         }
 
+        
         public List<Cars> MainSearch(string search)
         {
             Data data = new Data();
@@ -25,9 +25,28 @@ namespace PopsCars
 
             return searchResults;
         }
+        
 
 
-        /* public List<Cars> MainSearch(string search)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+         public List<Cars> MainSearch(string search)
         {
             Data data = new Data();
 
@@ -42,5 +61,5 @@ namespace PopsCars
             return searchResults;
         }
         */
-}
+    }
 }

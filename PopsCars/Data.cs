@@ -1,4 +1,6 @@
-﻿namespace PopsCars
+﻿using EFTest.Models;
+
+namespace PopsCars
 {
     public class Data
     {

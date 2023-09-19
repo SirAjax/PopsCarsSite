@@ -1,4 +1,4 @@
-﻿namespace PopsCars;
+﻿namespace EFTest.Models;
 
 public class Cars
 {

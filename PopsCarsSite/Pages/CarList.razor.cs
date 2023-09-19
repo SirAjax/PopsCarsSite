@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using PopsCars;
+using EFTest.Models;
+using EFTest;
 
 namespace PopsCarsSite.Pages
 {
@@ -8,9 +10,11 @@ namespace PopsCarsSite.Pages
 		protected List<Cars> ListOfCars = new();
 		protected string search;
 		private Service service = new();
+		[Inject]
+		private CarsRepository _carsRepository { get; set; } = default!;
 		protected override async Task OnInitializedAsync()
 		{
-			ListOfCars = service.GetAllCars();
+			ListOfCars = await _carsRepository.GetCarsAsync();
 		}
 		
 
@@ -18,6 +22,7 @@ namespace PopsCarsSite.Pages
 		{
 			ListOfCars = service.MainSearch(search);
 		}
+
 	}
 }
 

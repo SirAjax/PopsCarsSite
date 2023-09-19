@@ -1,5 +1,5 @@
-﻿namespace PopsCars
-{
+﻿namespace EFTest.Models;
+
     public class Users
     {
         public string? userName;
@@ -11,4 +11,3 @@
             this.id = id;
         }
     }
-}
