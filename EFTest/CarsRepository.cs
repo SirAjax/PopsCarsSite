@@ -4,7 +4,7 @@ using EFTest.Models;
 
 namespace EFTest
 {
-	public class CarsRepository
+	public class CarsRepository : ICarsRepository
 	{
 		private readonly PopsCarsContext _popsCarsContext;
 
@@ -13,14 +13,13 @@ namespace EFTest
 			_popsCarsContext = popsCarsContext;
 		}
 
-		public async Task<List<Cars>> GetCarsAsync()
+		public async Task<List<Car>> GetCarsAsync()
 		{
-			return await _popsCarsContext.Cars.ToListAsync();
+			return await _popsCarsContext.Car.ToListAsync();
 		}
-
-
 	}
 
-	
+	// Example of efcore using private variable naming convention
+	//https://github.com/dotnet/efcore/blob/release/8.0/src/EFCore.SqlServer/SqlServerRetryingExecutionStrategy.cs
 }
 

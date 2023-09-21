@@ -7,7 +7,10 @@ namespace EFTest
 	{
 		public static void ConfigRepositoryContext(this IServiceCollection services, string defaultConnection)
 		{
-			services.AddDbContext<PopsCarsContext>(options => options.UseSqlServer(defaultConnection));
+			services.AddDbContext<PopsCarsContext>(options => options.UseSqlServer(defaultConnection, 
+																					opt => { 
+																						opt.MigrationsAssembly("EFTest"); 
+																					}));
 		}
 	}
 }

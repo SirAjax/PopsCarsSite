@@ -1,26 +1,25 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using EFTest.Models;
+using Microsoft.AspNetCore.Components;
 using PopsCars;
-using EFTest.Models;
-using EFTest;
 
 namespace PopsCarsSite.Pages
 {
 	public class CarListComponent : ComponentBase
 	{
-		protected List<Cars> ListOfCars = new();
+		protected List<Car> ListOfCars = new();
 		protected string search;
-		private Service service = new();
+
 		[Inject]
-		private CarsRepository _carsRepository { get; set; } = default!;
+		private IService _service { get; set; } = default!;
+
 		protected override async Task OnInitializedAsync()
 		{
-			ListOfCars = await _carsRepository.GetCarsAsync();
+			ListOfCars = await _service.GetAllCars();
 		}
-		
 
 		protected async Task FilterBySearch()
 		{
-			ListOfCars = service.MainSearch(search);
+			ListOfCars = await _service.MainSearch(search);
 		}
 
 	}

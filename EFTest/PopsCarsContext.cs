@@ -1,21 +1,23 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EFTest.Models;
-
+using EFTest.SeededData;
 
 namespace EFTest
 {
 	public class PopsCarsContext: DbContext
-	{	
+	{
+		public DbSet<Car> Car { get; set; }
+		public DbSet<User> User { get; set; }
+		public DbSet<Note> Note { get; set; }
+
 		public PopsCarsContext (DbContextOptions<PopsCarsContext> options) : base(options)
 		{
 
 		}
 
-		public DbSet<Cars> Cars { get; set; } 
-		public DbSet<Users> Users { get; set; }	
-		public DbSet<Notes> Notes { get; set; }
-
-
-
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			modelBuilder.ApplyConfiguration(new CarConfiguration());
+		}
 	}
 }

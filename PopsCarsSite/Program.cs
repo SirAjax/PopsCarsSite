@@ -1,7 +1,14 @@
+using EFTest;
+using Microsoft.EntityFrameworkCore;
+using PopsCars;
 using PopsCarsSite.Data;
 
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.ConfigRepositoryContext("Server=(localdb)\\MSSQLLocalDB;Database=PopsCars;Trusted_Connection=True;MultipleActiveResultSets=true");
+builder.Services.AddTransient<ICarsRepository, CarsRepository>();
+builder.Services.AddTransient<IService, Service>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -26,5 +33,12 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+
+// added this for ef core migration
+using (var scope = app.Services.CreateScope())
+{
+	var context = scope.ServiceProvider.GetRequiredService<PopsCarsContext>();
+	await context.Database.MigrateAsync();
+}
 
 app.Run();

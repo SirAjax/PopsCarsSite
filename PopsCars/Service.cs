@@ -1,65 +1,36 @@
-﻿using EFTest.Models;
+﻿using EFTest;
+using EFTest.Models;
 
 namespace PopsCars
 {
-	public class Service
-    {
-        public List<Cars> GetAllCars()
-        {   
-            Data data = new Data();
-            return data.carList;
-        }
+	public class Service : IService
+	{
+		private readonly ICarsRepository _carsRepository;
 
-        
-        public List<Cars> MainSearch(string search)
-        {
-            Data data = new Data();
+		public Service(ICarsRepository carsRepository)
+		{
+			_carsRepository = carsRepository;
+		}
 
-            var searchResults = data.carList.Where(c =>
-                search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).All(term =>   //received help for line 19 
-                    c.color.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
-                    c.make.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
-                    c.model.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
-                    c.year.ToString().Contains(term))
-            ).ToList();
+		public async Task<List<Car>> GetAllCars()
+		{
+			return await _carsRepository.GetCarsAsync();
+		}
 
-            return searchResults;
-        }
-        
+		public async Task<List<Car>> MainSearch(string search)
+		{
+			List<Car> carList = await _carsRepository.GetCarsAsync();
+			string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
+			var searchResults = carList.Where(c =>
+				searchOptions.All(term =>   //received help for line 19 
+					c.Color!.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
+					c.Make.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
+					c.Model!.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
+					c.Year.ToString().Contains(term))
+			).ToList();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-         public List<Cars> MainSearch(string search)
-        {
-            Data data = new Data();
-
-        var searchResults = data.carList.Where(c =>
-            search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Any(term => 
-                c.color.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
-                c.make.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
-                c.model.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
-                c.year.ToString().Contains(term))
-        ).ToList();
-
-            return searchResults;
-        }
-        */
-    }
+			return searchResults;
+		}
+	}
 }
