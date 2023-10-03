@@ -1,7 +1,7 @@
 using EFTest;
 using Microsoft.EntityFrameworkCore;
 using PopsCars;
-using PopsCarsSite.Data;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +13,7 @@ builder.Services.AddTransient<IService, Service>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
 
 var app = builder.Build();
 

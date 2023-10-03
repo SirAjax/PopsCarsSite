@@ -1,0 +1,33 @@
+﻿@page "/Users"
+<h3>Users</h3>
+
+@inherits UserComponent 
+
+
+<div style="padding: 10px;">
+	<EditForm Model="@Users" OnSubmit="@FilterBySearch">
+		<InputText @bind-Value="@search" placeholder="Enter Car" />
+		<button type="submit">Filter By Details</button>
+	</EditForm>
+</div>
+
+
+
+@if (ListOfCars == null || ListOfCars.Count == 0)
+{
+	<p style="color: red; font-weight: bold;">
+		No Cars have been found
+	</p>
+
+}
+else
+{
+	<ol>
+		@foreach (var cars in ListOfCars)
+		{
+			<li>@cars</li>
+		}
+	</ol>
+
+	// test
+}
