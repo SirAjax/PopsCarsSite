@@ -22,6 +22,8 @@ namespace PopsCarsSite.Pages
 			ListOfCars = await _service.MainSearch(search);
 		}
 
+
+
 	}
 }
 
