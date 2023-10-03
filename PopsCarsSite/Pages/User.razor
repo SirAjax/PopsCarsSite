@@ -1,9 +1,9 @@
 ﻿@page "/Users"
 <h3>Users</h3>
 
-@inherits UserComponent 
+@inherits UserComponent
 
-
+@* 
 <div style="padding: 10px;">
 	<EditForm Model="@Users" OnSubmit="@FilterBySearch">
 		<InputText @bind-Value="@search" placeholder="Enter Car" />
@@ -29,5 +29,5 @@ else
 		}
 	</ol>
 
-	// test
-}
+	// test *@
+
