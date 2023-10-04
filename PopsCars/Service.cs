@@ -32,13 +32,5 @@ namespace PopsCars
 
 			return searchResults;
 		}
-
-		public void CreateNewUser(string userName)
-		{
-			User user = new User();
-			user.UserName = userName;	
-		}
-
-
 	}
 }

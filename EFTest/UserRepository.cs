@@ -29,9 +29,9 @@ public class UserRepository : IUserRepository
         return await _popsCarsContext.User.ToListAsync();
     }
 
-    public List<User> GetUserByName(string userName)
+    public async Task<List<User>> GetUserByName(string userName)
     {
-        return _popsCarsContext.User.Where(a => a.UserName == userName).ToList();
+        return await _popsCarsContext.User.Where(a => a.UserName == userName).ToListAsync();  
     }
 
     public User? GetUserObject(string userName)

@@ -4,4 +4,5 @@ namespace EFTest;
 public interface IUserRepository
 {
 	Task<List<User>> GetAllUserAsync();
+	Task<List<User>> GetUserByName(string userName);
 }
