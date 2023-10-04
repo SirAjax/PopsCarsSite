@@ -1,4 +1,5 @@
 ﻿using EFTest.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace EFTest;
-public class UserRepository
+public class UserRepository : IUserRepository
 {
     private readonly PopsCarsContext _popsCarsContext;
 
@@ -23,9 +24,9 @@ public class UserRepository
         return user;
     }
 
-    public List<User> GetAllUsers()
+    public async Task<List<User>> GetAllUserAsync()
     {
-        return _popsCarsContext.User.ToList();
+        return await _popsCarsContext.User.ToListAsync();
     }
 
     public List<User> GetUserByName(string userName)
