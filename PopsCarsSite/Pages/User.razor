@@ -3,8 +3,8 @@
 
 @inherits UserComponent
 
-@* 
-<div style="padding: 10px;">
+
+div style="padding: 10px;">
 	<EditForm Model="@Users" OnSubmit="@FilterBySearch">
 		<InputText @bind-Value="@search" placeholder="Enter Car" />
 		<button type="submit">Filter By Details</button>
@@ -29,5 +29,5 @@ else
 		}
 	</ol>
 
-	// test *@
+	
 
