@@ -6,7 +6,7 @@ namespace PopsCarsSite.Pages
 {
     public class UserComponent : ComponentBase
     {
-        protected List<User> ListOfUsers = new();
+        protected List<EFTest.Models.User> ListOfUsers = new();
         protected string search;
 
         [Inject]
@@ -14,13 +14,15 @@ namespace PopsCarsSite.Pages
 
         protected override async Task OnInitializedAsync()
         {
-            ListOfUsers = await _userservice.GetAllUsers();         
+            ListOfUsers = await _userservice.GetAllUsers();
         }
 
         protected async Task FilterByUserSearch()
         {
             ListOfUsers = await _userservice.MainUserSearch(search);
         }
+
+
     }
 
 }

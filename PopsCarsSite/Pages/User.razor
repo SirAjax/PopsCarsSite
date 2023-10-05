@@ -6,9 +6,28 @@
 
 <div>
 	<EditForm Model="@ListOfUsers">
+		<InputText @bind-Value="@search"/>
 	</EditForm>
 </div>
 
 
+@if (ListOfUsers == null || ListOfUsers.Count == 0)
+{
+	<p style="color: red; font-weight: bold;">
+		No Users have been found
+	</p>
+
+}
+else
+{
+	<ol>
+		@foreach (var users in ListOfUsers)
+		{
+			<li>@users.UserName</li>
+		}
+	</ol>
+
+	// test
+}
 
 	

@@ -18,6 +18,9 @@ namespace EFTest
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new CarConfiguration());
+			modelBuilder.ApplyConfiguration(new UserConfiguration());
 		}
+
+
 	}
 }

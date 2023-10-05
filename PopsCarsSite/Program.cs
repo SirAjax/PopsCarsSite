@@ -8,7 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigRepositoryContext("Server=(localdb)\\MSSQLLocalDB;Database=PopsCars;Trusted_Connection=True;MultipleActiveResultSets=true");
 builder.Services.AddTransient<ICarsRepository, CarsRepository>();
+builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IService, Service>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();
