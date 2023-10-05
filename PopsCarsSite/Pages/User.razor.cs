@@ -7,18 +7,19 @@ namespace PopsCarsSite.Pages
     public class UserComponent : ComponentBase
     {
         protected List<User> ListOfUsers = new();
+        protected string search;
 
         [Inject]
         private IUserService _userservice { get; set; } = default!;
 
         protected override async Task OnInitializedAsync()
         {
-            ListOfUsers = await _userservice.GetAllUsers();           
+            ListOfUsers = await _userservice.GetAllUsers();         
         }
 
         protected async Task FilterByUserSearch()
         {
-            ListOfUsers = await _userservice.MainUserSearch();
+            ListOfUsers = await _userservice.MainUserSearch(search);
         }
     }
 

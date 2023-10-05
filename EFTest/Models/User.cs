@@ -17,8 +17,5 @@ public class User
 		this.Id = id;
 	}
 
-    public override string ToString()
-    {
-        return $"User: {UserName}, User Id: {Id}";
-    }
+  
 }
