@@ -6,5 +6,7 @@ namespace PopsCars
 	public interface IUserService
 	{
 		Task<List<User>> GetAllUsers();
+
+		Task<List<User>> MainUserSearch();
 	}
 }

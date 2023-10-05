@@ -1,4 +1,6 @@
-﻿namespace EFTest.Models;
+﻿using System.Drawing;
+
+namespace EFTest.Models;
 
 public class User
 {
@@ -14,4 +16,9 @@ public class User
 		this.UserName = userName;
 		this.Id = id;
 	}
+
+    public override string ToString()
+    {
+        return $"User: {UserName}, User Id: {Id}";
+    }
 }

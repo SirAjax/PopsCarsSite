@@ -15,5 +15,17 @@ namespace PopsCars
 		{
 			return await _userRepository.GetAllUserAsync();
 		}
+
+		public async Task<List<User>> MainUserSearch(string search)
+		{
+			List<User> userList = await _userRepository.GetAllUserAsync();
+			string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+			var searchResults = userList.Where(c =>
+				searchOptions.All(term => c.UserName.ToString().Contains(term))
+			).ToList();
+
+			return searchResults;
+		}
 	}
 }
