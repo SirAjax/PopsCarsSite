@@ -4,11 +4,20 @@
 @inherits UserComponent
 
 
-<div>
-	<EditForm Model="@ListOfUsers">
-		<InputText @bind-Value="@search"/>
+<div style="padding: 10px;">
+	<EditForm Model="@ListOfUsers" OnSubmit="@FilterByUserSearch">
+		<InputText @bind-Value="@search" placeholder="Enter UserName" />
+		<button type="submit">Filter By Details</button>
 	</EditForm>
 </div>
+
+<div style="padding: 10px;">
+	<EditForm Model="@model" OnSubmit="@AddUser">
+		<InputText @bind-Value="@model.UserName" placeholder="Enter User Name" />
+		<button type="submit">Create User</button>
+	</EditForm>
+</div>
+
 
 
 @if (ListOfUsers == null || ListOfUsers.Count == 0)
@@ -26,8 +35,6 @@ else
 			<li>@users.UserName</li>
 		}
 	</ol>
-
-	// test
 }
 
 	

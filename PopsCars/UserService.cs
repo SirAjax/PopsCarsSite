@@ -11,6 +11,12 @@ namespace PopsCars
 		{
 			_userRepository = userRepository;
 		}
+
+		public async Task<User> CreateUser(User user)
+		{
+			return await _userRepository.CreateUser(user);
+		}
+
 		public async Task<List<User>> GetAllUsers()
 		{
 			return await _userRepository.GetAllUserAsync();
@@ -27,5 +33,7 @@ namespace PopsCars
 
 			return searchResults;
 		}
+
+		
 	}
 }

@@ -17,13 +17,12 @@ public class UserRepository : IUserRepository
         _popsCarsContext = popsCarsContext;
     }
 
-    public User CreateUser(User user)
+    public async Task<User> CreateUser(User user)
     {
         _popsCarsContext.Add(user);
-        _popsCarsContext.SaveChanges();
+        await _popsCarsContext.SaveChangesAsync();
         return user;
     }
-
     public async Task<List<User>> GetAllUserAsync()
     {
         return await _popsCarsContext.User.ToListAsync();

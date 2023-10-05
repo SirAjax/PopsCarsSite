@@ -8,5 +8,8 @@ namespace PopsCars
 		Task<List<User>> GetAllUsers();
 
 		Task<List<User>> MainUserSearch(string search);
+
+		Task<User> CreateUser(User user);
+		
 	}
 }
