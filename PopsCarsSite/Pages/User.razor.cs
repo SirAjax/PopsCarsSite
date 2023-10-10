@@ -7,12 +7,16 @@ namespace PopsCarsSite.Pages
     public class UserComponent : ComponentBase
     {
         protected List<EFTest.Models.User> ListOfUsers = new();
-        protected string search;
-        protected EFTest.Models.User model { get; set; }
+        protected string? search;
+        protected EFTest.Models.User? newUser { get; set; }
 
         [Inject]
         private IUserService _userservice { get; set; } = default!;
 
+        public UserComponent()
+        {
+            newUser = new EFTest.Models.User();
+        }
 		protected override async Task OnInitializedAsync()
 		{
 			await PopulateList();
@@ -21,7 +25,7 @@ namespace PopsCarsSite.Pages
 		protected async Task PopulateList()
 		{
 			ListOfUsers = await _userservice.GetAllUsers();
-            model = new();
+            newUser = new();
 		}
         protected async Task FilterByUserSearch()
         {
@@ -30,7 +34,7 @@ namespace PopsCarsSite.Pages
 
         protected async Task AddUser()
         {
-			var result = await _userservice.CreateUser(model);
+			var result = await _userservice.CreateUser(newUser);
             await PopulateList();
 		}
         

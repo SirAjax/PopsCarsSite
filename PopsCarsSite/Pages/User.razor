@@ -10,10 +10,10 @@
 		<button type="submit">Filter By Details</button>
 	</EditForm>
 </div>
-
+ 
 <div style="padding: 10px;">
-	<EditForm Model="@model" OnSubmit="@AddUser">
-		<InputText @bind-Value="@model.UserName" placeholder="Enter User Name" />
+	<EditForm Model="@newUser" OnSubmit="@AddUser">
+		<InputText @bind-Value="@newUser!.UserName" placeholder="Enter User Name" />
 		<button type="submit">Create User</button>
 	</EditForm>
 </div>
