@@ -28,12 +28,15 @@ namespace PopsCars
 			string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 			var searchResults = userList.Where(c =>
-				searchOptions.All(term => c.UserName.ToString().Contains(term))
+				searchOptions.All(term => c.UserName.ToString().Contains(term, StringComparison.InvariantCultureIgnoreCase))
 			).ToList();
 
 			return searchResults;
 		}
 
-		
+		public async Task DeleteUser(User user) 
+		{
+			_userRepository.DeleteUser(user);
+		}
 	}
 }

@@ -48,7 +48,8 @@ public class UserRepository : IUserRepository
 
     public void DeleteUser(User user)
     {
-        _popsCarsContext.Remove(user);
+        User? currentUser = _popsCarsContext.User.OrderBy(i => i.Id).FirstOrDefault(a => a.UserName == user.UserName);
+        _popsCarsContext.Remove(currentUser!);
         _popsCarsContext.SaveChanges();
     }
     

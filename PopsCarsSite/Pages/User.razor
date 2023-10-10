@@ -10,14 +10,20 @@
 		<button type="submit">Filter By Details</button>
 	</EditForm>
 </div>
-
+ 
 <div style="padding: 10px;">
-	<EditForm Model="@model" OnSubmit="@AddUser">
-		<InputText @bind-Value="@model.UserName" placeholder="Enter User Name" />
+	<EditForm Model="@newUser" OnSubmit="@AddUser">
+		<InputText @bind-Value="@newUser!.UserName" placeholder="Enter User Name" />
 		<button type="submit">Create User</button>
 	</EditForm>
 </div>
 
+<div style="padding: 10px;">
+	<EditForm Model="@userToDelete" OnSubmit="@DeleteUser">
+		<InputText @bind-Value="@userToDelete.UserName" placeholder="Enter User Name" />
+		<button type="submit">Delete User</button>
+	</EditForm>
+</div>
 
 
 @if (ListOfUsers == null || ListOfUsers.Count == 0)
@@ -29,12 +35,24 @@
 }
 else
 {
-	<ol>
+	<table>
 		@foreach (var users in ListOfUsers)
 		{
 			<li>@users.UserName</li>
 		}
-	</ol>
+	</table>
 }
 
+@* 
+						Homework: 
+	-format list into Table (3 columns) (w3 schools)
+	-add delete button in table on 3rd column which deletes entire row 
+	-figure out how to retrieve deleted rows in SQL
+
+	--------------------------------------------------------------------------------------------------------
 	
+	-add note functionality
+	-get rid of car list in saved vs file and create in database
+	-figure out how to save databse for future use
+	-azure credits (create a server for testing "Azure SQL")
+*@

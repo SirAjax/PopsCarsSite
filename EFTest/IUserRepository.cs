@@ -7,4 +7,6 @@ public interface IUserRepository
 	Task<List<User>> GetUserByName(string userName);
 
 	Task<User> CreateUser(User user);
+
+	void DeleteUser(User user);
 }
