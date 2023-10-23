@@ -3,29 +3,41 @@
 
 @inherits UserComponent
 
-
+<table border="1">
+	<tr>
+		<th> Search for Users</th>
+			<td>
 <div style="padding: 10px;">
 	<EditForm Model="@ListOfUsers" OnSubmit="@FilterByUserSearch">
 		<InputText @bind-Value="@search" placeholder="Enter UserName" />
 		<button type="submit">Filter By Details</button>
 	</EditForm>
 </div>
- 
+			</td>
+	
+		<th>Create New User</th>
+			<td>
 <div style="padding: 10px;">
 	<EditForm Model="@newUser" OnSubmit="@AddUser">
 		<InputText @bind-Value="@newUser!.UserName" placeholder="Enter User Name" />
 		<button type="submit">Create User</button>
 	</EditForm>
+		
 </div>
+			</td>
 
+		<th>Delete a User</th>
+			<td>
 <div style="padding: 10px;">
 	<EditForm Model="@userToDelete" OnSubmit="@DeleteUser">
 		<InputText @bind-Value="@userToDelete.UserName" placeholder="Enter User Name" />
 		<button type="submit">Delete User</button>
 	</EditForm>
+	
 </div>
-
-
+			</td>
+	</tr>
+</table>
 @if (ListOfUsers == null || ListOfUsers.Count == 0)
 {
 	<p style="color: red; font-weight: bold;">
