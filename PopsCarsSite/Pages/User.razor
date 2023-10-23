@@ -4,56 +4,59 @@
 @inherits UserComponent
 
 <table border="1">
-	<tr>
-		<th> Search for Users</th>
-			<td>
-<div style="padding: 10px;">
-	<EditForm Model="@ListOfUsers" OnSubmit="@FilterByUserSearch">
-		<InputText @bind-Value="@search" placeholder="Enter UserName" />
-		<button type="submit">Filter By Details</button>
-	</EditForm>
-</div>
-			</td>
-	
-		<th>Create New User</th>
-			<td>
-<div style="padding: 10px;">
-	<EditForm Model="@newUser" OnSubmit="@AddUser">
-		<InputText @bind-Value="@newUser!.UserName" placeholder="Enter User Name" />
-		<button type="submit">Create User</button>
-	</EditForm>
-		
-</div>
-			</td>
-
-		<th>Delete a User</th>
-			<td>
-<div style="padding: 10px;">
-	<EditForm Model="@userToDelete" OnSubmit="@DeleteUser">
-		<InputText @bind-Value="@userToDelete.UserName" placeholder="Enter User Name" />
-		<button type="submit">Delete User</button>
-	</EditForm>
-	
-</div>
-			</td>
-	</tr>
+    <tr>
+        <td>
+            <h4>Search for Users</h4>
+            <EditForm Model="@ListOfUsers" OnSubmit="@FilterByUserSearch">
+                <InputText @bind-Value="@search" placeholder="Enter UserName" />
+                <button type="submit">Filter By Details</button>
+            </EditForm>
+        </td>
+        <td>
+            <h4>Create New User</h4>
+            <EditForm Model="@newUser" OnSubmit="@AddUser">
+                <InputText @bind-Value="@newUser!.UserName" placeholder="Enter User Name" />
+                <button type="submit">Create User</button>
+            </EditForm>
+        </td>
+        <td>
+            <h4>Delete a User</h4>
+            <EditForm Model="@userToDelete" OnSubmit="@DeleteUser">
+                <InputText @bind-Value="@userToDelete.UserName" placeholder="Enter User Name" />
+                <button type="submit">Delete User</button>
+            </EditForm>
+        </td>
+    </tr>
 </table>
+
 @if (ListOfUsers == null || ListOfUsers.Count == 0)
 {
-	<p style="color: red; font-weight: bold;">
-		No Users have been found
-	</p>
-
+    <p style="color: red; font-weight: bold;">
+        No Users have been found
+    </p>
 }
 else
 {
-	<table>
-		@foreach (var users in ListOfUsers)
-		{
-			<li>@users.UserName</li>
-		}
-	</table>
+    <table border="1">
+        <tr>
+            <th>User Name</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var users in ListOfUsers)
+        {
+            <tr>
+          
+                <td>
+                 <li>@users.UserName</li>  
+                </td>
+            </tr>
+        }
+    </table>
 }
+
+
+
+
 
 @* 
 						Homework: 
@@ -67,4 +70,21 @@ else
 	-get rid of car list in saved vs file and create in database
 	-figure out how to save databse for future use
 	-azure credits (create a server for testing "Azure SQL")
+
+	@if (ListOfUsers == null || ListOfUsers.Count == 0)
+{
+	<p style="color: red; font-weight: bold;">
+		No Users have been found
+	</p>
+
+}
+else
+{
+
+		@foreach (var users in ListOfUsers)
+		{
+			<li>@users.UserName</li>
+		}
+
+}
 *@
