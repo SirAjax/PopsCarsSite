@@ -31,6 +31,13 @@ namespace PopsCars
 			).ToList();
 
 			return searchResults;
+
 		}
-	}
+
+        public async Task<Car> AddCar(Car car)
+        {
+            return await _carsRepository.AddCar(car);
+        }
+
+    }
 }

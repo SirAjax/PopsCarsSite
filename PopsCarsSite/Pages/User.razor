@@ -3,12 +3,13 @@
 
 @inherits UserComponent
 
+
 <table border="1">
     <tr>
         <td>
             <h4>Search for Users</h4>
             <EditForm Model="@ListOfUsers" OnSubmit="@FilterByUserSearch">
-                <InputText @bind-Value="@search" placeholder="Enter UserName" />
+                <InputText @bind-Value="@search" placeholder="Enter User Name" />
                 <button type="submit">Filter By Details</button>
             </EditForm>
         </td>
@@ -52,6 +53,8 @@
 
     
 </table>
+
+
 @*@if (ListOfUsers == null || ListOfUsers.Count == 0)
 {
     <p style="color: red; font-weight: bold;">

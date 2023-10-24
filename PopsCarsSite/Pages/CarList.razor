@@ -3,15 +3,27 @@
 
 @inherits CarListComponent
 
-
+<table>
 <div style="padding: 10px;">
 	<EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
-		<InputText @bind-Value="@search" placeholder="Enter Car" />
-		<button type="submit">Filter By Details</button>
+		<InputText @bind-Value="@search" placeholder="Enter Car Details" />
+		<button type="submit">Search for Car</button>
 	</EditForm>
 </div>
 
 
+	<th>Add a Car </th>
+	<tr>
+		<EditForm Model="@ListOfCars" OnSubmit="@AddCar">
+			<InputNumber @bind-Vaue="@newCar!.Year" placeholder="Enter Car Year" />
+			<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
+			<InputText @bind-Vaue="@newCar!.Model" placeholder="Enter Car Model" />
+			<InputText @bind-Vaue="@newCar!.Color" placeholder="Enter Car Color" />
+			<button type="submit">Add Car</button>
+		</EditForm>
+	</tr>
+
+</table>
 
 @if (ListOfCars == null || ListOfCars.Count == 0)
 {
