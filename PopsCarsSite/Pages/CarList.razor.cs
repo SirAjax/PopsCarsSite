@@ -15,7 +15,7 @@ namespace PopsCarsSite.Pages
 
 		protected override async Task OnInitializedAsync()
 		{
-			ListOfCars = await _service.GetAllCars();
+			await PopulateList();
 		}
 
 		protected async Task PopulateList()
