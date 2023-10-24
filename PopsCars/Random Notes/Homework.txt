@@ -1,10 +1,12 @@
 ﻿
 
 						Homework: 
-	
-	-figure out how to retrieve deleted rows in SQL
+	*-Get Users and Cars connected in DB
+	*-figure out how to retrieve deleted rows in SQL
+
     -how to get rid of empty/nullable user
 	-Study SQL Management Studio (transaction logs)
+	-add mudblazor at home
 	--------------------------------------------------------------------------------------------------------
 	
 	-add note functionality
