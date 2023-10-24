@@ -5,6 +5,13 @@
 
 
 <table border="1">
+    <colgroup>
+        
+        <col span="2" style="background-color:red">
+        <col style="background-color:yellow">
+        
+    </colgroup>
+
     <tr>
         <td>
             <h4>Search for Users</h4>
@@ -28,6 +35,7 @@
             </EditForm>
         </td>
     </tr>
+    
 </table>
 <table border="1">
     
@@ -55,63 +63,10 @@
 </table>
 
 
-@*@if (ListOfUsers == null || ListOfUsers.Count == 0)
-{
-    <p style="color: red; font-weight: bold;">
-        No Users have been found
-    </p>
-}
-else
-{
-    <table border="1">
-        <tr>
-            <th>User Name</th>
-            <th>Actions</th>
-        </tr>
-        @foreach (var users in ListOfUsers)
-        {
-            <tr>
-
-                <td>
-                 <li>@users.UserName</li>
-                </td>
-            </tr>
-        }
-    </table>
-}
-*@
 
 
 
 
 
-@* 
-						Homework: 
-	-format list into Table (3 columns) (w3 schools)
-	-add delete button in table on 3rd column which deletes entire row 
-	-figure out how to retrieve deleted rows in SQL
 
-	--------------------------------------------------------------------------------------------------------
-	
-	-add note functionality
-	-get rid of car list in saved vs file and create in database
-	-figure out how to save databse for future use
-	-azure credits (create a server for testing "Azure SQL")
 
-	@if (ListOfUsers == null || ListOfUsers.Count == 0)
-{
-	<p style="color: red; font-weight: bold;">
-		No Users have been found
-	</p>
-
-}
-else
-{
-
-		@foreach (var users in ListOfUsers)
-		{
-			<li>@users.UserName</li>
-		}
-
-}
-*@

@@ -1,4 +1,4 @@
-﻿@page "/CarsList"
+﻿@page "/CarList"
 <h3>Cars</h3>
 
 @inherits CarListComponent
@@ -20,8 +20,8 @@
 			<EditForm Model="@ListOfCars" OnSubmit="@AddCar">
 				<InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
 				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
-				<InputText @bind-Vaue="@newCar!.Model" placeholder="Enter Car Model" />
-				<InputText @bind-Vaue="@newCar!.Color" placeholder="Enter Car Color" />
+				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
+				<InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
 				<button type="submit">Add Car</button>
 			</EditForm>
 		</td>
@@ -38,11 +38,15 @@
 }
 else
 {
-	<ol>
+	
 		@foreach (var cars in ListOfCars)
 		{
-			<li>@cars</li>
+			<tr>
+				<td>
+					<li>@cars</li>
+				</td>
+			</tr>
 		}
-	</ol>
+	
 }	
 </table>
