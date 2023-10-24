@@ -1,4 +1,4 @@
-﻿@page "/Cars"
+﻿@page "/CarsList"
 <h3>Cars</h3>
 
 @inherits CarListComponent
@@ -18,7 +18,7 @@
 			<th>Add a Car </th>
 		
 			<EditForm Model="@ListOfCars" OnSubmit="@AddCar">
-			
+				<InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
 				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
 				<InputText @bind-Vaue="@newCar!.Model" placeholder="Enter Car Model" />
 				<InputText @bind-Vaue="@newCar!.Color" placeholder="Enter Car Color" />
