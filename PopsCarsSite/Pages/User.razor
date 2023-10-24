@@ -28,8 +28,31 @@
         </td>
     </tr>
 </table>
+<table>
+    
+        @if (ListOfUsers == null || ListOfUsers.Count == 0)
+        {
+            <p style="color: red; font-weight: bold;">
+                No Users have been found
+            </p>
+        }
+        else
+        {
+                <th>Users in Database</th>    
+                @foreach (var users in ListOfUsers)
+                {
+                    <tr>
+                        <td>    
+                            <li>@users.UserName</li>
+                        </td>
+                    </tr>
+                }
+            
+        }
 
-@if (ListOfUsers == null || ListOfUsers.Count == 0)
+    
+</table>
+@*@if (ListOfUsers == null || ListOfUsers.Count == 0)
 {
     <p style="color: red; font-weight: bold;">
         No Users have been found
@@ -45,14 +68,15 @@ else
         @foreach (var users in ListOfUsers)
         {
             <tr>
-          
+
                 <td>
-                 <li>@users.UserName</li>  
+                 <li>@users.UserName</li>
                 </td>
             </tr>
         }
     </table>
 }
+*@
 
 
 
