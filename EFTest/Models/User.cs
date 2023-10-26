@@ -5,7 +5,9 @@ namespace EFTest.Models;
 public class User
 {
 	public string? UserName { get; set; }
-	public int Id { get; set; }
+	public int UserId { get; set; }
+
+	public int CarId { get; set; }
 
 	public User()
     {
@@ -14,7 +16,7 @@ public class User
 	public User(string userName, int id)
 	{
 		this.UserName = userName;
-		this.Id = id;
+		this.UserId = id;
 	}
 
 	

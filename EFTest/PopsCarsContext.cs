@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using EFTest.Models;
 using EFTest.SeededData;
+using Microsoft.Identity.Client;
 
 namespace EFTest
 {
@@ -15,12 +16,17 @@ namespace EFTest
 
 		}
 
+		
+
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new CarConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
+			modelBuilder.Entity<User>().HasMany<Car>().WithOne();
 		}
 
+		public var PopsCars = new Car []
 
-	}
+
+    }
 }

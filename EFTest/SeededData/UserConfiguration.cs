@@ -7,7 +7,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasData(new User("AJ", 1));
+        builder.HasData(new User("Pop", 1));
     }
 }
 
