@@ -1,6 +1,7 @@
 using EFTest.Models;
 using Microsoft.AspNetCore.Components;
 using PopsCars;
+using System.Diagnostics.Eventing.Reader;
 
 namespace PopsCarsSite.Pages
 {
@@ -27,7 +28,15 @@ namespace PopsCarsSite.Pages
 		}
         protected async Task FilterByUserSearch()
         {
-            ListOfUsers = await _userservice.MainUserSearch(search);
+            if (string.IsNullOrEmpty(search))
+            {
+                Console.WriteLine("no search criteria");
+            }
+            else
+            {
+                ListOfUsers = await _userservice.MainUserSearch(search);
+            }
+
         }
 
         protected async Task AddUser()
