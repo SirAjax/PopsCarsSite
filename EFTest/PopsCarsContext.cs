@@ -22,10 +22,11 @@ namespace EFTest
 		{
 			modelBuilder.ApplyConfiguration(new CarConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
-			modelBuilder.Entity<User>().HasMany<Car>().WithOne();
+
+			modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(u => u.User).HasForeignKey(k => k.UserId);
 		}
 
-		public var PopsCars = new Car []
+		//public var PopsCars = new Car []
 
 
     }

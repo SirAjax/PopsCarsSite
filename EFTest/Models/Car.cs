@@ -6,9 +6,13 @@ public class Car
     public string? Model { get; set; }
     public int Year { get; set; }
     public string? Color { get; set; }
-    public int CarId { get; set; }
+    public int Id { get; set; }
+    
+    public int UserId { get; set; }
 
-    public int UserId {get; set;}
+    public User User { get; set; }
+
+    
 
     public Car()
     { 
@@ -21,11 +25,11 @@ public class Car
         this.Make = make;
         this.Model = model;
         this.Color = color;
-        this.CarId = id;
+        this.Id = id;
     }
 
     public override string ToString()
     {
-        return $"Year: {Year}, Make: {Make}, Model: {Model}, Color: {Color}, Car Id: {CarId}";
+        return $"Year: {Year}, Make: {Make}, Model: {Model}, Color: {Color}, Car Id: {Id}";
     }
 }

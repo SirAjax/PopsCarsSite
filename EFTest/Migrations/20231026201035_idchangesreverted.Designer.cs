@@ -3,6 +3,7 @@ using EFTest;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFTest.Migrations
 {
     [DbContext(typeof(PopsCarsContext))]
-    partial class PopsCarsContextModelSnapshot : ModelSnapshot
+    [Migration("20231026201035_idchangesreverted")]
+    partial class idchangesreverted
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,10 +42,15 @@ namespace EFTest.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Car");
 
@@ -53,6 +61,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Chevy",
                             Model = "Biscayne",
+                            UserId = 0,
                             Year = 1968
                         },
                         new
@@ -61,6 +70,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Ford",
                             Model = "Fairlane",
+                            UserId = 0,
                             Year = 1967
                         },
                         new
@@ -69,6 +79,7 @@ namespace EFTest.Migrations
                             Color = "Turquoise Blue/Green",
                             Make = "Volkswagen",
                             Model = "Beetle",
+                            UserId = 0,
                             Year = 1965
                         },
                         new
@@ -77,6 +88,7 @@ namespace EFTest.Migrations
                             Color = "Green",
                             Make = "Chevy",
                             Model = "Impala",
+                            UserId = 0,
                             Year = 1966
                         },
                         new
@@ -85,6 +97,7 @@ namespace EFTest.Migrations
                             Color = "Green",
                             Make = "Ford",
                             Model = "Pinto",
+                            UserId = 0,
                             Year = 1972
                         },
                         new
@@ -93,6 +106,7 @@ namespace EFTest.Migrations
                             Color = "Beige",
                             Make = "Volkswagen",
                             Model = "Beetle",
+                            UserId = 0,
                             Year = 1964
                         },
                         new
@@ -101,6 +115,7 @@ namespace EFTest.Migrations
                             Color = "Beige",
                             Make = "Nissan",
                             Model = "Datsun",
+                            UserId = 0,
                             Year = 1967
                         },
                         new
@@ -109,6 +124,7 @@ namespace EFTest.Migrations
                             Color = "Maroon",
                             Make = "Ford",
                             Model = "Fairlane",
+                            UserId = 0,
                             Year = 1963
                         },
                         new
@@ -117,6 +133,7 @@ namespace EFTest.Migrations
                             Color = "Light Blue",
                             Make = "Dodge",
                             Model = "Monaco",
+                            UserId = 0,
                             Year = 1975
                         },
                         new
@@ -125,6 +142,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Ford",
                             Model = "Van E100",
+                            UserId = 0,
                             Year = 1976
                         },
                         new
@@ -133,6 +151,7 @@ namespace EFTest.Migrations
                             Color = "Maroon",
                             Make = "Ford",
                             Model = "LTD",
+                            UserId = 0,
                             Year = 1979
                         },
                         new
@@ -141,6 +160,7 @@ namespace EFTest.Migrations
                             Color = "Silver",
                             Make = "Toyota",
                             Model = "Celica",
+                            UserId = 0,
                             Year = 1983
                         },
                         new
@@ -149,6 +169,7 @@ namespace EFTest.Migrations
                             Color = "Brown",
                             Make = "Volkswagen",
                             Model = "Beetle",
+                            UserId = 0,
                             Year = 1965
                         },
                         new
@@ -157,6 +178,7 @@ namespace EFTest.Migrations
                             Color = "Brown/Red Stolen",
                             Make = "Toyota",
                             Model = "Corolla",
+                            UserId = 0,
                             Year = 1977
                         },
                         new
@@ -165,6 +187,7 @@ namespace EFTest.Migrations
                             Color = "White",
                             Make = "Chevy",
                             Model = "Monte Carlo",
+                            UserId = 0,
                             Year = 1973
                         },
                         new
@@ -173,6 +196,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Chevy",
                             Model = "Chevette",
+                            UserId = 0,
                             Year = 1976
                         },
                         new
@@ -181,6 +205,7 @@ namespace EFTest.Migrations
                             Color = "Brown",
                             Make = "Chevy",
                             Model = "Malibu",
+                            UserId = 0,
                             Year = 1975
                         },
                         new
@@ -189,6 +214,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Pontiac",
                             Model = "Firebird",
+                            UserId = 0,
                             Year = 1976
                         },
                         new
@@ -197,6 +223,7 @@ namespace EFTest.Migrations
                             Color = "Red",
                             Make = "Oldsmobile",
                             Model = "Omega",
+                            UserId = 0,
                             Year = 1974
                         },
                         new
@@ -205,6 +232,7 @@ namespace EFTest.Migrations
                             Color = "Silver/BlackGold",
                             Make = "Nissan",
                             Model = "Datsun 2 Plus 2",
+                            UserId = 0,
                             Year = 1977
                         },
                         new
@@ -213,6 +241,7 @@ namespace EFTest.Migrations
                             Color = "Brown",
                             Make = "Ford",
                             Model = "Grenada",
+                            UserId = 0,
                             Year = 1975
                         },
                         new
@@ -221,6 +250,7 @@ namespace EFTest.Migrations
                             Color = "Silver/Blue",
                             Make = "Toyota",
                             Model = "Celica",
+                            UserId = 0,
                             Year = 1985
                         },
                         new
@@ -229,6 +259,7 @@ namespace EFTest.Migrations
                             Color = "Brown",
                             Make = "Jeep",
                             Model = "Wagoneer",
+                            UserId = 0,
                             Year = 1975
                         },
                         new
@@ -237,6 +268,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Oldsmobile",
                             Model = "Delta 88",
+                            UserId = 0,
                             Year = 1985
                         },
                         new
@@ -245,6 +277,7 @@ namespace EFTest.Migrations
                             Color = "Beige",
                             Make = "Chevy",
                             Model = "Chevelle Wagon",
+                            UserId = 0,
                             Year = 1967
                         },
                         new
@@ -253,6 +286,7 @@ namespace EFTest.Migrations
                             Color = "White",
                             Make = "Chevy",
                             Model = "Malibu",
+                            UserId = 0,
                             Year = 1981
                         },
                         new
@@ -261,6 +295,7 @@ namespace EFTest.Migrations
                             Color = "Red",
                             Make = "Jeep",
                             Model = "Wrangler",
+                            UserId = 0,
                             Year = 1990
                         },
                         new
@@ -269,6 +304,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Oldsmobile",
                             Model = "Aurora",
+                            UserId = 0,
                             Year = 1996
                         },
                         new
@@ -277,6 +313,7 @@ namespace EFTest.Migrations
                             Color = "Grey",
                             Make = "Oldsmobile",
                             Model = "Cutlass",
+                            UserId = 0,
                             Year = 1975
                         },
                         new
@@ -285,6 +322,7 @@ namespace EFTest.Migrations
                             Color = "Silver",
                             Make = "Mazda",
                             Model = "926",
+                            UserId = 0,
                             Year = 1993
                         },
                         new
@@ -293,6 +331,7 @@ namespace EFTest.Migrations
                             Color = "Blue/Off White Blueish",
                             Make = "Austin",
                             Model = "Healey",
+                            UserId = 0,
                             Year = 1971
                         },
                         new
@@ -301,6 +340,7 @@ namespace EFTest.Migrations
                             Color = "Black",
                             Make = "Toyota",
                             Model = "Camry",
+                            UserId = 0,
                             Year = 2000
                         },
                         new
@@ -309,6 +349,7 @@ namespace EFTest.Migrations
                             Color = "Blue",
                             Make = "Toyota",
                             Model = "Tacoma",
+                            UserId = 0,
                             Year = 2008
                         },
                         new
@@ -317,6 +358,7 @@ namespace EFTest.Migrations
                             Color = "Black",
                             Make = "Ford",
                             Model = "Mustang",
+                            UserId = 0,
                             Year = 1965
                         },
                         new
@@ -325,6 +367,7 @@ namespace EFTest.Migrations
                             Color = "Green",
                             Make = "Chevy",
                             Model = "210/Belair",
+                            UserId = 0,
                             Year = 1954
                         });
                 });
@@ -353,6 +396,9 @@ namespace EFTest.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CarId")
+                        .HasColumnType("int");
+
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
@@ -364,8 +410,18 @@ namespace EFTest.Migrations
                         new
                         {
                             Id = 1,
+                            CarId = 0,
                             UserName = "Pop"
                         });
+                });
+
+            modelBuilder.Entity("EFTest.Models.Car", b =>
+                {
+                    b.HasOne("EFTest.Models.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -2,6 +2,6 @@
 
 public class Note
 {
-	public int NoteId { get; set; }
+	public int Id { get; set; }
 	public string? Comments { get; set; }
 }

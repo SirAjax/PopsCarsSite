@@ -40,7 +40,7 @@ public class UserRepository : IUserRepository
 
     public User UpdateUser(User user)
     {
-        User? currentUser =_popsCarsContext.User.Find(user.UserId);
+        User? currentUser =_popsCarsContext.User.Find(user.Id);
         _popsCarsContext.Entry(currentUser!).CurrentValues.SetValues(user);
         _popsCarsContext.SaveChanges();
         return user; 
@@ -48,7 +48,7 @@ public class UserRepository : IUserRepository
 
     public void DeleteUser(User user)
     {
-        User? currentUser = _popsCarsContext.User.OrderBy(i => i.UserId).FirstOrDefault(a => a.UserName == user.UserName);
+        User? currentUser = _popsCarsContext.User.OrderBy(i => i.Id).FirstOrDefault(a => a.UserName == user.UserName);
         _popsCarsContext.Remove(currentUser!);
         _popsCarsContext.SaveChanges();
     }
