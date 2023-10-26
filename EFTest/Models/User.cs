@@ -10,7 +10,7 @@ public class User
 
 	public int CarId { get; set; }
 
-	public List<Car> Cars { get; set; }
+	public ICollection<Car> Cars { get; } = new List<Car>();	
 
 	public User()
     {

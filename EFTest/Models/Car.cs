@@ -7,29 +7,30 @@ public class Car
     public int Year { get; set; }
     public string? Color { get; set; }
     public int Id { get; set; }
-    
-    public int UserId { get; set; }
 
-    public User User { get; set; }
+    public int? UserId { get; set; }
 
-    
+    public User User { get; set; } = null!;
+
+
 
     public Car()
     { 
         //intentially left blank for CRUD operations
     }
 
-    public Car(int year, string make, string model, string color, int id)
+    public Car(int year, string make, string model, string color, int id, int userId)
     {
         this.Year = year;
         this.Make = make;
         this.Model = model;
         this.Color = color;
         this.Id = id;
+        this.UserId = userId;
     }
 
     public override string ToString()
     {
-        return $"Year: {Year}, Make: {Make}, Model: {Model}, Color: {Color}, Car Id: {Id}";
+        return $"Year: {Year}, Make: {Make}, Model: {Model}, Color: {Color}, Car Id: {Id}, User Id: {UserId}";
     }
 }
