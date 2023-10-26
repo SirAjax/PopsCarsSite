@@ -23,7 +23,7 @@ namespace EFTest
 			modelBuilder.ApplyConfiguration(new CarConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 
-			modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(u => u.User).HasForeignKey(u => u.Id);
+			//modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(u => u.User);
 		}
 
 		

@@ -43,29 +43,35 @@ namespace EFTest.Migrations
                 name: "Car",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Make = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Model = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Color = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Car", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Car_User_Id",
-                        column: x => x.Id,
+                        name: "FK_Car_User_UserId",
+                        column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "CarId", "UserName" },
+                values: new object[] { 1, 0, "Pop" });
 
             migrationBuilder.InsertData(
                 table: "Car",
                 columns: new[] { "Id", "Color", "Make", "Model", "UserId", "Year" },
                 values: new object[,]
                 {
+                    { 1, "Blue", "Chevy", "Biscayne", 1, 1968 },
                     { 2, "Blue", "Ford", "Fairlane", 1, 1967 },
                     { 3, "Turquoise Blue/Green", "Volkswagen", "Beetle", 1, 1965 },
                     { 4, "Green", "Chevy", "Impala", 1, 1966 },
@@ -102,15 +108,10 @@ namespace EFTest.Migrations
                     { 35, "Green", "Chevy", "210/Belair", 1, 1954 }
                 });
 
-            migrationBuilder.InsertData(
-                table: "User",
-                columns: new[] { "Id", "CarId", "UserName" },
-                values: new object[] { 1, 0, "Pop" });
-
-            migrationBuilder.InsertData(
+            migrationBuilder.CreateIndex(
+                name: "IX_Car_UserId",
                 table: "Car",
-                columns: new[] { "Id", "Color", "Make", "Model", "UserId", "Year" },
-                values: new object[] { 1, "Blue", "Chevy", "Biscayne", 1, 1968 });
+                column: "UserId");
         }
 
         /// <inheritdoc />

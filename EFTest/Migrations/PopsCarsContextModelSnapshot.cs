@@ -4,7 +4,6 @@ using EFTest;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -12,11 +11,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFTest.Migrations
 {
     [DbContext(typeof(PopsCarsContext))]
-    [Migration("20231026213328_initialmigration")]
-    partial class initialmigration
+    partial class PopsCarsContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,7 +25,10 @@ namespace EFTest.Migrations
             modelBuilder.Entity("EFTest.Models.Car", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Color")
                         .HasColumnType("nvarchar(max)");
@@ -41,13 +41,14 @@ namespace EFTest.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("Year")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Car");
 
@@ -416,9 +417,7 @@ namespace EFTest.Migrations
                 {
                     b.HasOne("EFTest.Models.User", "User")
                         .WithMany("Cars")
-                        .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
