@@ -1,6 +1,7 @@
 ﻿using EFTest.Models;
 using Microsoft.AspNetCore.Components;
 using PopsCars;
+using System.Diagnostics.Eventing.Reader;
 
 namespace PopsCarsSite.Pages
 {
@@ -26,9 +27,17 @@ namespace PopsCarsSite.Pages
 
 		protected async Task FilterBySearch()
 		{
-			ListOfCars = await _service.MainSearch(search);
-		}
+			if (string.IsNullOrEmpty(search))
+			{
+				Console.WriteLine("no search results");
 
+			}
+			else
+			{ 
+				ListOfCars = await _service.MainSearch(search);
+			}
+		}
+	
 		protected async Task AddCar()
 		{
 			{ 
