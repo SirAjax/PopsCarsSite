@@ -30,7 +30,6 @@ namespace PopsCarsSite.Pages
 			if (string.IsNullOrEmpty(search))
 			{
 				Console.WriteLine("no search results");
-
 			}
 			else
 			{ 
@@ -40,7 +39,7 @@ namespace PopsCarsSite.Pages
 	
 		protected async Task AddCar()
 		{
-			{ 
+			{
 				var result = await _service.AddCar(newCar);
 				await PopulateList();
 			}

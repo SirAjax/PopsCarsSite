@@ -2,6 +2,7 @@
 using EFTest.Models;
 using EFTest.SeededData;
 using Microsoft.Identity.Client;
+using Microsoft.Extensions.Logging;
 
 namespace EFTest
 {
@@ -16,9 +17,13 @@ namespace EFTest
 
 		}
 
-		
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+			optionsBuilder.UseSqlServer("Data Source = (localdb)\\MSSQLLocalDB; Initial Catalog = PubDatabase").
+				LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Name}, Microsoft.Extensions.Logging.LogLevel.Information);
+        }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new CarConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
