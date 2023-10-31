@@ -7,4 +7,6 @@ public interface IService
 	Task<List<Car>> MainSearch(string search);
 
 	Task<Car> AddCar(Car car);
+
+	Task DeleteCar(Car car);
 }

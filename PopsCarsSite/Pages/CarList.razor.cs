@@ -10,6 +10,7 @@ namespace PopsCarsSite.Pages
 		protected List<Car> ListOfCars = new();
 		protected string search;
 		protected EFTest.Models.Car? newCar = new();
+		protected EFTest.Models.Car? carToDelete = new();
 
 		[Inject]
 		private IService _service { get; set; } = default!;
@@ -44,6 +45,12 @@ namespace PopsCarsSite.Pages
 				await PopulateList();
 			}
 		}
+
+		protected async Task DeleteCar()
+		{
+			await _service.DeleteCar(carToDelete);
+		}
+		
 	}
 }
 

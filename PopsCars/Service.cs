@@ -39,5 +39,10 @@ namespace PopsCars
             return await _carsRepository.AddCar(car);
         }
 
+		public async void DeleteCar(Car car)
+		{
+			_carsRepository.DeleteCar(car);
+		}
+
     }
 }

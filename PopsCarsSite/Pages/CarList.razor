@@ -25,6 +25,15 @@
 				<button type="submit">Add Car</button>
 			</EditForm>
 		</td>
+		<td>
+		
+			<th>Delete a User</th>
+			<EditForm Model="@userToDelete" OnSubmit="@DeleteUser">
+				<InputText @bind-Value="@userToDelete.UserName" placeholder="Enter User Name" />
+				<button type="submit">Delete User</button>
+			</EditForm>
+		</td>
+		
 	</tr>
 </table>
 
