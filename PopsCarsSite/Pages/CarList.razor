@@ -26,10 +26,9 @@
 			</EditForm>
 		</td>
 		<td>
-		
-			<th>Delete a User</th>
+			<th>Delete a Car</th>
 			<EditForm Model="@carToDelete" OnSubmit="@DeleteCar">
-				<InputText @bind-Value="@carToDelete.Model" placeholder="Enter User Name" />
+				<InputText @bind-Value="@carToDelete.Model" placeholder="Enter Car Model" />
 				<button type="submit">Delete Car</button>
 			</EditForm>
 		</td>

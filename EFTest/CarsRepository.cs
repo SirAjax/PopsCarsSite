@@ -27,8 +27,8 @@ namespace EFTest
 
 		public void DeleteCar(Car car) 
 		{
-            Car? currentUser = _popsCarsContext.Car.OrderBy(i => i.Id).FirstOrDefault(a => a.Model == car.Model);
-            _popsCarsContext.Remove(currentUser!);
+            Car? selectedCar = _popsCarsContext.Car.OrderBy(i => i.Id).FirstOrDefault(a => a.Model == car.Model);
+            _popsCarsContext.Remove(selectedCar!);
             _popsCarsContext.SaveChanges();
         } 
     }
