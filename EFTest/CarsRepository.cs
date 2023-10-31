@@ -24,6 +24,13 @@ namespace EFTest
             await _popsCarsContext.SaveChangesAsync();
             return car;
         }
+
+		public void DeleteCar(Car car) 
+		{
+            Car? currentUser = _popsCarsContext.Car.OrderBy(i => i.Id).FirstOrDefault(a => a.Make == car.Make);
+            _popsCarsContext.Remove(currentUser!);
+            _popsCarsContext.SaveChanges();
+        } 
     }
 
 	// Example of efcore using private variable naming convention
