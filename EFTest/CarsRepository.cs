@@ -19,11 +19,13 @@ namespace EFTest
 		}
 
         public async Task<Car> AddCar(Car car)
+		
         {
-            _popsCarsContext.Add(car);
+            await _popsCarsContext.AddAsync(car);
             await _popsCarsContext.SaveChangesAsync();
             return car;
         }
+
 
 		public void DeleteCar(Car car) 
 		{

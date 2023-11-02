@@ -36,7 +36,6 @@ namespace PopsCarsSite.Pages
             {
                 ListOfUsers = await _userservice.MainUserSearch(search);
             }
-
         }
 
         protected async Task AddUser()
