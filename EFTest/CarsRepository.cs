@@ -18,23 +18,27 @@ namespace EFTest
 			return await _popsCarsContext.Car.ToListAsync();
 		}
 
-        public async Task<Car> AddCar(Car car)
-		
-        {
-            await _popsCarsContext.AddAsync(car);
-            await _popsCarsContext.SaveChangesAsync();
-            return car;
-        }
+		public async Task<Car> AddCar(Car car)
 
-
-		public void DeleteCar(Car car) 
 		{
-            Car? selectedCar = _popsCarsContext.Car.OrderBy(i => i.Id).FirstOrDefault(a => a.Model == car.Model);
-            _popsCarsContext.Remove(selectedCar!);
-            _popsCarsContext.SaveChanges();
-        } 
-    }
+			await _popsCarsContext.AddAsync(car);
+			await _popsCarsContext.SaveChangesAsync();
+			return car;
+		}
 
+
+		public Car? DeleteCar(Car car)
+		{
+			Car? selectedCar = _popsCarsContext.Car.OrderBy(i => i.Id).FirstOrDefault(a => a.Model == car.Model);
+
+			if (selectedCar != null)
+			{
+				_popsCarsContext.Remove(selectedCar!);
+				_popsCarsContext.SaveChanges();
+			}
+			return selectedCar;
+		}
+	}
 	// Example of efcore using private variable naming convention
 	//https://github.com/dotnet/efcore/blob/release/8.0/src/EFCore.SqlServer/SqlServerRetryingExecutionStrategy.cs
 }
