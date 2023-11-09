@@ -53,6 +53,7 @@ public class CarsRepositoryTest
 		using (var context = new PopsCarsContext(builder.Options))
 		{
 			var carsRepository = new CarsRepository(context);
+			carsRepository.GetCarsAsync();
 			Assert.IsNotNull(carsRepository);
 		}
 	}
