@@ -3,6 +3,7 @@ using EFTest;
 using EFTest.Models;
 using Microsoft.Data.Sqlite;
 using System.Runtime.CompilerServices;
+using System.Diagnostics.CodeAnalysis;
 
 namespace TestForPopsCars;
 
@@ -44,5 +45,15 @@ public class CarsRepositoryTest
 			Assert.IsNotNull(car);
 		}
 	}
-
+	[TestMethod]
+	public async Task Does_GetCarsAsync_Return_Success()
+	{
+		var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
+		
+		using (var context = new PopsCarsContext(builder.Options))
+		{
+			var carsRepository = new CarsRepository(context);
+			Assert.IsNotNull(carsRepository);
+		}
+	}
 }
