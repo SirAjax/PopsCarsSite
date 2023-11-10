@@ -27,16 +27,11 @@ namespace EFTest
 		}
 
 
-		public Car? DeleteCar(Car car)
+		public void DeleteCar(Car car)
 		{
-			Car? selectedCar = _popsCarsContext.Car.OrderBy(i => i.Id).FirstOrDefault(a => a.Model == car.Model);
-
-			if (selectedCar != null)
-			{
-				_popsCarsContext.Remove(selectedCar!);
-				_popsCarsContext.SaveChanges();
-			}
-			return selectedCar;
+			
+			_popsCarsContext.Remove(car);
+			_popsCarsContext.SaveChanges();
 		}
 	}
 	// Example of efcore using private variable naming convention

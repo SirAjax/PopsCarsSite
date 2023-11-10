@@ -7,5 +7,5 @@ public interface ICarsRepository
 
 	Task<Car> AddCar(Car car);
 
-	Car? DeleteCar(Car car);	
+	void DeleteCar(Car car);	
 }

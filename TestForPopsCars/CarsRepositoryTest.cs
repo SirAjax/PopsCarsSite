@@ -20,16 +20,10 @@ public class CarsRepositoryTest
 		using (var context = new PopsCarsContext(builder.Options))
 		{
 			var car = new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 };
-			//context.Add(car);
-			//context.SaveChanges();
 
-			//var data = context.Car.Where(c => c.Id == 18);
-			//Assert.IsNotNull(data);
-
-			//var car = new Car(); 
 			var carsRepository = new CarsRepository(context);
-			var newCar = await carsRepository.AddCar(car);	
-			Assert.IsNotNull(newCar);	
+			var newCar = await carsRepository.AddCar(car);
+			Assert.IsNotNull(newCar);
 		}
 	}
 	[TestMethod]
@@ -41,15 +35,18 @@ public class CarsRepositoryTest
 		{
 			var car = new Car { Id = 18, Make = "unit test", Model = "Test", Color = "Orange", Year = 2017 };
 			var carsRepository = new CarsRepository(context);
+			context.Add(car);
+			context.SaveChanges();
 			carsRepository.DeleteCar(car);
-			Assert.IsNotNull(car);
+			var savedCarDetails = context.Car.Where(c => c.Make == "unit test").FirstOrDefault();
+			Assert.IsNull(savedCarDetails);
 		}
 	}
 	[TestMethod]
 	public async Task Does_GetCarsAsync_Return_Success()
 	{
 		var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
-		
+
 		using (var context = new PopsCarsContext(builder.Options))
 		{
 			var carsRepository = new CarsRepository(context);
