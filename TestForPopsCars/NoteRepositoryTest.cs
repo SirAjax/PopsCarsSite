@@ -12,57 +12,64 @@ namespace TestForPopsCars;
 [TestClass]
 public class NoteRepositoryTest
 {
-    [TestMethod]
+	private DbContextOptions<PopsCarsContext> dbContextOptions;
+	private PopsCarsContext context;
+
+	[TestInitialize]
+	public void Setup()
+	{
+		dbContextOptions = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test").Options;
+		context = new(dbContextOptions);
+	}
+	[TestCleanup]
+	public void Cleanup()
+	{
+		context.Database.EnsureDeleted();
+	}
+
+
+
+	[TestMethod]
     public async Task Does_Create_Note_Return_Succes()
     {
-        var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
-
-        using (var context = new PopsCarsContext(builder.Options)) 
-        { 
+        
+        
             var note = new Note { Comments = "This is a test 1", NoteId = 1};
             var noteRepository = new NoteRepository(context);
             var newNote = noteRepository.CreateNote(note);
             Assert.IsNotNull(newNote);
-        }
+        
     }
 
     [TestMethod]
 
     public async Task Does_Get_All_Notes_Return_Success()
     {
-        var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
-
-        using (var context = new PopsCarsContext(builder.Options))
-        {
+       
+        
             var noteRepository = new NoteRepository(context);
             noteRepository.GetAllNotes();
             Assert.IsNotNull(noteRepository);
-        }
+        
     }
 
     [TestMethod]
     public async Task Does_GetComments_Return_Success()
     {
-        var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
-
-        using (var context = new PopsCarsContext(builder.Options))
-        {
+       
             var comment = new Note { Comments = "test comment" };
             var noteRepository = new NoteRepository(context);
             context.Add(comment);
             context.SaveChanges();
             var searchedComments = await noteRepository.GetComments("test comment");
             Assert.AreEqual(comment, searchedComments.FirstOrDefault());
-        }
+        
     }
 
     [TestMethod]
     public async Task Does_UpdateComments_Return_Success()
     {
-        var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
-
-        using (var context = new PopsCarsContext(builder.Options))
-        {
+        
             string originalComment = "originalTestComment", updatedComment = "updatedTestComment";
             var note = new Note { Comments = originalComment, NoteId = 1 };
             var noteRepository = new NoteRepository(context);
@@ -72,16 +79,13 @@ public class NoteRepositoryTest
             Note actual = noteRepository.UpdateComments(newNote);
             Assert.AreEqual(updatedComment, actual.Comments);
             Assert.AreNotEqual(originalComment, note.Comments);
-        }
+        
     }
 
     [TestMethod]
     public async Task Does_DeleteNote_Return_Success()
     {
-        var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
-
-        using (var context = new PopsCarsContext(builder.Options))
-        {
+       
             var noteRepository = new NoteRepository(context);
             var note = new Note { Comments = "test comments", NoteId = 1 };
             context.Add(note);
@@ -89,6 +93,6 @@ public class NoteRepositoryTest
             noteRepository.DeleteNote(note);
             var deletedNote = context.Note.FirstOrDefault(n => n.NoteId == 1);
             Assert.IsNull(deletedNote);
-        }
+        
     }
 }
