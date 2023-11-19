@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFTest
 {
-    public class NoteRepository
+    public class NoteRepository : INoteRepository
     {
         private readonly PopsCarsContext _popsCarsContext;
 
