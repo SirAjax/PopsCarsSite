@@ -24,10 +24,10 @@ namespace PopsCars
 			return _noteRepository.GetAllNotes();
 		}
 
-		//public async Task<List<Note>> GetCommentsAsync(string comments)
-		//{
-		//	return await _noteRepository.GetComments();
-		//}
+		public async Task<List<Note>> GetCommentsAsync(string comments)
+		{
+			return await _noteRepository.GetComments(comments);
+		}
 
 		public async Task DeleteNote(Note note)
 		{

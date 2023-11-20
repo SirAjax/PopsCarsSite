@@ -7,7 +7,7 @@ namespace PopsCarsSite.Note
 {
 	public class NoteComponent : ComponentBase
 	{
-		protected List<EFTest.Models.Note ListOfUsers = new();
+		protected List<EFTest.Models.Note> ListOfNotes = new();
 		protected string? search;
 		protected EFTest.Models.Note? newNote = new();
 		protected EFTest.Models.Note? noteToDelete = new();
@@ -23,10 +23,10 @@ namespace PopsCarsSite.Note
 
 		protected async Task PopulateList()
 		{
-			ListOfUsers = await _userservice.GetAllUsers();
-			newUser = new();
+			ListOfNotes = _noteservice.GetNotes();
+			newNote = new();
 		}
-		protected async Task FilterByUserSearch()
+		protected async Task FilterByCommentSearch()
 		{
 			if (string.IsNullOrEmpty(search))
 			{
@@ -34,14 +34,14 @@ namespace PopsCarsSite.Note
 			}
 			else
 			{
-				ListOfUsers = await _userservice.MainUserSearch(search);
+				ListOfNotes = await _noteservice.GetCommentsAsync(search);
 			}
 		}
 
-		protected async Task AddUser()
+		protected async Task AddNote()
 		{
-			var result = await _userservice.CreateUser(newUser);
-			await PopulateList();
+			var result = await _noteservice.CreateNote(newNote);
+			
 		}
 
 		protected async Task DeleteUser()
