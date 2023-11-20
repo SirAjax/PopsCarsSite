@@ -1,7 +1,7 @@
 ﻿using EFTest.Models;
 
-namespace EFTest
-{
+namespace EFTest;
+
     public interface INoteRepository
     {
         Note CreateNote(Note note);
@@ -10,4 +10,4 @@ namespace EFTest
         Note UpdateComments(Note comments);
         void DeleteNote(Note note); 
     }
-}
+
