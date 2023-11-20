@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopsCars", "PopsCars\PopsCa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFTest", "EFTest\EFTest.csproj", "{940994CD-0596-43B4-8BA3-A2746505A6FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestForPopsCars", "TestForPopsCars\TestForPopsCars.csproj", "{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestForPopsCars", "TestForPopsCars\TestForPopsCars.csproj", "{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
