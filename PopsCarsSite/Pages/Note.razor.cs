@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 using PopsCars;
 using System.Diagnostics.Eventing.Reader;
 
-namespace PopsCarsSite.Note
+namespace PopsCarsSite.Pages
 {
 	public class NoteComponent : ComponentBase
 	{
@@ -23,7 +23,7 @@ namespace PopsCarsSite.Note
 
 		protected async Task PopulateList()
 		{
-			ListOfNotes = _noteservice.GetNotes();
+			ListOfNotes =  _noteservice.GetNotes();
 			newNote = new();
 		}
 		protected async Task FilterByCommentSearch()
@@ -38,16 +38,16 @@ namespace PopsCarsSite.Note
 			}
 		}
 
-		protected async Task AddNote()
-		{
-			var result = await _noteservice.CreateNote(newNote);
+		//protected async Task AddNote()
+		//{
+		//	var result = await _noteservice.CreateNote(newNote);
 			
-		}
+		//}
 
-		protected async Task DeleteUser()
-		{
-			await _userservice.DeleteUser(userToDelete);
-		}
+		//protected async Task DeleteUser()
+		//{
+		//	await _userservice.DeleteUser(userToDelete);
+		//}
 	}
 
 }

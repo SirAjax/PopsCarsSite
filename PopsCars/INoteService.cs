@@ -15,6 +15,6 @@ public interface INoteService
 	List<Note> GetNotes();
 	Task DeleteNote(Note note);
 	Note UpdateNotes(Note comments);
-	Task<List<Note>> GetCommentsAsync();
+	Task<List<Note>> GetCommentsAsync(string comments);
 
 }
