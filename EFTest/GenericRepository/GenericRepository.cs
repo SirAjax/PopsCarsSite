@@ -4,39 +4,71 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EFTest;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFTest.GenericRepository
 {
-    
-
-    public (DatabaseContext ctx)
-        
-       
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
+        private DbContext _gdb;
+        DbSet<T> _entity = null;
+        public GenericRepository(DbContext gdb)
+        {
+            _gdb = gdb;
+            _entity = _gdb.Set<T>();
+        }
         public bool Add(T model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _entity.Add(model);
+                _gdb.SaveChanges();
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool Delete(T model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _gdb.Remove(model);
+                _gdb.SaveChanges();
+                return true;
+            }
+            catch (Exception ex) 
+            {
+                return false;
+            }
         }
 
         public IEnumerable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return _entity.ToList();
         }
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            return _entity.Find(id);
         }
 
         public bool Update(T model)
         {
-            throw new NotImplementedException();
+            try
+            { 
+                _entity.Update(model);
+                _gdb.SaveChanges();
+                return true;
+            }
+
+            catch (Exception ex) 
+            {
+                return false;
+            }
         }
     }
 }
