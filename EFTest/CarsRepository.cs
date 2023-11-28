@@ -1,37 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using EFTest.GenericRepository;
 using EFTest.Models;
 
 
 namespace EFTest
 {
-	public class CarsRepository : ICarsRepository
+	public class CarsRepository :  GenericRepository<Car>, ICarsRepository
 	{
-		private readonly PopsCarsContext _popsCarsContext;
-
-		public CarsRepository(PopsCarsContext popsCarsContext)
+		public CarsRepository(PopsCarsContext popsCarsContext): base(popsCarsContext) 
 		{
-			_popsCarsContext = popsCarsContext;
-		}
-
-		public async Task<List<Car>> GetCarsAsync()
-		{
-			return await _popsCarsContext.Car.ToListAsync();
-		}
-
-		public async Task<Car> AddCar(Car car)
-
-		{
-			await _popsCarsContext.AddAsync(car);
-			await _popsCarsContext.SaveChangesAsync();
-			return car;
-		}
-
-
-		public void DeleteCar(Car car)
-		{
-			
-			_popsCarsContext.Remove(car);
-			_popsCarsContext.SaveChanges();
 		}
 	}
 	// Example of efcore using private variable naming convention

@@ -22,7 +22,7 @@ public class CarsRepositoryTest
 			var car = new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 };
 
 			var carsRepository = new CarsRepository(context);
-			var newCar = await carsRepository.AddCar(car);
+			var newCar = carsRepository.Add(car);
 			Assert.IsNotNull(newCar);
 		}
 	}
@@ -37,7 +37,7 @@ public class CarsRepositoryTest
 			var carsRepository = new CarsRepository(context);
 			context.Add(car);
 			context.SaveChanges();
-			carsRepository.DeleteCar(car);
+			carsRepository.Delete(car);
 			var savedCarDetails = context.Car.Where(c => c.Make == "unit test").FirstOrDefault();
 			Assert.IsNull(savedCarDetails);
 		}
@@ -50,7 +50,7 @@ public class CarsRepositoryTest
 		using (var context = new PopsCarsContext(builder.Options))
 		{
 			var carsRepository = new CarsRepository(context);
-			carsRepository.GetCarsAsync();
+			carsRepository.GetAll();
 			Assert.IsNotNull(carsRepository);
 		}
 	}

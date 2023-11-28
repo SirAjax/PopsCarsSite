@@ -22,7 +22,7 @@ namespace PopsCarsSite.Pages
 		}
 		protected async Task PopulateList()
 		{
-			ListOfCars = await _service.GetAllCars();
+			ListOfCars = _service.GetAllCars();
 			newCar = new();
 		}
 

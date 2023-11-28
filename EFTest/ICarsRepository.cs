@@ -1,11 +1,7 @@
 ﻿using EFTest.Models;
-
+using EFTest.GenericRepository;
 namespace EFTest;
-public interface ICarsRepository
+public interface ICarsRepository : IGenericRepository <Car>
 {
-	Task<List<Car>> GetCarsAsync();
 
-	Task<Car> AddCar(Car car);
-
-	void DeleteCar(Car car);	
 }
