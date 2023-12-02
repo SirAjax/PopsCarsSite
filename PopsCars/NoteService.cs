@@ -14,29 +14,29 @@ namespace PopsCars
 			_noteRepository = noteRepository;
 		}
 
-		public Note CreateNote(Note note)
+		public async Task<bool> CreateNote(Note note)
 		{
-			return _noteRepository.CreateNote(note);
+			return _noteRepository.Add(note);
 		}
 
 		public List<Note> GetNotes()
 		{
-			return _noteRepository.GetAllNotes();
+			return _noteRepository.GetAll().ToList();
 		}
 
-		public async Task<List<Note>> GetCommentsAsync(string comments)
+		public IEnumerable<Note> GetCommentsAsync(string comments)
 		{
-			return await _noteRepository.GetComments(comments);
+			return _noteRepository.GetAll();
 		}
 
 		public async Task DeleteNote(Note note)
 		{
-			_noteRepository.DeleteNote(note);
+			_noteRepository.Delete(note);
 		}
 
-		public Note UpdateNotes(Note comments)
+		public bool UpdateNotes(Note comments)
 		{
-			return _noteRepository.UpdateComments(comments);
+			return _noteRepository.Update(comments);
 		}
 
 		

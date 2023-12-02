@@ -1,12 +1,9 @@
-﻿using EFTest.Models;
+﻿using EFTest.GenericRepository;
+using EFTest.Models;
 
 namespace EFTest;
-public interface IUserRepository
+public interface IUserRepository :IGenericRepository<User>
+
 {
-	Task<List<User>> GetAllUserAsync();
-	Task<List<User>> GetUserByName(string userName);
 
-	Task<User> CreateUser(User user);
-
-	void DeleteUser(User user);
 }

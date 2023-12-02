@@ -12,19 +12,19 @@ namespace PopsCars
 			_userRepository = userRepository;
 		}
 
-		public async Task<User> CreateUser(User user)
+		public async Task<bool> CreateUser(User user)
 		{
-			return await _userRepository.CreateUser(user);
+			return _userRepository.Add(user);
 		}
 
 		public async Task<List<User>> GetAllUsers()
 		{
-			return await _userRepository.GetAllUserAsync();
+			return  _userRepository.GetAll().ToList();
 		}
 
 		public async Task<List<User>> MainUserSearch(string search)
 		{
-			List<User> userList = await _userRepository.GetAllUserAsync();
+			List<User> userList = _userRepository.GetAll().ToList();
 			string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 			var searchResults = userList.Where(c =>
@@ -36,7 +36,7 @@ namespace PopsCars
 
 		public async Task DeleteUser(User user) 
 		{
-			_userRepository.DeleteUser(user);
+			_userRepository.Delete(user);
 		}
 	}
 }
