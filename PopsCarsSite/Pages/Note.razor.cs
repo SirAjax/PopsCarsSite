@@ -38,16 +38,6 @@ namespace PopsCarsSite.Pages
 			}
 		}
 
-		//protected async Task AddNote()
-		//{
-		//	var result = await _noteservice.CreateNote(newNote);
-			
-		//}
-
-		//protected async Task DeleteUser()
-		//{
-		//	await _userservice.DeleteUser(userToDelete);
-		//}
 	}
 
 }

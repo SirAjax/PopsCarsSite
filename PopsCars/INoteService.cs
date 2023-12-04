@@ -1,10 +1,4 @@
-﻿using EFTest;
-using EFTest.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EFTest.Models;
 
 namespace PopsCars;
 

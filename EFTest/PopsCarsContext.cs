@@ -1,12 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using EFTest.Models;
+﻿using EFTest.Models;
 using EFTest.SeededData;
-using Microsoft.Identity.Client;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace EFTest
 {
-	public class PopsCarsContext: DbContext
+    public class PopsCarsContext: DbContext
 	{
 		public DbSet<Car> Car { get; set; }
 		public DbSet<User> User { get; set; }

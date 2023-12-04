@@ -1,9 +1,8 @@
-﻿using EFTest;
-using EFTest.Models;
+﻿using EFTest.Models;
 
 namespace PopsCars
 {
-	public interface IUserService
+    public interface IUserService
 	{
 		Task<List<User>> GetAllUsers();
 
