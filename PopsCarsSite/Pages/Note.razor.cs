@@ -26,17 +26,7 @@ namespace PopsCarsSite.Pages
 			ListOfNotes =  _noteservice.GetNotes();
 			newNote = new();
 		}
-		protected async Task FilterByCommentSearch()
-		{
-			if (string.IsNullOrEmpty(search))
-			{
-				Console.WriteLine("no search criteria");
-			}
-			else
-			{
-				ListOfNotes = _noteservice.GetCommentsAsync(search);
-			}
-		}
+		
 
 	}
 

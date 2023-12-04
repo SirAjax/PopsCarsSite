@@ -9,6 +9,6 @@ public interface INoteService
 	List<Note> GetNotes();
 	Task DeleteNote(Note note);
 	bool UpdateNotes(Note comments);
-	IEnumerable<Note> GetCommentsAsync(string comments);
+	
 
 }

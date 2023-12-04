@@ -24,11 +24,6 @@ namespace PopsCars
 			return _noteRepository.GetAll().ToList();
 		}
 
-		public IEnumerable<Note> GetCommentsAsync(string comments)
-		{
-			return _noteRepository.GetAll();
-		}
-
 		public async Task DeleteNote(Note note)
 		{
 			_noteRepository.Delete(note);
