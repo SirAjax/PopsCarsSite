@@ -26,6 +26,9 @@ namespace PopsCarsSite.Pages
 			ListOfNotes =  _noteservice.GetNotes();
 			newNote = new();
 		}
+
+		
+		
 		protected async Task CreateNote()
 		{
 			var result = await _noteservice.CreateNote(newNote);

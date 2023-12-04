@@ -2,3 +2,58 @@
 <h3>Notes</h3>
 
 @inherits NoteComponent
+
+
+<table>
+	<tr>
+		<td>
+			<div style="padding: 10px;">
+				<EditForm Model="@ListOfNotes" OnSubmit="@PopulateList">
+					<InputText @bind-Value="@search" placeholder="Create New Note" />
+					<button type="submit">Search for Note</button>
+				</EditForm>
+			</div>
+		</td>
+
+		<td>
+			<th>Add a Note </th>
+		
+			<EditForm Model="@ListOfNotes" OnSubmit="@CreateNote">
+				<InputText @bind-Value="@newNote!.Comments" placeholder="Enter Comments"/>
+				
+				<button type="submit">Add Comment</button>
+			</EditForm>
+		</td>
+		<td>
+			<th>Delete a Note</th>
+			<EditForm Model="@noteToDelete" OnSubmit="@DeleteNote">
+				<InputText @bind-Value="@noteToDelete.Comments" placeholder="Enter Note" />
+				<button type="submit">Delete Note</button>
+			</EditForm>
+		</td>
+		
+	</tr>
+</table>
+
+<table>
+@if (ListOfNotes == null || ListOfNotes.Count == 0)
+{
+	<p style="color: red; font-weight: bold;">
+		No Comments have been found
+	</p>
+
+}
+else
+{
+	
+		@foreach (var notes in ListOfNotes)
+		{
+			<tr>
+				<td>
+					<li>@notes</li>
+				</td>
+			</tr>
+		}
+	
+}	
+</table>
