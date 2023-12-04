@@ -34,7 +34,7 @@ namespace PopsCarsSite.Pages
 			}
 			else
 			{
-				ListOfNotes = await _noteservice.GetCommentsAsync(search);
+				ListOfNotes = _noteservice.GetCommentsAsync(search);
 			}
 		}
 

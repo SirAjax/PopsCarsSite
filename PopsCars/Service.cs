@@ -12,14 +12,14 @@ namespace PopsCars
 			_carsRepository = carsRepository;
 		}
 
-		public async Task<List<Car>> GetAllCars()
+		public List<Car> GetAllCars()
 		{
-			return await _carsRepository.GetCarsAsync();
+			return _carsRepository.GetAll().ToList();
 		}
 
 		public async Task<List<Car>> MainSearch(string search)
 		{
-			List<Car> carList = await _carsRepository.GetCarsAsync();
+			List<Car> carList =  _carsRepository.GetAll().ToList();
 			string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 			var searchResults = carList.Where(c =>
@@ -34,14 +34,14 @@ namespace PopsCars
 
 		}
 
-        public async Task<Car> AddCar(Car car)
+        public async Task<bool> AddCar(Car car)
         {
-            return await _carsRepository.AddCar(car);
+            return _carsRepository.Add(car);
         }
 
 		public async Task DeleteCar(Car car)
 		{
-			_carsRepository.DeleteCar(car);
+			_carsRepository.Delete(car);
 		}
 
     }

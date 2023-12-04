@@ -3,12 +3,12 @@
 namespace PopsCars;
 
 
-public interface INoteService
+public interface INoteService 
 {
-	Note CreateNote(Note note);
+	Task<bool> CreateNote(Note note);
 	List<Note> GetNotes();
 	Task DeleteNote(Note note);
-	Note UpdateNotes(Note comments);
-	Task<List<Note>> GetCommentsAsync(string comments);
+	bool UpdateNotes(Note comments);
+	IEnumerable<Note> GetCommentsAsync(string comments);
 
 }
