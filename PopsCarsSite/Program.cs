@@ -11,7 +11,8 @@ builder.Services.AddTransient<ICarsRepository, CarsRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IService, Service>();
 builder.Services.AddTransient<IUserService, UserService>();
-
+builder.Services.AddTransient<INoteRepository, NoteRepository>();
+builder.Services.AddTransient<INoteService, NoteService>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();

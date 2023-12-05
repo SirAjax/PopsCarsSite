@@ -1,16 +1,5 @@
-﻿
+﻿Notes for 12/5
 
-						Homework: 
-	*-Get Users and Cars connected in DB
-	*-figure out how to retrieve deleted rows in SQL
-
-    -how to get rid of empty/nullable user
-	-Study SQL Management Studio (transaction logs)
-	-add mudblazor at home
-	--------------------------------------------------------------------------------------------------------
-	
-	-add note functionality
-	-get rid of car list in saved vs file and create in database
-	-figure out how to save databse for future use
-	-azure credits (create a server for testing "Azure SQL")
-
+-car creation creates large id numbers
+-delete no longer works for user page
+-delete does not work in comments
