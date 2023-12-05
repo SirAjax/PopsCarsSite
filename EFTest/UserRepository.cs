@@ -1,13 +1,6 @@
 
 
-﻿using EFTest.Models;
-using Microsoft.EntityFrameworkCore;
-
-﻿using EFTest.GenericRepository;
-using EFTest.Models;
-
-
-﻿using EFTest.GenericRepository;
+using EFTest.GenericRepository;
 using EFTest.Models;
 
 
@@ -16,6 +9,7 @@ public class UserRepository : GenericRepository<User>, IUserRepository
 {	
 	public UserRepository(PopsCarsContext popsCarsContext) : base(popsCarsContext)
 	{
+
 	}
 
 }
