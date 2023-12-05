@@ -36,7 +36,7 @@ public class NoteRepositoryTest
         
             var note = new Note { Comments = "This is a test 1", NoteId = 1};
             var noteRepository = new NoteRepository(context);
-            var newNote = noteRepository.CreateNote(note);
+            var newNote = noteRepository.Add(note);
             Assert.IsNotNull(newNote);
         
     }
@@ -48,7 +48,7 @@ public class NoteRepositoryTest
        
         
             var noteRepository = new NoteRepository(context);
-            noteRepository.GetAllNotes();
+            noteRepository.GetAll();
             Assert.IsNotNull(noteRepository);
         
     }
@@ -61,7 +61,7 @@ public class NoteRepositoryTest
             var noteRepository = new NoteRepository(context);
             context.Add(comment);
             context.SaveChanges();
-            var searchedComments = await noteRepository.GetComments("test comment");
+            var searchedComments = await noteRepository.GetAll("test comment");
             Assert.AreEqual(comment, searchedComments.FirstOrDefault());
         
     }
