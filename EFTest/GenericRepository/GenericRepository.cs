@@ -50,17 +50,17 @@ namespace EFTest.GenericRepository
             return _entity.Find(id);
         }
 
-        public bool Update(T model)
+        public async Task<bool> UpdateAsync(T model)
         {
             try
-            { 
+            {
                 _entity.Update(model);
-                _gdb.SaveChanges();
+                await _gdb.SaveChangesAsync();
                 return true;
             }
-
-            catch (Exception ex) 
+            catch (Exception ex)
             {
+                
                 return false;
             }
         }

@@ -4,7 +4,7 @@
     {
         IEnumerable<T> GetAll();
         bool Add(T model);
-        bool Update(T model);
+        Task<bool> UpdateAsync(T model);
         T GetById(int id);
         
         bool Delete(T model);
