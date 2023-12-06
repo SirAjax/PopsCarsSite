@@ -33,11 +33,11 @@ namespace PopsCarsSite.Pages
 				Console.WriteLine("no search results");
 			}
 			else
-			{ 
+			{
 				ListOfCars = await _service.MainSearch(search);
 			}
 		}
-	
+
 		protected async Task AddCar()
 		{
 			{
@@ -48,12 +48,18 @@ namespace PopsCarsSite.Pages
 
 		protected async Task DeleteCar()
 		{
+			{
+				try
+				{ 
+					await _service.DeleteCar(carToDelete);
+					await PopulateList();
+				}
+				catch (Exception ex)
+				{ 
+				}
+			}
 
-			var cars = await _service.MainSearch(carToDelete.Model);
-			carToDelete = cars.First();
-			await _service.DeleteCar(carToDelete);
 		}
-		
 	}
 }
 
