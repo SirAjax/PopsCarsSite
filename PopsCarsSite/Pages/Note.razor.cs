@@ -32,12 +32,13 @@ namespace PopsCarsSite.Pages
 		
 		protected async Task CreateNote()
 		{
-			var result = await _noteservice.CreateNote(newNote);
+			await _noteservice.CreateNote(newNote);
 			await PopulateList();
 		}
 		protected async Task DeleteNote()
 		{
 			await _noteservice.DeleteNote(noteToDelete);
+			
 		}
 	}
 

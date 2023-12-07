@@ -40,7 +40,7 @@ namespace PopsCarsSite.Pages
 
         protected async Task AddUser()
         {
-			var result = await _userservice.CreateUser(newUser);
+			await _userservice.CreateUser(newUser);
             await PopulateList();
 		}
         

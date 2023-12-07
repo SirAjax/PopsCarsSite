@@ -28,10 +28,10 @@
 		<td>
 			<th>Delete a Car</th>
 			<EditForm Model="@carToDelete" OnSubmit="@DeleteCar">
-				<InputNumber @bind-Value="@carToDelete.Year" placeholder="Enter Car Year" />
-				<InputText @bind-Value="@carToDelete.Make" placeholder="Enter Car Make" />
-				<InputText @bind-Value="@carToDelete.Model" placeholder="Enter Car Model" />
-				<InputText @bind-Value="@carToDelete.Color" placeholder="Enter Car Color" />
+				<InputNumber @bind-Value="@carToDelete!.Year" placeholder="Enter Car Year" />
+				<InputText @bind-Value="@carToDelete!.Make" placeholder="Enter Car Make" />
+				<InputText @bind-Value="@carToDelete!.Model" placeholder="Enter Car Model" />
+				<InputText @bind-Value="@carToDelete!.Color" placeholder="Enter Car Color" />
 				<button type="submit">Delete Car</button>
 			</EditForm>
 		</td>

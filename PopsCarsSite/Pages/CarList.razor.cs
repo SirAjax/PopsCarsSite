@@ -24,6 +24,7 @@ namespace PopsCarsSite.Pages
 		{
 			ListOfCars = _service.GetAllCars();
 			newCar = new();
+			carToDelete = new();
 		}
 
 		protected async Task FilterBySearch()
@@ -41,24 +42,14 @@ namespace PopsCarsSite.Pages
 		protected async Task AddCar()
 		{
 			{
-				var result = await _service.AddCar(newCar);
+				await _service.AddCar(newCar);
 				await PopulateList();
 			}
 		}
 
 		protected async Task DeleteCar()
 		{
-			{
-				try
-				{ 
-					await _service.DeleteCar(carToDelete);
-					await PopulateList();
-				}
-				catch (Exception ex)
-				{ 
-				}
-			}
-
+			await _service.DeleteCar(carToDelete);
 		}
 	}
 }
