@@ -23,8 +23,6 @@ namespace PopsCarsSite.Pages
 		protected async Task PopulateList()
 		{
 			ListOfCars = _service.GetAllCars();
-			newCar = new();
-			carToDelete = new();
 		}
 
 		protected async Task FilterBySearch()
@@ -49,7 +47,14 @@ namespace PopsCarsSite.Pages
 
 		protected async Task DeleteCar()
 		{
-			await _service.DeleteCar(carToDelete);
+			var carList = _service.GetAllCars().ToList();
+			var actualCarToDelete = carList.FirstOrDefault(c => c.Year == carToDelete.Year 
+				&& c.Make == carToDelete.Make
+				&& c.Model == carToDelete.Model
+				&& c.Color == carToDelete.Color);
+
+			await _service.DeleteCar(actualCarToDelete);
+			await PopulateList();
 		}
 	}
 }

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using PopsCars;
 using System.Diagnostics.Eventing.Reader;
 using PopsCars;
+using System.Diagnostics;
 
 namespace PopsCarsSite.Pages
 {
@@ -37,7 +38,9 @@ namespace PopsCarsSite.Pages
 		}
 		protected async Task DeleteNote()
 		{
-			await _noteservice.DeleteNote(noteToDelete);
+			var noteList = _noteservice.GetNotes().ToList();
+			var actualNoteToDelete = noteList.FirstOrDefault(c => c.Comments == noteToDelete.Comments);
+			await _noteservice.DeleteNote(actualNoteToDelete);
 			
 		}
 	}
