@@ -34,9 +34,9 @@ namespace PopsCars
 			return searchResults;
 		}
 
-		public async Task DeleteUser(User user) 
+		public async Task<bool> DeleteUser(User user) 
 		{
-			_userRepository.Delete(user);
+			return _userRepository.Delete(user);
 		}
 	}
 }

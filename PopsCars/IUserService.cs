@@ -10,7 +10,7 @@ namespace PopsCars
 
 		Task<bool> CreateUser(User user);
 
-		Task DeleteUser(User user);
+		Task<bool> DeleteUser(User user);
 	
 
 	}
