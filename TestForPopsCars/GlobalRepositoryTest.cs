@@ -6,7 +6,7 @@ public class GenericRepositoryTest
 	private DbContextOptions<PopsCarsContext> dbContextOptions;
 	private PopsCarsContext context;
 	private IGenericRepository<Car> repository;
-	
+
 
 	[TestInitialize]
 	public void Setup()
@@ -14,7 +14,7 @@ public class GenericRepositoryTest
 		dbContextOptions = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test").Options;
 		context = new(dbContextOptions);
 		repository = new GenericRepository<Car>(context);
-		
+
 	}
 	[TestCleanup]
 	public void Cleanup()
@@ -25,7 +25,7 @@ public class GenericRepositoryTest
 	[TestMethod]
 	public async Task Does_Add_Return_Success()
 	{
-		var model = new Car() { Make = "testMake"};
+		var model = new Car() { Make = "testMake" };
 		bool actual = repository.Add(model);
 		Assert.IsTrue(actual);
 	}
@@ -39,6 +39,4 @@ public class GenericRepositoryTest
 		bool actual = repository.Delete(model);
 		Assert.IsTrue(actual);
 	}
-	
 }
-
