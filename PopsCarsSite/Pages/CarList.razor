@@ -25,40 +25,37 @@
 				<button type="submit">Add Car</button>
 			</EditForm>
 		</td>
-		<td>
-			<th>Delete a Car</th>
-			<EditForm Model="@carToDelete" OnSubmit="@DeleteCar">
-				<InputNumber @bind-Value="@carToDelete!.Year" placeholder="Enter Car Year" />
-				<InputText @bind-Value="@carToDelete!.Make" placeholder="Enter Car Make" />
-				<InputText @bind-Value="@carToDelete!.Model" placeholder="Enter Car Model" />
-				<InputText @bind-Value="@carToDelete!.Color" placeholder="Enter Car Color" />
-				<button type="submit">Delete Car</button>
-			</EditForm>
-		</td>
 		
 	</tr>
 </table>
 
 <table>
-@if (ListOfCars == null || ListOfCars.Count == 0)
-{
-	<p style="color: red; font-weight: bold;">
-		No Cars have been found
-	</p>
-
-}
-else
-{
-		// turn this into individual columns and rows more like a GRID
-		@foreach (var cars in ListOfCars)
+		
+	<thead>
+		<tr>
+			<th>Year</th>
+			<th>Make</th>
+			<th>Model</th>
+			<th>Color</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var car in ListOfCars)
 		{
 			<tr>
+				<td>@car.Year</td>
+				<td>@car.Make</td>
+				<td>@car.Model</td>
+				<td>@car.Color</td>
+				<td>@car.Id</td>
 				<td>
-					<li>@cars</li>
-					<button type="button" onclick="@DeleteCar">Delete Car</button>
+					<EditForm Model="@ListOfCars" OnSubmit="@(async () => await DeleteCar(car))">
+
+						<button type="submit">Delete Car</button>
+					</EditForm>
 				</td>
 			</tr>
 		}
-	
-}	
+	</tbody>
 </table>

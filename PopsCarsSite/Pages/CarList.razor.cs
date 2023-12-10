@@ -44,18 +44,21 @@ namespace PopsCarsSite.Pages
 			}
 		}
 
-		protected async Task DeleteCar()
+
+
+		protected async Task DeleteCar(Car carToDelete)
 		{
 			var carList = _service.GetAllCars().ToList();
-			var actualCarToDelete = carList.FirstOrDefault(c => c.Year == carToDelete.Year 
-				&& c.Make == carToDelete.Make
-				&& c.Model == carToDelete.Model
-				&& c.Color == carToDelete.Color);
-
-			await _service.DeleteCar(actualCarToDelete);
-			await PopulateList();
+			var actualCarToDelete = carList.FirstOrDefault(c => c.Id == carToDelete.Id);
+			if (actualCarToDelete != null)
+			{
+				await _service.DeleteCar(actualCarToDelete);
+				await PopulateList();
+			}
 		}
 	}
+
 }
+
 
 
