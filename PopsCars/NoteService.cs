@@ -24,9 +24,9 @@ namespace PopsCars
 			return _noteRepository.GetAll().ToList();
 		}
 
-		public async Task DeleteNote(Note note)
+		public async Task<bool> DeleteNote(Note note)
 		{
-			_noteRepository.Delete(note);
+			return _noteRepository.Delete(note);
 		}
 
 		public Task<bool> UpdateNotes(Note comments)

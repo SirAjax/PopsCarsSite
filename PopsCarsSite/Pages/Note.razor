@@ -5,55 +5,66 @@
 
 
 <table>
-	<tr>
-		<td>
-			<div style="padding: 10px;">
-				<EditForm Model="@ListOfNotes" OnSubmit="@PopulateList">
-					<InputText @bind-Value="@search" placeholder="Create New Note" />
-					<button type="submit">Search for Note</button>
-				</EditForm>
-			</div>
-		</td>
+    <tr>
+        <td>
+            <div style="padding: 10px;">
+                <EditForm Model="@ListOfNotes" OnSubmit="@PopulateList">
+                    <InputText @bind-Value="@search" placeholder="Create New Note" />
+                    <button type="submit">Search for Note</button>
+                </EditForm>
+            </div>
+        </td>
 
-		<td>
-			<th>Add a Note </th>
-		
-			<EditForm Model="@ListOfNotes" OnSubmit="@CreateNote">
-				<InputText @bind-Value="@newNote!.Comments" placeholder="Enter Comments"/>
-				
-				<button type="submit">Add Comment</button>
-			</EditForm>
-		</td>
-		<td>
-			<th>Delete a Note</th>
-			<EditForm Model="@noteToDelete" OnSubmit="@DeleteNote">
-				<InputText @bind-Value="@noteToDelete!.Comments" placeholder="Enter Note" />
-				<button type="submit">Delete Note</button>
-			</EditForm>
-		</td>
-		
-	</tr>
+        <td>
+        <th>Add a Note </th>
+
+        <EditForm Model="@ListOfNotes" OnSubmit="@CreateNote">
+            <InputText @bind-Value="@newNote!.Comments" placeholder="Enter Comments" />
+
+            <button type="submit">Add Comment</button>
+        </EditForm>
+        </td>
+        <td>
+        <th>Delete a Note</th>
+        <EditForm Model="@noteToDelete" OnSubmit="@DeleteNote">
+            <InputText @bind-Value="@noteToDelete!.Comments" placeholder="Enter Note" />
+            <button type="submit">Delete Note</button>
+        </EditForm>
+        </td>
+
+    </tr>
 </table>
 
 <table>
-@if (ListOfNotes == null || ListOfNotes.Count == 0)
-{
-	<p style="color: red; font-weight: bold;">
-		No Comments have been found
-	</p>
+    <thead>
+        <tr>
+            <th>Comments</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ListOfNotes == null || ListOfNotes.Count == 0)
+        {
+            <p style="color: red; font-weight: bold;">
+                No Comments have been found
+            </p>
 
-}
-else
-{
-	
-		@foreach (var notes in ListOfNotes)
-		{
-			<tr>
-				<td>
-					<li>@notes.Comments</li>
-				</td>
-			</tr>
-		}
-	
-}	
+        }
+        else
+        {
+
+            @foreach (var note in ListOfNotes)
+            {
+                <tr>
+                    <td>@note.Comments</td>
+                    <td>
+                    <EditForm Model="@ListOfNotes" OnSubmit="@(async () => await DeleteNote(note))">
+                        <button type="submit">Delete Comment</button>
+                    </EditForm>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
 </table>
