@@ -46,7 +46,11 @@ namespace PopsCarsSite.Pages
         
         protected async Task DeleteUser()
         {
-            await _userservice.DeleteUser(userToDelete);
+
+            var userList = await _userservice.GetAllUsers();
+            var actualUserToDelete = userList.FirstOrDefault(c => c.UserName == userToDelete.UserName);
+            await _userservice.DeleteUser(actualUserToDelete);
+            await PopulateList();
         }
     }
 

@@ -1,9 +1,5 @@
-using EFTest.Models;
 using Microsoft.AspNetCore.Components;
 using PopsCars;
-using System.Diagnostics.Eventing.Reader;
-using PopsCars;
-using System.Diagnostics;
 
 namespace PopsCarsSite.Pages
 {
