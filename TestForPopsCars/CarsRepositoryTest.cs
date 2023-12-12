@@ -47,4 +47,26 @@ public class CarsRepositoryTest
 			Assert.IsNotNull(carsRepository);
 		}
 	}
+
+	
+	[TestMethod]
+
+	public async Task Does_UupdateCars_Return_Success()
+	{
+		var builder = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test");
+
+		using (var context = new PopsCarsContext(builder.Options))
+		{
+			
+			var car = new Car { Id = 18, Make = "Test Car", Model = "Test Model", Year = 2008, Color = "Red" };
+			var carRepository = new CarsRepository(context);
+			context.Add(car);
+			context.SaveChanges();
+			car.Model = "Updated Model";
+			car.Year = 2010;
+			var updatedCar = carRepository.UpdateAsync(car);
+			Assert.IsTrue(updatedCar);
+		}
+	}
+	
 }

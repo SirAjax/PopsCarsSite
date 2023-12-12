@@ -44,18 +44,7 @@ public class NoteRepositoryTest
 
     }
 
-    //[TestMethod]
-    //public async Task Does_GetComments_Return_Success()
-    //{
-
-    //    var comment = new Note { Comments = "test comment" };
-    //    var noteRepository = new NoteRepository(context);
-    //    context.Add(comment);
-    //    context.SaveChanges();
-    //    var searchedComments = noteRepository.GetAll("test comment");
-    //    Assert.AreEqual(comment, searchedComments.FirstOrDefault());
-
-    //}
+   
 
     [TestMethod]
     public async Task Does_UpdateComments_Return_Success()
