@@ -1,4 +1,5 @@
 using EFTest.Models;
+using EFTest.GenericRepository;
 using Microsoft.AspNetCore.Components;
 using PopsCars;
 using System.Diagnostics.Eventing.Reader;
@@ -44,13 +45,17 @@ namespace PopsCarsSite.Pages
             await PopulateList();
 		}
         
-        protected async Task DeleteUser()
+        protected async Task DeleteUser(User user)
         {
 
             var userList = await _userservice.GetAllUsers();
             var actualUserToDelete = userList.FirstOrDefault(c => c.UserName == userToDelete.UserName);
-            await _userservice.DeleteUser(actualUserToDelete);
-            await PopulateList();
+
+            if (actualUserToDelete != null) 
+            {
+                await _userservice.DeleteUser(actualUserToDelete);
+                await PopulateList();
+            }
         }
     }
 

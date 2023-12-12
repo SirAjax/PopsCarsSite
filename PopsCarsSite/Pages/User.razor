@@ -5,7 +5,7 @@
 
 
 <table border="1">
- 
+
 
     <tr>
         <td>
@@ -22,18 +22,18 @@
                 <button type="submit">Create User</button>
             </EditForm>
         </td>
-        <td>
-            <h4>Delete a User</h4>
-            <EditForm Model="@userToDelete" OnSubmit="@DeleteUser">
-                <InputText @bind-Value="@userToDelete.UserName" placeholder="Enter User Name" />
-                <button type="submit">Delete User</button>
-            </EditForm>
-        </td>
     </tr>
-    
+
 </table>
 <table border="1">
-    
+
+    <thead>
+        <tr>
+            <th>UserName</th>
+        </tr>
+
+    </thead>
+    <tbody>
         @if (ListOfUsers == null || ListOfUsers.Count == 0)
         {
             <p style="color: red; font-weight: bold;">
@@ -42,19 +42,21 @@
         }
         else
         {
-                <th>Users in Database</th>    
-                @foreach (var users in ListOfUsers)
-                {
-                    <tr>
-                        <td>    
-                            <li>@users.UserName</li>
-                        </td>
-                    </tr>
-                }
-            
-        }
+        
+            @foreach (var user in ListOfUsers)
+            {
+            <tr>
+                <td>@user.UserName</td>
+                <td>
+                    <EditForm Model="@ListOfUsers" OnSubmit="@(async ()=> await DeleteUser(user))">
+                    </EditForm>
+                </td>
+            </tr>
+            }
 
-    
+        }
+    </tbody>
+
 </table>
 
 
