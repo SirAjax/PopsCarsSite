@@ -35,7 +35,9 @@ namespace PopsCarsSite.Pages
 		protected async Task DeleteNote(Note noteToDelete)
 		{
 			var noteList = _noteservice.GetNotes().ToList();
-			var actualNoteToDelete = noteList.Where(n => n.Comments == noteToDelete.Comments);
+			
+			
+			var actualNoteToDelete = noteList.FirstOrDefault(c => c.NoteId == noteToDelete.newNote.Comments);
 			if (actualNoteToDelete != null)
 			{
 				await _noteservice.DeleteNote(actualNoteToDelete);

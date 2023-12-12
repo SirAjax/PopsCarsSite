@@ -24,14 +24,6 @@
             <button type="submit">Add Comment</button>
         </EditForm>
         </td>
-        <td>
-        <th>Delete a Note</th>
-        <EditForm Model="@noteToDelete" OnSubmit="@DeleteNote">
-            <InputText @bind-Value="@noteToDelete!.Comments" placeholder="Enter Note" />
-            <button type="submit">Delete Note</button>
-        </EditForm>
-        </td>
-
     </tr>
 </table>
 
@@ -58,9 +50,9 @@
                 <tr>
                     <td>@note.Comments</td>
                     <td>
-                    <EditForm Model="@ListOfNotes" OnSubmit="@(async () => await DeleteNote(note))">
-                        <button type="submit">Delete Comment</button>
-                    </EditForm>
+                        <EditForm Model="@ListOfNotes" OnSubmit="@(async () => await DeleteNote(note))">
+                            <button type="submit">Delete Comment</button>
+                        </EditForm>
                     </td>
                 </tr>
             }
