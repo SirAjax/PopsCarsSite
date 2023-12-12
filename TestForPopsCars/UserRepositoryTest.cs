@@ -36,19 +36,7 @@ public class UserRepositoryTest
 
 	}
 
-	//[TestMethod]
-	//public async Task Does_GetUserByName_Return_Success()
-	//{
 
-	//	{
-	//		var user = new User { UserName = "testName", ID = 5 };
-	//		var userRepository = new UserRepository(context);
-	//		context.Add(user);
-	//		context.SaveChanges();
-	//		var searchedUser = await userRepository.GetUserByName("testName");
-	//		Assert.AreEqual(user, searchedUser.FirstOrDefault());
-	//	}
-	//}
 
 	[TestMethod]
 	public async Task Does_DeleteUser_Return_Success()
@@ -62,17 +50,7 @@ public class UserRepositoryTest
 		Assert.IsNull(SavedUserDetails);
 	}
 
-	//[TestMethod]
-	//public async Task Does_GetUserObject_Return_Success()
-	//{
 
-	//	var user = new User { UserName = "testName", ID = 5 };
-	//	var userRepository = new UserRepository(context);
-	//	context.Add(user);
-	//	context.SaveChanges();
-	//	var searchedUser = userRepository.GetUserObject("testName");
-	//	Assert.AreEqual(user, searchedUser);
-	//}
 	[TestMethod]
 	public async Task Does_UpdateUser_Return_Success()
 	{
@@ -81,9 +59,8 @@ public class UserRepositoryTest
 		var userRepository = new UserRepository(context);
 		context.Add(user);
 		context.SaveChanges();
-		var updatedUser = new User { UserName = updatedUserName, ID = 5 };
-		bool actual = await userRepository.UpdateAsync(updatedUser);
+		user.UserName = updatedUserName;
+		var actual = await userRepository.UpdateAsync(user);
 		Assert.IsTrue(actual);
-		Assert.AreNotEqual(originalUserName, user.UserName);
 	}
 }

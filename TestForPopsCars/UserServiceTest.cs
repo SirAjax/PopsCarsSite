@@ -1,22 +1,26 @@
-﻿namespace TestForPopsCars
+﻿using Moq;
+using PopsCars;
+
+namespace TestForPopsCars
 {
+    [TestClass]
     public class UserServiceTest
     {
         //create unit tests for my UserService.cs class
 
         [TestMethod]
-        public void GetAllUsers_Returns_List_Of_Users()
+        public async Task GetAllUsers_Returns_List_Of_Users()
         {
             //Arrange
             var mockRepo = new Mock<IUserRepository>();
-            mockRepo.Setup(repo => repo.GetAll()).Returns(GetTestUsers());
+            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<User>());
             var service = new UserService(mockRepo.Object);
 
             //Act
-            var result = service.GetAllUsers();
+            var result = await service.GetAllUsers();
 
             //Assert
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
     }
 }

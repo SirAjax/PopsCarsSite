@@ -6,6 +6,10 @@
 
 <table>
 	<tr>
+		<th>Search for Comment</th>
+		<th>Add a Comment </th>
+	</tr>
+	<tr>
 		<td>
 			<div style="padding: 10px;">
 				<EditForm Model="@ListOfNotes" OnSubmit="@PopulateList">
@@ -16,13 +20,11 @@
 		</td>
 
 		<td>
-		<th>Add a Note </th>
+			<EditForm Model="@newNote" OnSubmit="@CreateNote">
+				<InputText @bind-Value="@newNote!.Comments" placeholder="Enter Comments" />
 
-		<EditForm Model="@ListOfNotes" OnSubmit="@CreateNote">
-			<InputText @bind-Value="@newNote!.Comments" placeholder="Enter Comments" />
-
-			<button type="submit">Add Comment</button>
-		</EditForm>
+				<button type="submit">Add Comment</button>
+			</EditForm>
 		</td>
 	</tr>
 </table>

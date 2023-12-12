@@ -1,5 +1,9 @@
-﻿namespace TestForPopsCars
+﻿using Moq;
+using PopsCars;
+
+namespace TestForPopsCars
 {
+    [TestClass]
     public class NoteServiceTest
 
     {
@@ -9,14 +13,14 @@
         {
             //Arrange
             var mockRepo = new Mock<INoteRepository>();
-            mockRepo.Setup(repo => repo.GetAll()).Returns(GetTestNotes());
+            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Note> { new Note { Comments = "unitTest1" }, new Note { Comments = "unitTest2" } });
             var service = new NoteService(mockRepo.Object);
 
             //Act
-            var result = service.GetAllNotes();
+            var result = service.GetNotes();
 
             //Assert
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(2, result.Count);
         }
     }
 }

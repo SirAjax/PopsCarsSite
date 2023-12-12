@@ -23,6 +23,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\EFTest\EFTest.csproj" />
+		<ProjectReference Include="..\PopsCars\PopsCars.csproj" />
 	</ItemGroup>
 
 </Project>

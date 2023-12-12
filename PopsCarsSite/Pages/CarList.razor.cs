@@ -8,8 +8,9 @@ namespace PopsCarsSite.Pages
 	{
 		protected List<Car> ListOfCars = new();
 		protected string search;
-		protected EFTest.Models.Car? newCar = new();
-		protected EFTest.Models.Car? carToDelete = new();
+		protected Car? newCar = new();
+		protected Car? carToDelete = new();
+		
 
 		[Inject]
 		private IService _service { get; set; } = default!;

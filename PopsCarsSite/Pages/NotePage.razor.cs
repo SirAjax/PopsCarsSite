@@ -1,3 +1,4 @@
+using EFTest.Models;
 using Microsoft.AspNetCore.Components;
 using PopsCars;
 
@@ -5,10 +6,10 @@ namespace PopsCarsSite.Pages
 {
 	public class NoteComponent : ComponentBase
 	{
-		protected List<EFTest.Models.Note> ListOfNotes = new();
+		protected List<Note> ListOfNotes = new();
 		protected string? search;
-		protected EFTest.Models.Note? newNote = new();
-		protected EFTest.Models.Note? noteToDelete = new();
+		protected Note? newNote = new();
+		protected Note? noteToDelete = new();
 
 		[Inject]
 		private INoteService _noteservice { get; set; } = default!;

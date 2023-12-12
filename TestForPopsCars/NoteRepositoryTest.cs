@@ -49,14 +49,18 @@ public class NoteRepositoryTest
     [TestMethod]
     public async Task Does_UpdateComments_Return_Success()
     {
-
+        // arrange
         string originalComment = "originalTestComment", updatedComment = "updatedTestComment";
         var note = new Note { Comments = originalComment, NoteId = 1 };
         var noteRepository = new NoteRepository(context);
         context.Add(note);
         context.SaveChanges();
-        var newNote = new Note { Comments = updatedComment, NoteId = 1 };
-        bool isUpdateCommentsSuccessful = await noteRepository.UpdateAsync(newNote);
+        note.Comments = updatedComment;
+
+        // act 
+        bool isUpdateCommentsSuccessful = await noteRepository.UpdateAsync(note);
+
+        //assert
         Assert.IsTrue(isUpdateCommentsSuccessful);
     }
 
