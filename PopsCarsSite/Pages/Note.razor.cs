@@ -32,19 +32,17 @@ namespace PopsCarsSite.Pages
 			await _noteservice.CreateNote(newNote);
 			await PopulateList();
 		}
-		//protected async Task DeleteNote(Note noteToDelete)
-		//{
-		//	var noteList = _noteservice.GetNotes().ToList();
-			
-			
-		//	var actualNoteToDelete = noteList.FirstOrDefault(c => c.NoteId == noteToDelete.newNote.Comments);
-		//	if (actualNoteToDelete != null)
-		//	{
-		//		await _noteservice.DeleteNote(actualNoteToDelete);
-		//		await PopulateList();
-		//	}
-			
-		//}
+		protected async Task DeleteNote(Note noteToDelete)
+		{
+			var noteList = _noteservice.GetNotes().ToList();
+			var actualNoteToDelete = noteList.FirstOrDefault();
+			if (actualNoteToDelete != null)
+			{
+				await _noteservice.DeleteNote(actualNoteToDelete);
+				await PopulateList();
+			}
+
+		}
 	}
 
 }

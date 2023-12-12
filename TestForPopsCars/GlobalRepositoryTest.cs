@@ -49,4 +49,16 @@ public class GenericRepositoryTest
         var actual = repository.GetAll();
         Assert.IsNotNull(actual);
     }
+
+	[TestMethod]
+
+	public async Task Does_UpdateAsync_Return_Success()
+	{
+        var model = new Car() { Make = "testMake" };
+        context.Add(model);
+        context.SaveChanges();
+        model.Make = "testMake2";
+        var actual = await repository.UpdateAsync(model);
+        Assert.IsTrue(actual);
+    }
 }
