@@ -39,4 +39,14 @@ public class GenericRepositoryTest
 		bool actual = repository.Delete(model);
 		Assert.IsTrue(actual);
 	}
+
+	[TestMethod]
+	public async Task Does_GetAll_Return_Success()
+	{
+        var model = new Car() { Make = "testMake" };
+        context.Add(model);
+        context.SaveChanges();
+        var actual = repository.GetAll();
+        Assert.IsNotNull(actual);
+    }
 }
