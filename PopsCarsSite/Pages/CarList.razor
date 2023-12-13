@@ -4,70 +4,80 @@
 @inherits CarListComponent
 
 <table>
-	<tr>
-		<th> Search </th>
-		<th>Add a Car </th>
-	</tr>
+    <tr>
+        <th> Search </th>
+        <th>Add a Car </th>
+    </tr>
 
-	<tr>
+    <tr>
 
-		<td>
-			<div style="padding: 10px;">
-				<EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
-					<InputText @bind-Value="@search" placeholder="Enter Car Details" />
-					<button type="submit">Search for Car</button>
-				</EditForm>
-			</div>
-		</td>
-		<td>
-			<EditForm Model="@newCar" OnSubmit="@AddCar">
-				<InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
-				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
-				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
-				<InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
-				<button type="submit">Add Car</button>
-			</EditForm>
-		</td>
-
-	</tr>
+        <td>
+            <div style="padding: 10px;">
+                <EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
+                    <InputText @bind-Value="@search" placeholder="Enter Car Details" />
+                    <button type="submit">Search for Car</button>
+                </EditForm>
+            </div>
+        </td>
+        <td>
+            <EditForm Model="@newCar" OnSubmit="@AddCar">
+                <InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
+                <InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
+                <InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
+                <InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
+                <button type="submit">Add Car</button>
+            </EditForm>
+        </td>
+    </tr>
 </table>
 
 <table>
 
-	<thead>
-		<tr>
-			<th>Year</th>
-			<th>Make</th>
-			<th>Model</th>
-			<th>Color</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		@if (ListOfCars == null || ListOfCars.Count == 0)
-		{
-			<p style="color: red; font-weight: bold;">
-				No Cars have been found
-			</p>
-		}
-		else
-		{
-			@foreach (var car in ListOfCars)
-			{
-				<tr>
-					<td>@car.Year</td>
-					<td>@car.Make</td>
-					<td>@car.Model</td>
-					<td>@car.Color</td>
-					<td>@car.Id</td>
-					<td>
-						<EditForm Model="@ListOfCars" OnSubmit="@(async () => await DeleteCar(car))">
+    <thead>
+        <tr>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (ListOfCars == null || ListOfCars.Count == 0)
+        {
+            <p style="color: red; font-weight: bold;">
+                No Cars have been found
+            </p>
+        }
+        else
+        {
+            @foreach (var car in ListOfCars)
+            {
+                <tr>
+                    <td>@car.Year</td>
+                    <td>@car.Make</td>
+                    <td>@car.Model</td>
+                    <td>@car.Color</td>
+                    <td>@car.Id</td>
+                    <td>
+                        <EditForm Model="@ListOfCars" OnSubmit="@(async () => await DeleteCar(car))">
 
-							<button type="submit">Delete Car</button>
-						</EditForm>
-					</td>
-				</tr>
-			}
-		}
-	</tbody>
+                            <button type="submit">Delete Car</button>
+                        </EditForm>
+                    </td>
+                    <td>
+                        //why is below returning an error?
+
+                        <EditForm Model="@newCar" OnSubmit="@(async () => await UpdateCar(newCar))">
+                            <InputNumber @bind-Value="@carToUpdate!.Year" placeholder="Enter Car Year" />
+                            <InputText @bind-Value="@carToUpdate!.Make" placeholder="Enter Car Make" />
+                            <InputText @bind-Value="@carToUpdate!.Model" placeholder="Enter Car Model" />
+                            <InputText @bind-Value="@carToUpdate!.Color" placeholder="Enter Car Color" />
+                            <button type="submit">Update Car</button>
+                        </EditForm>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
 </table>

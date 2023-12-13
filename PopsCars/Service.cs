@@ -44,5 +44,10 @@ namespace PopsCars
 			return _carsRepository.Delete(car);
 		}
 
+		public Task<bool> UpdateCar(Car car)
+		{
+            return _carsRepository.UpdateAsync(car);
+        }
+
 	}
 }

@@ -9,4 +9,5 @@ public interface IService
 	Task<bool> AddCar(Car car);
 
 	Task<bool> DeleteCar(Car car);
+	Task<bool> UpdateCar(Car car);
 }

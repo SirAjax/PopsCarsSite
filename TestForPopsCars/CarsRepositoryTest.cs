@@ -22,9 +22,6 @@ public class CarsRepositoryTest
 	[TestMethod]
 	public async Task Does_AddCar_Return_Success()
 	{
-
-
-
 		{
 			var car = new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 };
 
@@ -36,9 +33,6 @@ public class CarsRepositoryTest
 	[TestMethod]
 	public async Task Does_DeleteCar_Return_Success()
 	{
-
-
-
 		//arrange
 		var car = new Car { Make = "unit test" };
 		var carsRepository = new CarsRepository(context);

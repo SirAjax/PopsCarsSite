@@ -10,7 +10,7 @@ namespace PopsCarsSite.Pages
 		protected string search;
 		protected Car? newCar = new();
 		protected Car? carToDelete = new();
-		
+		protected Car? carToUpdate = new();
 
 		[Inject]
 		private IService _service { get; set; } = default!;
@@ -45,8 +45,11 @@ namespace PopsCarsSite.Pages
 			}
 		}
 
-
-
+		protected async Task UpdateCar()
+		{
+			await _service.UpdateCar(newCar);
+			await PopulateList();
+		}
 		protected async Task DeleteCar(Car carToDelete)
 		{
 			var carList = _service.GetAllCars().ToList();
