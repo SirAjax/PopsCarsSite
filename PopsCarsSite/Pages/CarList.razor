@@ -68,7 +68,7 @@
                     <td>
                         
 
-                        <EditForm Model="@newCar" OnSubmit="@(async () => await UpdateCar())">
+                        <EditForm Model="@ListOfCars" OnSubmit="@(async () => await UpdateCar(car))">
                             <InputNumber @bind-Value="@carToUpdate!.Year" placeholder="Enter Car Year" />
                             <InputText @bind-Value="@carToUpdate!.Make" placeholder="Enter Car Make" />
                             <InputText @bind-Value="@carToUpdate!.Model" placeholder="Enter Car Model" />

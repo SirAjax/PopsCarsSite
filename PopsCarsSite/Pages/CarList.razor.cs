@@ -45,10 +45,15 @@ namespace PopsCarsSite.Pages
 			}
 		}
 
-		protected async Task UpdateCar()
+		protected async Task UpdateCar(Car carToUpdate)
 		{
-			await _service.UpdateCar(newCar);
-			await PopulateList();
+			var carList = _service.GetAllCars().ToList();
+			var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
+			if (actualCarToUpdate != null)
+			{
+				await _service.UpdateCar(actualCarToUpdate);
+				await PopulateList();
+			}
 		}
 		protected async Task DeleteCar(Car carToDelete)
 		{
