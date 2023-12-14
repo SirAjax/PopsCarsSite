@@ -20,7 +20,7 @@
             </div>
         </td>
         <td>
-            <EditForm Model="@newCar" OnSubmit="@AddCar">
+            <EditForm Model="@newCar" id="addNewCar" OnSubmit="@AddCar">
                 <InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
                 <InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
                 <InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
@@ -60,7 +60,7 @@
                     <td>@car.Color</td>
                     <td>@car.Id</td>
                     <td>
-                        <EditForm Model="@ListOfCars" OnSubmit="@(async () => await DeleteCar(car))">
+                        <EditForm Model="@car" OnSubmit="@(async () => await DeleteCar(car))">
 
                             <button type="submit">Delete Car</button>
                         </EditForm>
@@ -68,14 +68,16 @@
                     <td>
                         
 
-                        <EditForm Model="@ListOfCars" OnSubmit="@(async () => await UpdateCar(car))">
-                            <InputNumber @bind-Value="@carToUpdate!.Year" placeholder="Enter Car Year" />
-                            <InputText @bind-Value="@carToUpdate!.Make" placeholder="Enter Car Make" />
-                            <InputText @bind-Value="@carToUpdate!.Model" placeholder="Enter Car Model" />
-                            <InputText @bind-Value="@carToUpdate!.Color" placeholder="Enter Car Color" />
+                        <EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
+                            <InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
+                            <InputText @bind-Value="@car.Make" placeholder="Enter Car Make" />
+                            <InputText @bind-Value="@car.Model" placeholder="Enter Car Model" />
+                            <InputText @bind-Value="@car.Color" placeholder="Enter Car Color" />
                             <button type="submit">Update Car</button>
                         </EditForm>
                     </td>
+
+
                 </tr>
             }
         }
