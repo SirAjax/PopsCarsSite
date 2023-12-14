@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using Microsoft.VisualBasic;
+using Moq;
 using PopsCars;
 
 namespace TestForPopsCars
@@ -30,12 +31,13 @@ namespace TestForPopsCars
     [TestMethod]
     public void Does_GetAllCars_Return_Success()
     {
+        mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { new Car { Make = "Test Car" } });
         var result = service.GetAllCars();
         Assert.AreEqual(1, result.Count);
     }
 
     [TestMethod]
-    public async Task Does_DeleteCar_Return_Success()
+        public async Task Does_DeleteCar_Return_Success()
     {
             mockRepo.Setup(repo => repo.Delete(It.IsAny<Car>())).Returns(true);
             Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
@@ -44,18 +46,21 @@ namespace TestForPopsCars
     }
 
     [TestMethod]
-    public void Does_UpdateCar_Return_Success()
+    public async Task Does_UpdateCar_Return_Success()
     {
-        var result = service.UpdateCar(car);
-        Assert.IsNotNull(result);
+            mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>())).ReturnsAsync(true);
+            Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
+            var result = await service.UpdateCar(car);
+        Assert.IsTrue(result);
     }
 
     [TestMethod]
 
     public void Does_MainSearch_Return_Success()
     {
-        var result = service.MainSearch("unit test");
-        Assert.IsNotNull(result);
+            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { });
+            var result = service.MainSearch("unit test");
+            Assert.IsNotNull(result);
     }
 }
 }
