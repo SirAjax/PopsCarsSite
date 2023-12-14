@@ -8,14 +8,14 @@ namespace TestForPopsCars
     {
         private Service service;
         private Mock<ICarsRepository> mockRepo;
-        private Car car = new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 };
+        private Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue"};
 
         [TestInitialize]
-        public void TestInitialize()
+        public void Setup()
         {
-            var mockRepo = new Mock<ICarsRepository>();
-            var service = new Service(mockRepo.Object);
-            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 } });
+            mockRepo = new Mock<ICarsRepository>();
+            service = new Service(mockRepo.Object);
+            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise"} });
 
         }
         [TestMethod]
@@ -29,7 +29,7 @@ namespace TestForPopsCars
         public void Does_GetAllCars_Return_Success()
         {
             var result = service.GetAllCars();
-            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(1, result.Count);
         }
 
         [TestMethod]

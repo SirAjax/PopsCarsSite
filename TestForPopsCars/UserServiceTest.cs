@@ -14,8 +14,8 @@ namespace TestForPopsCars
 
         public void Setup()
         {
-            var mockRepo = new Mock<IUserRepository>();
-            var service = new UserService(mockRepo.Object);
+            mockRepo = new Mock<IUserRepository>();
+            service = new UserService(mockRepo.Object);
             mockRepo.Setup(repo => repo.GetAll()).Returns(new List<User> { new User { UserName = "unit test" } });
         }
 
@@ -23,7 +23,7 @@ namespace TestForPopsCars
         public async Task GetAllUsers_Returns_List_Of_Users()
         { 
             var result = await service.GetAllUsers();            
-            Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(1, result.Count);
         }
 
         [TestMethod]

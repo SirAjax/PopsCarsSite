@@ -10,14 +10,16 @@ namespace TestForPopsCars
         private NoteService service;
         private Mock<INoteRepository> mockRepo;
         private Note note = new Note { Comments = "unitTest1" };
-
+        
         [TestInitialize]
+
         public void Setup()
         {
-            var mockRepo = new Mock<INoteRepository>();
-            var service = new NoteService(mockRepo.Object);
+            mockRepo = new Mock<INoteRepository>();
+            service = new NoteService(mockRepo.Object);
             mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Note> { new Note { Comments = "unitTest1" }, new Note { Comments = "unitTest2" } });
         }
+
 
         [TestMethod]
         public void GetAllNotes_Returns_List_Of_Notes()
