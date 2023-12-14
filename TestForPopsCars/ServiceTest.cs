@@ -31,6 +31,27 @@ namespace TestForPopsCars
             var result = service.GetAllCars();
             Assert.AreEqual(3, result.Count);
         }
+
+        [TestMethod]
+        public void Does_DeleteCar_Return_Success()
+        {
+            var result = service.DeleteCar(car);
+            Assert.IsNotNull(result);
+        }
+        [TestMethod]
+        public void Does_UpdateCar_Return_Success()
+        {
+            var result = service.UpdateCar(car);
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+
+        public void Does_MainSearch_Return_Success()
+        {
+            var result = service.MainSearch("unit test");
+            Assert.IsNotNull(result);
+        }
     }
 }
 

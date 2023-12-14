@@ -14,7 +14,7 @@ namespace PopsCars
 			_noteRepository = noteRepository;
 		}
 
-		public async Task<bool> CreateNote(Note note)
+		public async Task<bool> AddNote(Note note)
 		{
 			return _noteRepository.Add(note);
 		}
@@ -29,7 +29,7 @@ namespace PopsCars
 			return _noteRepository.Delete(note);
 		}
 
-		public Task<bool> UpdateNotes(Note comments)
+		public Task<bool> UpdateNote(Note comments)
 		{
 			return _noteRepository.UpdateAsync(comments);
 		}

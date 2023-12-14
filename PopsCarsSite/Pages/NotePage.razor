@@ -20,7 +20,7 @@
 		</td>
 
 		<td>
-			<EditForm Model="@newNote" OnSubmit="@CreateNote">
+			<EditForm Model="@newNote" OnSubmit="@AddNote">
 				<InputText @bind-Value="@newNote!.Comments" placeholder="Enter Comments" />
 
 				<button type="submit">Add Comment</button>

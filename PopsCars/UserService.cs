@@ -12,7 +12,7 @@ namespace PopsCars
 			_userRepository = userRepository;
 		}
 
-		public async Task<bool> CreateUser(User user)
+		public async Task<bool> AddUser(User user)
 		{
 			return _userRepository.Add(user);
 		}

@@ -8,7 +8,7 @@ namespace PopsCars
 
 		Task<List<User>> MainUserSearch(string search);
 
-		Task<bool> CreateUser(User user);
+		Task<bool> AddUser(User user);
 
 		Task<bool> DeleteUser(User user);
 	

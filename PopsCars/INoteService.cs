@@ -5,10 +5,10 @@ namespace PopsCars;
 
 public interface INoteService 
 {
-	Task<bool> CreateNote(Note note);
+	Task<bool> AddNote(Note note);
 	List<Note> GetNotes();
 	Task<bool> DeleteNote(Note note);
-	Task<bool> UpdateNotes(Note comments);
+	Task<bool> UpdateNote(Note comments);
 	
 
 }
