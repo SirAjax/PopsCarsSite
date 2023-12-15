@@ -26,7 +26,7 @@ public class GenericRepositoryTest
 	public async Task Does_Add_Return_Success()
 	{
 		var model = new Car() { Make = "testMake" };
-		bool actual = repository.Add(model);
+		bool actual = await repository.Add(model);
 		Assert.IsTrue(actual);
 	}
 
@@ -36,7 +36,7 @@ public class GenericRepositoryTest
 		var model = new Car() { Make = "testMake" };
 		context.Add(model);
 		context.SaveChanges();
-		bool actual = repository.Delete(model);
+		bool actual = await repository.Delete(model);
 		Assert.IsTrue(actual);
 	}
 

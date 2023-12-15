@@ -12,7 +12,7 @@ namespace PopsCars
 			_carsRepository = carsRepository;
 		}
 
-		public List<Car> GetAllCars()
+		public async Task<List<Car>> GetAllCars()
 		{
 			return _carsRepository.GetAll().ToList();
 		}
@@ -34,19 +34,19 @@ namespace PopsCars
 
 		}
 
-        public async Task<bool> AddCar(Car car)
+        public async Task AddCar(Car car)
         {
-            return _carsRepository.Add(car);
+            await _carsRepository.Add(car);
         }
 
-		public async Task<bool> DeleteCar(Car car)
+		public async Task DeleteCar(Car car)
 		{
-			return _carsRepository.Delete(car);
+			await _carsRepository.Delete(car);
 		}
 
-		public Task<bool> UpdateCar(Car car)
+		public async Task UpdateCar(Car car)
 		{
-            return _carsRepository.UpdateAsync(car);
+            await _carsRepository.UpdateAsync(car);
         }
 
 	}

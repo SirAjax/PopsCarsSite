@@ -22,7 +22,7 @@ namespace PopsCarsSite.Pages
 
         protected async Task PopulateList()
         {
-            ListOfNotes = _noteservice.GetNotes();
+            ListOfNotes = await _noteservice.GetNotes();
             newNote = new();
         }
 
@@ -35,8 +35,8 @@ namespace PopsCarsSite.Pages
         }
         protected async Task DeleteNote(Note noteToDelete)
         {
-            var noteList = _noteservice.GetNotes().ToList();
-            var actualNoteToDelete = noteList.FirstOrDefault();
+            var noteList = await _noteservice.GetNotes();
+            var actualNoteToDelete = noteList.FirstOrDefault(c => c.Comments == noteToDelete.Comments);
             if (actualNoteToDelete != null)
             {
                 await _noteservice.DeleteNote(actualNoteToDelete);

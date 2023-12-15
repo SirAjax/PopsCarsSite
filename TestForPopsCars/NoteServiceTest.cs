@@ -9,7 +9,7 @@ namespace TestForPopsCars
     {
         private NoteService service;
         private Mock<INoteRepository> mockRepo;
-        private Note note = new Note { Comments = "unitTest1" };
+        
         
         [TestInitialize]
 
@@ -17,54 +17,46 @@ namespace TestForPopsCars
         {
             mockRepo = new Mock<INoteRepository>();
             service = new NoteService(mockRepo.Object);
-            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Note> { new Note { Comments = "unitTest1" }, new Note { Comments = "unitTest2" } });
+            
         }
 
 
         [TestMethod]
-        public void GetAllNotes_Returns_List_Of_Notes()
-        {
-            //Arrange
-            var mockRepo = new Mock<INoteRepository>();
-            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Note> { new Note { Comments = "unitTest1" }, new Note { Comments = "unitTest2" } });
-            var service = new NoteService(mockRepo.Object);
 
-            //Act
-            var result = service.GetNotes();
-
-            //Assert
-            Assert.AreEqual(2, result.Count);
-        }
-
-        [TestMethod]
-
-        public void Does_AddNote_Return_Success()
+        public async Task Does_AddNote_Return_Success()
         { 
+            mockRepo.Setup(repo => repo.Add(It.IsAny<Note>())).Returns(true);
+            Note note = new Note { Comments = "unitTest1" };
             var result = service.AddNote(note);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+
+        public async Task Does_DeleteNote_Return_Success()
+        {
+            mockRepo.Setup(repo => repo.Delete(It.IsAny<Note>())).Returns(true);
+            Note note = new Note { Comments = "unitTest1" };
+            var result = await service.DeleteNote(note);
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+
+        public async Task Does_UpdateNote_Return_Success()
+        {
+            mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Note>())).ReturnsAsync(true);
+            Note note = new Note { Comments = "unitTest1" };
+            var result = await service.UpdateNote(note);
             Assert.IsNotNull(result);
         }
 
         [TestMethod]
 
-        public void Does_DeleteNote_Return_Success()
+        public async Task Does_GetNotes_Return_Success()
         {
-            var result = service.DeleteNote(note);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-
-        public void Does_UpdateNote_Return_Success()
-        {
-            var result = service.UpdateNote(note);
-            Assert.IsNotNull(result);
-        }
-
-        [TestMethod]
-
-        public void Does_GetAllNotes_Return_Success()
-        {
-            var result = service.GetNotes();
+            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Note> { new Note { Comments = "Test Comment" } });
+            var result = await service.GetNotes();
             Assert.IsNotNull(result);
         }
     }

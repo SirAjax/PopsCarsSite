@@ -3,11 +3,11 @@
 namespace PopsCars;
 public interface IService
 {
-	List<Car> GetAllCars();
+	Task <List<Car>> GetAllCars();
 	Task<List<Car>> MainSearch(string search);
 
-	Task<bool> AddCar(Car car);
+	Task AddCar(Car car);
 
-	Task<bool> DeleteCar(Car car);
-	Task<bool> UpdateCar(Car car);
+	Task DeleteCar(Car car);
+	Task UpdateCar(Car car);
 }

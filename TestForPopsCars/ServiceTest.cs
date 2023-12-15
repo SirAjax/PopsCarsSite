@@ -29,10 +29,10 @@ namespace TestForPopsCars
         }
 
     [TestMethod]
-    public void Does_GetAllCars_Return_Success()
+    public async Task Does_GetAllCars_Return_Success()
     {
         mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { new Car { Make = "Test Car" } });
-        var result = service.GetAllCars();
+        var result = await service.GetAllCars();
         Assert.AreEqual(1, result.Count);
     }
 
@@ -51,7 +51,7 @@ namespace TestForPopsCars
             mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>())).ReturnsAsync(true);
             Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
             var result = await service.UpdateCar(car);
-        Assert.IsTrue(result);
+            Assert.IsTrue(result);
     }
 
     [TestMethod]

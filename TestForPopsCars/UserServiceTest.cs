@@ -8,7 +8,7 @@ namespace TestForPopsCars
     {
         private UserService service;
         private Mock<IUserRepository> mockRepo;
-        private User user = new User { UserName = "unit test" };
+        
 
         [TestInitialize]
 
@@ -16,12 +16,13 @@ namespace TestForPopsCars
         {
             mockRepo = new Mock<IUserRepository>();
             service = new UserService(mockRepo.Object);
-            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<User> { new User { UserName = "unit test" } });
+            
         }
 
         [TestMethod]
         public async Task GetAllUsers_Returns_List_Of_Users()
-        { 
+        {
+            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<User> { new User { UserName = "Unit Test" } });
             var result = await service.GetAllUsers();            
             Assert.AreEqual(1, result.Count);
         }
@@ -30,7 +31,9 @@ namespace TestForPopsCars
 
         public async Task Does_AddUser_Return_Success()
         {
-            var newUser = await service.AddUser(user);
+            mockRepo.Setup(repo => repo.Add(It.IsAny<User>())).Returns(true);
+            User user = new User { UserName = "Unit Test" };
+            var newUser = service.AddUser(user);
             Assert.IsNotNull(newUser);
         }
 
@@ -38,15 +41,20 @@ namespace TestForPopsCars
 
         public async Task Does_DeleteUser_Return_Success()
         {
-            var result = await service.DeleteUser(user);
-            Assert.IsNotNull(result);
+            //hellp me with below unit tsst
+
+            mockRepo.Setup(repo => repo.Delete(It.IsAny<User>())).Returns(true);
+            User user = new User { UserName = "Unit Test" };
+            var result =  service.DeleteUser(user);
+            Assert.IsTrue(result);
         }
 
         [TestMethod]
 
         public async Task Does_UpdateUser_Return_Success()
         {
-            var result = await service.UpdateUser(user);
+            User user = new User { UserName = "Unit Test" };
+            var result = service.UpdateUser(user);
             Assert.IsNotNull(result);
         }
     }

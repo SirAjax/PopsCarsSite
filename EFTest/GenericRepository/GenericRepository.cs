@@ -11,7 +11,7 @@ namespace EFTest.GenericRepository
             _gdb = gdb;
             _entity = _gdb.Set<T>();
         }
-        public bool Add(T model)
+        public async Task<bool> Add(T model)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace EFTest.GenericRepository
             }
         }
 
-        public bool Delete(T model)
+        public async Task<bool> Delete(T model)
         {
             try
             {

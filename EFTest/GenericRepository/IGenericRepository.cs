@@ -3,10 +3,11 @@
     public interface IGenericRepository<T> where T : class
     {
         IEnumerable<T> GetAll();
-        bool Add(T model);
+        Task<bool> Add(T model);
         Task<bool> UpdateAsync(T model);
         T GetById(int id);
         
-        bool Delete(T model);
+        
+        Task<bool> Delete(T model);
     }
 }
