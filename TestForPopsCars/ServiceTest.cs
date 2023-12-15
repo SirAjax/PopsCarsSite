@@ -22,7 +22,7 @@ namespace TestForPopsCars
         {
             //              It.IsAny<T>()
 
-            mockRepo.Setup(repo => repo.Add(It.IsAny<Car>())).Returns(true);
+            mockRepo.Setup(repo => repo.Add(It.IsAny<Car>())).ReturnsAsync(true);
             Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
             var newCar = await service.AddCar(car);
             Assert.IsTrue(newCar);
@@ -39,7 +39,7 @@ namespace TestForPopsCars
     [TestMethod]
         public async Task Does_DeleteCar_Return_Success()
     {
-            mockRepo.Setup(repo => repo.Delete(It.IsAny<Car>())).Returns(true);
+            mockRepo.Setup(repo => repo.Delete(It.IsAny<Car>())).ReturnsAsync(true);
             Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
             var result = await service.DeleteCar(car);
             Assert.IsTrue(result);
@@ -56,10 +56,10 @@ namespace TestForPopsCars
 
     [TestMethod]
 
-    public void Does_MainSearch_Return_Success()
+    public async Task Does_MainSearch_Return_Success()
     {
             mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { });
-            var result = service.MainSearch("unit test");
+            var result = await service.MainSearch("unit test");
             Assert.IsNotNull(result);
     }
 }

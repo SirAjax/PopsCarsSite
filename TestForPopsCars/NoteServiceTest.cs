@@ -25,9 +25,9 @@ namespace TestForPopsCars
 
         public async Task Does_AddNote_Return_Success()
         { 
-            mockRepo.Setup(repo => repo.Add(It.IsAny<Note>())).Returns(true);
+            mockRepo.Setup(repo => repo.Add(It.IsAny<Note>())).ReturnsAsync(true);
             Note note = new Note { Comments = "unitTest1" };
-            var result = service.AddNote(note);
+            var result = await service.AddNote(note);
             Assert.IsTrue(result);
         }
 
@@ -35,7 +35,7 @@ namespace TestForPopsCars
 
         public async Task Does_DeleteNote_Return_Success()
         {
-            mockRepo.Setup(repo => repo.Delete(It.IsAny<Note>())).Returns(true);
+            mockRepo.Setup(repo => repo.Delete(It.IsAny<Note>())).ReturnsAsync(true);
             Note note = new Note { Comments = "unitTest1" };
             var result = await service.DeleteNote(note);
             Assert.IsTrue(result);
@@ -48,7 +48,7 @@ namespace TestForPopsCars
             mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Note>())).ReturnsAsync(true);
             Note note = new Note { Comments = "unitTest1" };
             var result = await service.UpdateNote(note);
-            Assert.IsNotNull(result);
+            Assert.IsTrue(result);
         }
 
         [TestMethod]

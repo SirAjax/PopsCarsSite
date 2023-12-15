@@ -14,9 +14,9 @@ namespace PopsCars
 			_noteRepository = noteRepository;
 		}
 
-		public async Task AddNote(Note note)
+		public async Task<bool> AddNote(Note note)
 		{
-			await _noteRepository.Add(note);
+			return await _noteRepository.Add(note);
 		}
 
 		public async Task<List<Note>> GetNotes()
@@ -24,14 +24,14 @@ namespace PopsCars
 			return _noteRepository.GetAll().ToList();
 		}
 
-		public async Task DeleteNote(Note note)
+		public async Task<bool> DeleteNote(Note note)
 		{
-			await _noteRepository.Delete(note);
+			return await _noteRepository.Delete(note);
 		}
 
-		public async Task UpdateNote(Note comments)
+		public async Task<bool> UpdateNote(Note comments)
 		{
-			await _noteRepository.UpdateAsync(comments);
+			return await _noteRepository.UpdateAsync(comments);
 		}
 
 		

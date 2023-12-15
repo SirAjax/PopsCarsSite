@@ -12,9 +12,9 @@ namespace PopsCars
 			_userRepository = userRepository;
 		}
 
-		public async Task AddUser(User user)
+		public async Task<bool> AddUser(User user)
 		{
-			await _userRepository.Add(user);
+			return await _userRepository.Add(user);
 		}
 
 		public async Task<List<User>> GetAllUsers()
@@ -34,13 +34,13 @@ namespace PopsCars
 			return searchResults;
 		}
 
-		public async Task UpdateUser(User user)
+		public async Task<bool> UpdateUser(User user)
 		{
-             await _userRepository.UpdateAsync(user);
+            return await _userRepository.UpdateAsync(user);
         }
-		public async Task DeleteUser(User user) 
+		public async Task<bool> DeleteUser(User user) 
 		{
-			await _userRepository.Delete(user);
+			return await _userRepository.Delete(user);
 		}
 	}
 }

@@ -31,10 +31,10 @@ namespace TestForPopsCars
 
         public async Task Does_AddUser_Return_Success()
         {
-            mockRepo.Setup(repo => repo.Add(It.IsAny<User>())).Returns(true);
+            mockRepo.Setup(repo => repo.Add(It.IsAny<User>())).ReturnsAsync(true);
             User user = new User { UserName = "Unit Test" };
-            var newUser = service.AddUser(user);
-            Assert.IsNotNull(newUser);
+            var newUser = await service.AddUser(user);
+            Assert.IsTrue(newUser);
         }
 
         [TestMethod]
@@ -43,9 +43,9 @@ namespace TestForPopsCars
         {
             //hellp me with below unit tsst
 
-            mockRepo.Setup(repo => repo.Delete(It.IsAny<User>())).Returns(true);
+            mockRepo.Setup(repo => repo.Delete(It.IsAny<User>())).ReturnsAsync(true);
             User user = new User { UserName = "Unit Test" };
-            var result =  service.DeleteUser(user);
+            var result =  await service.DeleteUser(user);
             Assert.IsTrue(result);
         }
 
@@ -53,8 +53,9 @@ namespace TestForPopsCars
 
         public async Task Does_UpdateUser_Return_Success()
         {
+            mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<User>())).ReturnsAsync(true);
             User user = new User { UserName = "Unit Test" };
-            var result = service.UpdateUser(user);
+            var result = await service.UpdateUser(user);
             Assert.IsNotNull(result);
         }
     }

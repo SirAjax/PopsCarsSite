@@ -34,19 +34,19 @@ namespace PopsCars
 
 		}
 
-        public async Task AddCar(Car car)
+        public async Task<bool> AddCar(Car car)
         {
-            await _carsRepository.Add(car);
+            return await _carsRepository.Add(car);
         }
 
-		public async Task DeleteCar(Car car)
+		public async Task<bool> DeleteCar(Car car)
 		{
-			await _carsRepository.Delete(car);
+			return await _carsRepository.Delete(car);
 		}
 
-		public async Task UpdateCar(Car car)
+		public async Task<bool> UpdateCar(Car car)
 		{
-            await _carsRepository.UpdateAsync(car);
+            return await _carsRepository.UpdateAsync(car);
         }
 
 	}
