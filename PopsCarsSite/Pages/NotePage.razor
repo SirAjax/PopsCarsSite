@@ -60,6 +60,7 @@
 				
 					<td>
 						<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
+							<InputText @bind-Value="@note.Comments" placeholder="Change Comment"/>
 							<button type="submit">Update Comment</button>
 							</EditForm>
 					</td>

@@ -53,7 +53,8 @@
                     </EditForm>
                 </td>
                 <td>
-                    <EditForm Model="@user" OnSubmit="@(async () => await UpdateUser(user))">
+                    <EditForm Model="@user" id="updateUser" OnSubmit="@(async () => await UpdateUser(user))">
+                        <InputText @bind-Value="@user.UserName" placeholder ="Change UserName"/>
                         <button type="submit">Update User</button>
                     </EditForm>
                 </td>
