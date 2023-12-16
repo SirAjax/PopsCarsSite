@@ -10,6 +10,7 @@ namespace PopsCarsSite.Pages
 		protected string? search;
 		protected User? newUser = new();
 		protected User? userToDelete = new();
+		protected User? userToUpdate = new();
 
 		[Inject]
 		private IUserService _userservice { get; set; } = default!;
@@ -48,6 +49,12 @@ namespace PopsCarsSite.Pages
 			await _userservice.DeleteUser(user);
 			await PopulateList();
 
+		}
+
+		protected async Task UpdateUser(User userToUpdate)
+		{
+			await _userservice.UpdateUser(userToUpdate);
+			await PopulateList();
 		}
 	}
 

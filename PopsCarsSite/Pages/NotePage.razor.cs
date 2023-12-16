@@ -10,6 +10,7 @@ namespace PopsCarsSite.Pages
         protected string? search;
         protected Note? newNote = new();
         protected Note? noteToDelete = new();
+        protected Note? noteToUpdate = new();
 
         [Inject]
         private INoteService _noteservice { get; set; } = default!;
@@ -42,6 +43,12 @@ namespace PopsCarsSite.Pages
                 await _noteservice.DeleteNote(actualNoteToDelete);
                 await PopulateList();
             }
+        }
+
+        protected async Task UpdateNote(Note noteToUpdate)
+        {
+            await _noteservice.UpdateNote(noteToUpdate);
+            await PopulateList();
         }
     }
 

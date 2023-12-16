@@ -52,6 +52,11 @@
                         <button type="submit">Delete User</button>
                     </EditForm>
                 </td>
+                <td>
+                    <EditForm Model="@user" OnSubmit="@(async () => await UpdateUser(user))">
+                        <button type="submit">Update User</button>
+                    </EditForm>
+                </td>
             </tr>
             }
 

@@ -56,6 +56,13 @@
 							<button type="submit">Delete Comment</button>
 						</EditForm>
 					</td>
+				
+				
+					<td>
+						<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
+							<button type="submit">Update Comment</button>
+							</EditForm>
+					</td>
 				</tr>
 			}
 		}
