@@ -13,7 +13,7 @@
 		<td>
 			<div style="padding: 10px;">
 				<EditForm Model="@ListOfNotes" OnSubmit="@PopulateList">
-					<InputText @bind-Value="@search" placeholder="Create New Note" />
+					<InputText @bind-Value="@search" placeholder="Search for Comment" />
 					<button type="submit">Search for Note</button>
 				</EditForm>
 			</div>
@@ -21,7 +21,7 @@
 
 		<td>
 			<EditForm Model="@newNote" OnSubmit="@AddNote">
-				<InputText @bind-Value="@newNote!.Comments" placeholder="Enter Comments" />
+				<InputText @bind-Value="@newNote!.Comments" placeholder="Add a Comment" />
 
 				<button type="submit">Add Comment</button>
 			</EditForm>
@@ -61,7 +61,7 @@
 					<td>
 						<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
 							<InputText @bind-Value="@note.Comments" placeholder="Change Comment"/>
-							<button type="submit">Update Comment</button>
+							<button type="submit">Change Comment</button>
 							</EditForm>
 					</td>
 				</tr>
