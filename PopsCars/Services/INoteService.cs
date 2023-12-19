@@ -9,6 +9,6 @@ public interface INoteService
 	Task <List<Note>> GetNotes();
 	Task<bool> DeleteNote(Note note);
 	Task<bool> UpdateNote(Note comments);
-	
 
+	Task<List<Note>> MainSearch(string search);
 }

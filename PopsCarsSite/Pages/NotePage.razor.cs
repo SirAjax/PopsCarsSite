@@ -27,7 +27,17 @@ namespace PopsCarsSite.Pages
             newNote = new();
         }
 
-
+        protected async Task MainSearch()
+        {
+            if (string.IsNullOrEmpty(search))
+            {
+                Console.WriteLine("no search criteria");
+            }
+            else
+            {
+                ListOfNotes = await _noteservice.MainSearch(search);
+            }
+        }
 
         protected async Task AddNote()
         {

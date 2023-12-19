@@ -19,6 +19,19 @@ namespace PopsCars
 			return await _noteRepository.Add(note);
 		}
 
+		public async Task<List<Note>> MainSearch(string search)
+		{
+            List<Note> noteList = _noteRepository.GetAll().ToList();
+            string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+            var searchResults = noteList.Where(c =>
+                searchOptions.All(term => c.Comments.ToString().Contains(term, StringComparison.InvariantCultureIgnoreCase))
+            ).ToList();
+
+            return searchResults;
+            
+        }
+
 		public async Task<List<Note>> GetNotes()
 		{
 			return _noteRepository.GetAll().ToList();

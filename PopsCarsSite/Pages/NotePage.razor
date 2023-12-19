@@ -12,7 +12,7 @@
 	<tr>
 		<td>
 			<div style="padding: 10px;">
-				<EditForm Model="@ListOfNotes" OnSubmit="@PopulateList">
+				<EditForm Model="@ListOfNotes" OnSubmit="@MainSearch">
 					<InputText @bind-Value="@search" placeholder="Search for Comment" />
 					<button type="submit">Search for Note</button>
 				</EditForm>
