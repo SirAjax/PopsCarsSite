@@ -1,5 +1,5 @@
-﻿Notes for 12/5
+﻿Notes for 1/2/24
 
--car creation creates large id numbers
--delete no longer works for user page
--delete does not work in comments
+-search for "eager loading"
+-search for "lazy loading"
+-add a page for one dedicated user

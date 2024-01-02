@@ -44,6 +44,8 @@ namespace PopsCarsSite.Pages
             await _noteservice.AddNote(newNote);
             await PopulateList();
         }
+        
+        //Admin Method
         protected async Task DeleteNote(Note noteToDelete)
         {
             var noteList = await _noteservice.GetNotes();

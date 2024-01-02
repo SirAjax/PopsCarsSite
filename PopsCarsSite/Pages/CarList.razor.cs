@@ -40,6 +40,7 @@ namespace PopsCarsSite.Pages
         protected async Task AddCar()
         {
             {
+
                 await _service.AddCar(newCar);
                 await PopulateList();
             }
@@ -55,6 +56,8 @@ namespace PopsCarsSite.Pages
                 await PopulateList();
             }
         }
+
+        //Admin Method
         protected async Task DeleteCar(Car carToDelete)
         {
             var carList = await _service.GetAllCars();

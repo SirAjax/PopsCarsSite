@@ -44,6 +44,7 @@ namespace PopsCarsSite.Pages
 			await PopulateList();
 		}
 
+		//Admin Method Access
 		protected async Task DeleteUser(User user)
 		{
 			await _userservice.DeleteUser(user);
