@@ -3,3 +3,4 @@
 -search for "eager loading"
 -search for "lazy loading"
 -add a page for one dedicated user
+-checkout Pluralsight for CSS & Bootstrap
