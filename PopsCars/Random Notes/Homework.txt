@@ -1,6 +1,8 @@
-﻿Notes for 1/2/24
+﻿Notes for 1/4/24
 
--search for "eager loading"
--search for "lazy loading"
--add a page for one dedicated user
+-add functionality to InitialUser
+-clean Initial User page
+-create new service class filter methods
+-Lookup MudBlazor.com documentation
+
 -checkout Pluralsight for CSS & Bootstrap

@@ -14,5 +14,7 @@ namespace PopsCars
 	
 		Task<bool> UpdateUser(User user);
 
+		Task<User> GetUserById(int id);
+
 	}
 }

@@ -1,7 +1,7 @@
 using EFTest;
 using Microsoft.EntityFrameworkCore;
 using PopsCars;
-
+using MudBlazor.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +16,7 @@ builder.Services.AddTransient<INoteService, NoteService>();
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 
