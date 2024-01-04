@@ -5,20 +5,20 @@
 
 
 <table>
-	<tr>
-		<th>Initial User</th>
-		<th>Add a Car </th>
-		<th>Delete a Car</th>
-	</tr>
-	<tr>
-		<td>
+    <tr>
+        <th>Initial User</th>
+        <th>Add a Car </th>
+        <th>Create a Comment</th>
+    </tr>
+    <tr>
+        <td>
             <div style="padding: 10px;">
                 <EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
                     <InputText @bind-Value="@search" placeholder="Enter Car Details" />
                     <button type="submit">Search for Car</button>
                 </EditForm>
             </div>
-		</td>
+        </td>
         <td>
             <EditForm Model="@newCar" id="addNewCar" OnSubmit="@AddCar">
                 <InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
@@ -29,17 +29,17 @@
                 <button type="submit">Add Car</button>
             </EditForm>
         </td>
-		<td>
-			<EditForm Model="@newNote" OnSubmit="@AddNote">
-				<InputText @bind-Value="@newNote!.Comments" placeholder="Add a Comment" />
+        <td>
+            <EditForm Model="@newNote" OnSubmit="@AddNote">
+                <InputText @bind-Value="@newNote!.Comments" placeholder="Add a Comment" />
 
-				<button type="submit">Add Comment</button>
-			</EditForm>
-		</td>
-	</tr>
+                <button type="submit">Add Comment</button>
+            </EditForm>
+        </td>
+    </tr>
 </table>
 
-</table>
+
 <table border="1">
 
     <thead>
@@ -57,12 +57,12 @@
         }
         else
         {
-            
+
             @foreach (var user in ListOfUsers)
             {
-            <tr>
-                <td>@user.UserName</td>
-            </tr>
+                <tr>
+                    <td>@user.UserName</td>
+                </tr>
             }
 
         }
@@ -98,14 +98,9 @@
                     <td>@car.Color</td>
                     <td>@car.Id</td>
                     <td>
-                        <EditForm Model="@car" OnSubmit="@(async () => await DeleteCar(car))">
-
-                            <button type="submit">Delete Car</button>
-                        </EditForm>
+                            <button @onclick="@(async () => await DeleteCar(car))">Delete Car</button>
                     </td>
                     <td>
-
-
                         <EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
                             <InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
                             <InputText @bind-Value="@car.Make" placeholder="Enter Car Make" />
