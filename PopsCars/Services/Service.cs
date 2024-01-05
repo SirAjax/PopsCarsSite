@@ -17,6 +17,11 @@ namespace PopsCars
 			return _carsRepository.GetAll().ToList();
 		}
 
+		public async Task<Car> GetCarByUserId(int id)
+		{
+			return _carsRepository.GetById(id);
+		}
+
 		public async Task<List<Car>> MainSearch(string search)
 		{
 			List<Car> carList =  _carsRepository.GetAll().ToList();

@@ -7,6 +7,8 @@ public interface INoteService
 {
 	Task<bool> AddNote(Note note);
 	Task <List<Note>> GetNotes();
+	
+	Task<Note> GetNoteById(int id);	
 	Task<bool> DeleteNote(Note note);
 	Task<bool> UpdateNote(Note comments);
 

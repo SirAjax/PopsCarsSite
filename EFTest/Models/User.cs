@@ -8,7 +8,8 @@ public class User
 	public string? UserName { get; set; }
 	public int ID { get; set; }
 
-	public int CarId { get; set; }
+
+
 
 	public ICollection<Car> Cars { get; } = new List<Car>();	
 
@@ -16,7 +17,7 @@ public class User
     {
 		//intentially left blank for CRUD operations
     }
-	public User(string userName, int id)
+	public User(string userName, int id, int CarId)
 	{
 		this.UserName = userName;
 		this.ID = id;

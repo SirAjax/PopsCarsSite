@@ -27,14 +27,12 @@
 				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
 				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
 				<InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
-
 				<button type="submit">Add Car</button>
 			</EditForm>
 		</td>
 		<td>
 			<EditForm Model="@newNote" OnSubmit="@AddNote">
 				<InputText @bind-Value="@newNote!.Comments" placeholder="Add a Comment" />
-
 				<button type="submit">Add Comment</button>
 			</EditForm>
 		</td>
@@ -85,9 +83,7 @@
 					<td>@car.Model</td>
 					<td>@car.Color</td>
 					<td>@car.Id</td>
-					<td>
-						<button @onclick="@(async () => await DeleteCar(car))">Delete Car</button>
-					</td>
+				
 					<td>
 						<EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
 							<InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
@@ -97,8 +93,27 @@
 							<button type="submit">Update Car</button>
 						</EditForm>
 					</td>
+				</tr>
+			}
+		}
+	</tbody>
+	<tbody>
+	
+				<tr>
+					<td>@note.Comments</td>
+					<td>
+						<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
+							<button type="submit">Delete Comment</button>
+						</EditForm>
+					</td>
 
 
+					<td>
+						<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
+							<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
+							<button type="submit">Change Comment</button>
+						</EditForm>
+					</td>
 				</tr>
 			}
 		}
