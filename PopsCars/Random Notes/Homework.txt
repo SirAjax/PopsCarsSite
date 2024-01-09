@@ -1,9 +1,9 @@
 ﻿Notes for 1/4/24
 
--add functionality to InitialUser
--clean Initial User page
--create new service class filter methods
--Lookup MudBlazor.com documentation
+-add functionality to InitialUser //
+-clean Initial User page //
+-create new service class filter methods //
+-Lookup MudBlazor.com documentation //
 
 -checkout Pluralsight for CSS & Bootstrap
 
