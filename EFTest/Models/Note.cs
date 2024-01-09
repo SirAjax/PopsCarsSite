@@ -13,11 +13,11 @@ public class Note
 
 	}
 
-	public Note(int noteId, int UserId, int CarId, string? comments)
+	public Note(int noteId, int userId, int carId, string? comments)
     {
         this.NoteId = noteId;
-		this.UserId = UserId;
-		this.CarId = CarId;
+		this.UserId = userId;
+		this.CarId = carId;
 		this.Comments = comments;
     }
 }

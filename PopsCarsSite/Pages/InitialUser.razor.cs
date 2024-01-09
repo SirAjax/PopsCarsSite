@@ -25,11 +25,11 @@ namespace PopsCarsSite.Pages
 
 		[Inject]
 		private IUserService _userservice { get; set; } = default!;
-
+		
 		[Inject]
 
 		private INoteService _noteservice { get; set; } = default!;
-
+		
 		protected override async Task OnInitializedAsync()
 		{
 			await PopulateCarList();
