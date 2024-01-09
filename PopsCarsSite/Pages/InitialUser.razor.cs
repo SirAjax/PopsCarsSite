@@ -38,7 +38,7 @@ namespace PopsCarsSite.Pages
 		}
 		protected async Task PopulateCarList()
 		{
-			ListOfCars = await _service.GetAllCars();
+			ListOfCars = await _service.GetCarByUserId(1);
 		}
 
 		protected async Task AddCar()

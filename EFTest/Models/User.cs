@@ -17,7 +17,7 @@ public class User
     {
 		//intentially left blank for CRUD operations
     }
-	public User(string userName, int id, int CarId)
+	public User(string userName, int id)
 	{
 		this.UserName = userName;
 		this.ID = id;
