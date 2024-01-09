@@ -21,7 +21,7 @@ namespace PopsCars
 		{
 			List<Car> carList = _carsRepository.GetAll().ToList();
 			var usersCars = carList.Where(c => c.UserId == userId).ToList();
-			return carList;
+			return usersCars;
 		}
 
 		public async Task<List<Car>> MainSearch(string search)

@@ -27,6 +27,7 @@ namespace EFTest
 		{
 			modelBuilder.ApplyConfiguration(new CarConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
+			modelBuilder.ApplyConfiguration(new NoteConfiguration());
 
 			//modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(u => u.User);
 		}

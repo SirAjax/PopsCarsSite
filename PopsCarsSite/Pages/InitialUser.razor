@@ -83,7 +83,7 @@
 					<td>@car.Model</td>
 					<td>@car.Color</td>
 					<td>@car.Id</td>
-				
+
 					<td>
 						<EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
 							<InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
@@ -93,29 +93,35 @@
 							<button type="submit">Update Car</button>
 						</EditForm>
 					</td>
+
+
+					<td>
+						<table>
+							<tr>
+								<th>Note</th>
+							</tr>
+							@foreach (var note in ListOfNotes.Where(c => c.CarId == car.Id))
+							{
+								<tr>
+									<td>@note.Comments</td>
+									<td>
+										<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
+											<button type="submit">Delete Comment</button>
+										</EditForm>
+									</td>
+									<td>
+										<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
+											<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
+											<button type="submit">Change Comment</button>
+										</EditForm>
+									</td>
+								</tr>
+							}
+						</table>
+					</td>
 				</tr>
+
 			}
 		}
 	</tbody>
-@* 	<tbody>
-	
-				<tr>
-					<td>@note.Comments</td>
-					<td>
-						<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
-							<button type="submit">Delete Comment</button>
-						</EditForm>
-					</td>
-
-
-					<td>
-						<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
-							<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
-							<button type="submit">Change Comment</button>
-						</EditForm>
-					</td>
-				</tr>
-			}
-		}
-	</tbody> *@
 </table>
