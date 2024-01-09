@@ -1,4 +1,6 @@
 ﻿@page "/InitialUser"
+@using PopsCarsSite.Shared
+
 <h3>Initial User </h3>
 
 @inherits InitialUserComponent
@@ -64,6 +66,7 @@
 			<th>Model</th>
 			<th>Color</th>
 			<th>Action</th>
+			<th>Notes</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -83,7 +86,7 @@
 					<td>@car.Model</td>
 					<td>@car.Color</td>
 					<td>@car.Id</td>
-
+					
 					<td>
 						<EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
 							<InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
@@ -96,28 +99,7 @@
 
 
 					<td>
-						<table>
-							<tr>
-								<th>Note</th>
-							</tr>
-							@foreach (var note in ListOfNotes.Where(c => c.CarId == car.Id))
-							{
-								<tr>
-									<td>@note.Comments</td>
-									<td>
-										<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
-											<button type="submit">Delete Comment</button>
-										</EditForm>
-									</td>
-									<td>
-										<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
-											<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
-											<button type="submit">Change Comment</button>
-										</EditForm>
-									</td>
-								</tr>
-							}
-						</table>
+						<CarNotes ListOfNotes="@ListOfNotes.Where(c => c.CarId == car.Id).ToList()"></CarNotes>
 					</td>
 				</tr>
 

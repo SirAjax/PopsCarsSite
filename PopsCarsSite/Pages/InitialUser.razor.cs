@@ -85,17 +85,5 @@ namespace PopsCarsSite.Pages
 			await _noteservice.AddNote(newNote);
 			await PopulateNoteList();
 		}
-
-		protected async Task UpdateNote(Note noteToUpdate)
-		{
-			await _noteservice.UpdateNote(noteToUpdate);
-			await PopulateNoteList();
-		}
-
-		protected async Task DeleteNote(Note noteToDelete)
-		{
-			await _noteservice.DeleteNote(noteToDelete);
-			await PopulateNoteList();
-		}
 	}
 }

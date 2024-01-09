@@ -1,0 +1,42 @@
+﻿@using EFTest.Models;
+@using PopsCars;
+@inject IService _service;
+@inject INoteService _noteService;
+@inject IUserService _userService;
+
+<table>
+	@foreach (var note in ListOfNotes)
+	{
+		<tr>
+			<td>@note.Comments</td>
+			<td>
+				<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
+					<button type="submit">Delete Comment</button>
+				</EditForm>
+			</td>
+			<td>
+				<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
+					<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
+					<button type="submit">Change Comment</button>
+				</EditForm>
+			</td>
+		</tr>
+	}
+</table>
+@code {
+	[Parameter]
+
+	public List<Note> ListOfNotes { get; set; } = null;
+
+	protected async Task UpdateNote(Note noteToUpdate)
+	{
+		await _noteService.UpdateNote(noteToUpdate);
+
+	}
+
+	protected async Task DeleteNote(Note noteToDelete)
+	{
+		await _noteService.DeleteNote(noteToDelete);
+
+	}
+}

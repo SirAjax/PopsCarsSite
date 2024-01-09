@@ -1,13 +1,15 @@
-﻿Notes for 1/4/24
+﻿Notes for 1/9/24
 
--add functionality to InitialUser //
--clean Initial User page //
--create new service class filter methods //
--Lookup MudBlazor.com documentation //
-
+-make CarList in InitialUserPage a subComponent 
+-Lookup MudBlazor.com documentation 
 -checkout Pluralsight for CSS & Bootstrap
 
--received the following error when trying to create new migration:
 
-"Your startup project 'PopsCarsSite' doesn't reference Microsoft.EntityFrameworkCore.Design. 
-This package is required for the Entity Framework Core Tools to work. Ensure your startup project is correct, install the package, and try again."
+
+
+
+
+
+
+
+
