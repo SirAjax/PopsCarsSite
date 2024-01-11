@@ -1,6 +1,9 @@
 using EFTest.Models;
 using Microsoft.AspNetCore.Components;
+using MudBlazor;
 using PopsCars;
+using PopsCarsSite.Shared;
+using System;
 using System.Runtime.CompilerServices;
 
 
@@ -18,7 +21,6 @@ namespace PopsCarsSite.Pages
 		protected Note? newNote = new();
 		protected Note? noteToUpdate = new();
 		protected Note? noteToDelete = new();
-		protected Car? car = new();
 		protected string search;
 
 		[Inject]
@@ -26,11 +28,13 @@ namespace PopsCarsSite.Pages
 
 		[Inject]
 		private IUserService _userservice { get; set; } = default!;
-		
+
 		[Inject]
 
 		private INoteService _noteservice { get; set; } = default!;
-		
+
+		[Inject]
+		private IDialogService DialogService { get; set; } = default!;
 		protected override async Task OnInitializedAsync()
 		{
 			await PopulateCarList();
@@ -86,5 +90,15 @@ namespace PopsCarsSite.Pages
 			await _noteservice.AddNote(newNote);
 			await PopulateNoteList();
 		}
+
+
+		protected void OpenDialog(List<Note> listOfNotes)
+		{
+			var parameters = new DialogParameters<CarNotes>();
+			parameters.Add(p => p.ListOfNotes, listOfNotes);
+			var options = new DialogOptions { CloseOnEscapeKey = true };
+			DialogService.Show<CarNotes>("Car Comments", parameters, options);
+		}
 	}
+
 }

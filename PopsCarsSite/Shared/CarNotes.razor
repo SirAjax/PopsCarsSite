@@ -4,35 +4,53 @@
 @inject INoteService _noteService;
 @inject IUserService _userService;
 
-<table>
-	@foreach (var note in ListOfNotes)
-	{
-		<tr>
-			<td>@note.Comments</td>
-			<td>
-				<EditForm Model="@note" OnSubmit="@(async () => await AddNote(note))">
-					<InputText @bind-Value="@note!.Comments" placeholder="Add a Comment"/>
-					<button type="submit">Add Comment</button>
-				</EditForm>
-			</td>
-			<td>
-				<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
-					<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
-					<button type="submit">Change Comment</button>
-				</EditForm>
-			</td>
-			<td>
-				<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
-					<button type="submit">Delete Comment</button>
-				</EditForm>
-			</td>
-		</tr>
-	}
-</table>
+
+<MudDialog>
+	<DialogContent>
+		<table>
+			@foreach (var note in ListOfNotes)
+			{
+				<tr>
+					<td>@note.Comments</td>
+					<td>
+						<EditForm Model="@note" OnSubmit="@(async () => await AddNote(note))">
+							<InputText @bind-Value="@note!.Comments" placeholder="Add a Comment" />
+							<button type="submit">Add Comment</button>
+						</EditForm>
+					</td>
+					<td>
+						<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
+							<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
+							<button type="submit">Change Comment</button>
+						</EditForm>
+					</td>
+					<td>
+						<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
+							<button type="submit">Delete Comment</button>
+						</EditForm>
+					</td>
+				</tr>
+			}
+		</table>
+	</DialogContent>
+	<DialogActions>
+		<MudButton OnClick="Cancel">Cancel</MudButton>
+		<MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+	</DialogActions>
+</MudDialog>
+
+
 @code {
+
+
 	[Parameter]
 
 	public List<Note> ListOfNotes { get; set; } = null;
+
+	[CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+	void Submit() => MudDialog.Close(DialogResult.Ok(true));
+	void Cancel() => MudDialog.Cancel();
 
 	protected async Task AddNote(Note note)
 	{
@@ -48,4 +66,6 @@
 	{
 		await _noteService.DeleteNote(noteToDelete);
 	}
+
+
 }

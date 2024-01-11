@@ -80,7 +80,12 @@
 				<tr>
 						<CarDetail Car="@car"></CarDetail>
 					<td>
-						<CarNotes ListOfNotes="@ListOfNotes.Where(c => c.CarId == car.Id).ToList()"></CarNotes>
+						@{
+							var notes = ListOfNotes.Where(c => c.CarId == car.Id).ToList();
+						}
+						<MudButton @onclick="_ => OpenDialog(notes)" Variant="Variant.Filled" Color="Color.Primary">
+							Open Notes
+						</MudButton>
 					</td>
 				</tr>
 			}
