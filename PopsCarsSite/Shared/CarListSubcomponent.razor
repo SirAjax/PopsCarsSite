@@ -8,12 +8,12 @@
 {
 
     <tr>
+        <td>
         <td>@car.Year</td>
         <td>@car.Make</td>
         <td>@car.Model</td>
         <td>@car.Color</td>
         <td>@car.Id</td>
-        <td>
             <EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
                 <InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
                 <InputText @bind-Value="@car.Make" placeholder="Enter Car Make" />

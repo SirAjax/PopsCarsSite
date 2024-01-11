@@ -18,6 +18,7 @@ namespace PopsCarsSite.Pages
 		protected Note? newNote = new();
 		protected Note? noteToUpdate = new();
 		protected Note? noteToDelete = new();
+		protected Car? car;
 		protected string search;
 
 		[Inject]

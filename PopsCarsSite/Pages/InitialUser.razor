@@ -1,7 +1,7 @@
 ﻿@page "/InitialUser"
 @using PopsCarsSite.Shared
 
-<h3>Initial User </h3>
+<h3>Initial User</h3>
 
 @inherits InitialUserComponent
 
@@ -78,23 +78,14 @@
         }
         else
         {
-            @foreach (var car in ListOfCars)
-            {
-                <tr>
-                    <td>@car.Year</td>
-                    <td>@car.Make</td>
-                    <td>@car.Model</td>
-                    <td>@car.Color</td>
-                    <td>@car.Id</td>
-                    <td>
-                        <CarListSubcomponent ListOfCars="@ListOfCars"></CarListSubcomponent>)
-                    </td>
-                    <td>
-                        <CarNotes ListOfNotes="@ListOfNotes.Where(c => c.CarId == car.Id).ToList()"></CarNotes>
-                    </td>
-                </tr>
-            }
-        }
+            <tr>
+                <td>
+                    <CarListSubcomponent ListOfCars="@ListOfCars"></CarListSubcomponent>)
+                </td>
+                <td>
+                    <CarNotes ListOfNotes="@ListOfNotes.Where(c => c.CarId == car.Id).ToList()"></CarNotes>
+                </td>
+            </tr>
         }
     </tbody>
 </table>
