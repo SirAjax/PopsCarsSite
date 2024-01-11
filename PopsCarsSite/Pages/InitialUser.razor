@@ -8,84 +8,82 @@
 
 
 <table>
-    <tr>
-        <th>Initial User</th>
-        <th>Add a Car</th>
-        <th>Create a Comment</th>
-    </tr>
+	<tr>
+		<th>Initial User</th>
+		<th>Add a Car</th>
+		<th>Create a Comment</th>
+	</tr>
 
-    <tr>
-        <td>
-            <div style="padding: 10px;">
-                <EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
-                    <InputText @bind-Value="@search" placeholder="Enter Car Details" />
-                    <button type="submit">Search for Car</button>
-                </EditForm>
-            </div>
-        </td>
-        <td>
-            <EditForm Model="@newCar" id="addNewCar" OnSubmit="@AddCar">
-                <InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
-                <InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
-                <InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
-                <InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
-                <button type="submit">Add Car</button>
-            </EditForm>
-        </td>
-        <td>
-            <EditForm Model="@newNote" OnSubmit="@AddNote">
-                <InputText @bind-Value="@newNote!.Comments" placeholder="Add a Comment" />
-                <button type="submit">Add Comment</button>
-            </EditForm>
-        </td>
-    </tr>
+	<tr>
+		<td>
+			<div style="padding: 10px;">
+				<EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
+					<InputText @bind-Value="@search" placeholder="Enter Car Details" />
+					<button type="submit">Search for Car</button>
+				</EditForm>
+			</div>
+		</td>
+		<td>
+			<EditForm Model="@newCar" id="addNewCar" OnSubmit="@AddCar">
+				<InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
+				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
+				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
+				<InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
+				<button type="submit">Add Car</button>
+			</EditForm>
+		</td>
+		<td>
+			<EditForm Model="@newNote" OnSubmit="@AddNote">
+				<InputText @bind-Value="@newNote!.Comments" placeholder="Add a Comment" />
+				<button type="submit">Add Comment</button>
+			</EditForm>
+		</td>
+	</tr>
 </table>
 
 
 <table border="1">
 
-    <thead>
-        <tr>
-            <th>UserName</th>
-        </tr>
+	<thead>
+		<tr>
+			<th>UserName</th>
+		</tr>
 
-    </thead>
-    <tbody>
-        <tr>
-            <td>@currentUser.UserName</td>
-        </tr>
-    </tbody>
+	</thead>
+	<tbody>
+		<tr>
+			<td>@currentUser.UserName</td>
+		</tr>
+	</tbody>
 
 </table>
 <table>
 
-    <thead>
-        <tr>
-            <th>Year</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Color</th>
-            <th>Action</th>
-            <th>Notes</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (ListOfCars == null || ListOfCars.Count == 0)
-        {
-            <p style="color: red; font-weight: bold;">
-                No Cars have been found
-            </p>
-        }
-        else
-        {
-            <tr>
-                <td>
-                    <CarListSubcomponent ListOfCars="@ListOfCars"></CarListSubcomponent>)
-                </td>
-                <td>
-                    <CarNotes ListOfNotes="@ListOfNotes.Where(c => c.CarId == car.Id).ToList()"></CarNotes>
-                </td>
-            </tr>
-        }
-    </tbody>
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th colspan="7">Details</th>
+			<th colspan="4">Notes</th>
+		</tr>
+	</thead>
+	<tbody>
+		@if (ListOfCars == null || ListOfCars.Count == 0)
+		{
+			<p style="color: red; font-weight: bold;">
+				No Cars have been found
+			</p>
+		}
+		else
+		{
+			@foreach (var car in ListOfCars)
+			{
+				<tr>
+						<CarDetail Car="@car"></CarDetail>
+					<td>
+						<CarNotes ListOfNotes="@ListOfNotes.Where(c => c.CarId == car.Id).ToList()"></CarNotes>
+					</td>
+				</tr>
+			}
+		}
+	</tbody>
 </table>

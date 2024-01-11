@@ -1,39 +1,28 @@
 ﻿@using EFTest.Models
 @using PopsCars
 @inject IService _service
-
-
-
-@foreach (var car in ListOfCars)
-{
-
-    <tr>
+    
+        <td>@Car.Id</td>
         <td>
-        <td>@car.Year</td>
-        <td>@car.Make</td>
-        <td>@car.Model</td>
-        <td>@car.Color</td>
-        <td>@car.Id</td>
-            <EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
-                <InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
-                <InputText @bind-Value="@car.Make" placeholder="Enter Car Make" />
-                <InputText @bind-Value="@car.Model" placeholder="Enter Car Model" />
-                <InputText @bind-Value="@car.Color" placeholder="Enter Car Color" />
+            <EditForm Model="@Car" OnSubmit="@(async () => await UpdateCar(Car))">
+                <InputNumber @bind-Value="@Car.Year" placeholder="Enter Car Year" />
+                <InputText @bind-Value="@Car.Make" placeholder="Enter Car Make" />
+                <InputText @bind-Value="@Car.Model" placeholder="Enter Car Model" />
+                <InputText @bind-Value="@Car.Color" placeholder="Enter Car Color" />
                 <button type="submit">Update Car</button>
             </EditForm>
         </td>
         <td>
-            <EditForm Model="@car" OnSubmit="@(async () => await DeleteCar(car))">
+            <EditForm Model="@Car" OnSubmit="@(async () => await DeleteCar(Car))">
                 <button type="submit">Delete Car</button>
             </EditForm>
         </td>
-    </tr>
-}
+    
 
 @code {
     [Parameter]
 
-    public List<Car> ListOfCars { get; set; } = null;
+    public Car Car { get; set; } = null;
 
     protected async Task UpdateCar(Car carToUpdate)
     {

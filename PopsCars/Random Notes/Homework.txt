@@ -1,7 +1,11 @@
-﻿Notes for 1/9/24
+﻿Notes for 1/11/24
 
--make CarList in InitialUserPage a subComponent 
+
+
+
 -Lookup MudBlazor.com documentation 
+-
+
 -checkout Pluralsight for CSS & Bootstrap
 
 
