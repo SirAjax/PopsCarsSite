@@ -1,0 +1,58 @@
+﻿@using EFTest.Models
+@using PopsCars
+@inject IService _service
+
+
+
+@foreach (var car in ListOfCars)
+{
+
+    <tr>
+        <td>@car.Year</td>
+        <td>@car.Make</td>
+        <td>@car.Model</td>
+        <td>@car.Color</td>
+        <td>@car.Id</td>
+        <td>
+            <EditForm Model="@car" OnSubmit="@(async () => await UpdateCar(car))">
+                <InputNumber @bind-Value="@car.Year" placeholder="Enter Car Year" />
+                <InputText @bind-Value="@car.Make" placeholder="Enter Car Make" />
+                <InputText @bind-Value="@car.Model" placeholder="Enter Car Model" />
+                <InputText @bind-Value="@car.Color" placeholder="Enter Car Color" />
+                <button type="submit">Update Car</button>
+            </EditForm>
+        </td>
+        <td>
+            <EditForm Model="@car" OnSubmit="@(async () => await DeleteCar(car))">
+                <button type="submit">Delete Car</button>
+            </EditForm>
+        </td>
+    </tr>
+}
+
+@code {
+    [Parameter]
+
+    public List<Car> ListOfCars { get; set; } = null;
+
+    protected async Task UpdateCar(Car carToUpdate)
+    {
+        var carList = await _service.GetAllCars();
+        var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
+        if (actualCarToUpdate != null)
+        {
+            await _service.UpdateCar(actualCarToUpdate);
+        }
+    }
+
+    protected async Task DeleteCar(Car carToDelete)
+    {
+        var carList = await _service.GetAllCars();
+        var actualCarToDelete = carList.FirstOrDefault(c => c.Id == carToDelete.Id);
+
+        if (actualCarToDelete != null)
+        {
+            await _service.DeleteCar(actualCarToDelete);
+        }
+    }
+}
