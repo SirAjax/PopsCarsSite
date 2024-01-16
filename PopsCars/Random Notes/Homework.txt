@@ -1,12 +1,13 @@
-﻿Notes for 1/11/24
+﻿Notes for 1/16/24
 
 
+-Begin creating an Administrator view-
 
 
--Lookup MudBlazor.com documentation 
--
+List of Instructions: 
 
--checkout Pluralsight for CSS & Bootstrap
+1. Add a Parameter to InitialUser for the UserId
+2. Add HyperLink to ListOfUsers to pass UserId into InitialUser
 
 
 

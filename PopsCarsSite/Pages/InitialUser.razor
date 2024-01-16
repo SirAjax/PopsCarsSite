@@ -1,5 +1,5 @@
 ﻿@page "/InitialUser"
-@using PopsCarsSite.Shared
+
 
 <h3>Initial User</h3>
 
@@ -73,7 +73,7 @@
 					<td>@car.Model</td>
 					<td>@car.Color</td>
 					
-					<td>					
+					<td>
 						<MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
 							Open Car Details
 						</MudButton>
@@ -82,8 +82,7 @@
 						@{
 							var notes = ListOfNotes.Where(n => n.CarId == car.Id).ToList();
 						}
-							
-							<MudButton @onclick="_ => OpenDialog(notes)" Variant="Variant.Filled" Color="Color.Primary">
+							<MudButton @onclick="_ => OpenDialog(notes, car)" Variant="Variant.Filled" Color="Color.Primary">
 							Open Notes
 							</MudButton>
 					</td>

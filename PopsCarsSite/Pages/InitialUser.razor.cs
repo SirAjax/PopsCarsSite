@@ -63,16 +63,16 @@ namespace PopsCarsSite.Pages
 				ListOfCars = await _service.MainSearch(search);
 			}
 		}
-		protected async Task UpdateCar(Car carToUpdate)
-		{
-			var carList = await _service.GetAllCars();
-			var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
-			if (actualCarToUpdate != null)
-			{
-				await _service.UpdateCar(actualCarToUpdate);
-				await PopulateCarList();
-			}
-		}
+		//protected async Task UpdateCar(Car carToUpdate)
+		//{
+		//	var carList = await _service.GetAllCars();
+		//	var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
+		//	if (actualCarToUpdate != null)
+		//	{
+		//		await _service.UpdateCar(actualCarToUpdate);
+		//		await PopulateCarList();
+		//	}
+		//}
 		protected async Task PopulateUserList()
 		{
 			currentUser = await _userservice.GetUserById(1);
@@ -83,19 +83,21 @@ namespace PopsCarsSite.Pages
 		{
 			ListOfNotes = await _noteservice.GetNoteById(1);
 		}
-		protected async Task AddNote()
-		{
-			newNote.UserId = currentUser.ID;
-			newNote.CarId = newCar.Id;
-			await _noteservice.AddNote(newNote);
-			await PopulateNoteList();
-		}
+		//protected async Task AddNote()
+		//{
+		//	newNote.UserId = currentUser.ID;
+		//	newNote.CarId = newCar.Id;
+		//	await _noteservice.AddNote(newNote);
+		//	await PopulateNoteList();
+		//}
 
 
-		protected void OpenDialog(Note listOfNotes)
+		protected void OpenDialog(List<Note> listOfNotes, Car car)
 		{
 			var parameters = new DialogParameters<CarNotes>();
-			parameters.Add(p => p.note, listOfNotes);
+			parameters.Add(p => p.Notes, listOfNotes);
+			parameters.Add(p => p.Car, car);
+			parameters.Add(p => p.User, currentUser);
 			var options = new DialogOptions { CloseOnEscapeKey = true };
 			DialogService.Show<CarNotes>("Car Comments", parameters, options);
 		}

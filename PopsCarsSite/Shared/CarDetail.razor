@@ -4,59 +4,59 @@
 
 
 
-    <MudDialog>
-        <DialogContent>
-                <td>
-                    <EditForm Model="@Car" OnSubmit="@(async () => await UpdateCar(Car))">
-                        <InputNumber @bind-Value="@Car.Year" placeholder="Enter Car Year" />
-                        <InputText @bind-Value="@Car.Make" placeholder="Enter Car Make" />
-                        <InputText @bind-Value="@Car.Model" placeholder="Enter Car Model" />
-                        <InputText @bind-Value="@Car.Color" placeholder="Enter Car Color" />
-                        <button type="submit">Update Car</button>
-                    </EditForm>
-                </td>
-                <td>
-                    <EditForm Model="@Car" OnSubmit="@(async () => await DeleteCar(Car))">
-                        <button type="submit">Delete Car</button>
-                    </EditForm>
-                </td>
-        </DialogContent>
-        <DialogActions>
-            <MudButton OnClick="Cancel">Cancel</MudButton>
-            <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
-        </DialogActions>
-    </MudDialog>
 
+<MudDialog>
+	<DialogContent>
+		<td>
+			<EditForm Model="@Car" OnSubmit="@(async () => await UpdateCar(Car))">
+				<InputNumber @bind-Value="@Car.Year" placeholder="Enter Car Year" />
+				<InputText @bind-Value="@Car.Make" placeholder="Enter Car Make" />
+				<InputText @bind-Value="@Car.Model" placeholder="Enter Car Model" />
+				<InputText @bind-Value="@Car.Color" placeholder="Enter Car Color" />
+				<button type="submit">Update Car</button>
+			</EditForm>
+		</td>
+		<td>
+			<EditForm Model="@Car" OnSubmit="@(async () => await DeleteCar(Car))">
+				<button type="submit">Delete Car</button>
+			</EditForm>
+		</td>
+	</DialogContent>
+	<DialogActions>
+		<MudButton OnClick="Cancel">Cancel</MudButton>
+		<MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+	</DialogActions>
+</MudDialog>
 
 @code {
-    [Parameter]
+	[Parameter]
 
-    public Car Car { get; set; } = null;
+	public Car Car { get; set; } = null;
 
-    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+	[CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
-    void Submit() => MudDialog.Close(DialogResult.Ok(true));
-    void Cancel() => MudDialog.Cancel();
+	void Submit() => MudDialog.Close(DialogResult.Ok(true));
+	void Cancel() => MudDialog.Cancel();
 
 
-    protected async Task UpdateCar(Car carToUpdate)
-    {
-        var carList = await _service.GetAllCars();
-        var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
-        if (actualCarToUpdate != null)
-        {
-            await _service.UpdateCar(actualCarToUpdate);
-        }
-    }
+	protected async Task UpdateCar(Car carToUpdate)
+	{
+		var carList = await _service.GetAllCars();
+		var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
+		if (actualCarToUpdate != null)
+		{
+			await _service.UpdateCar(actualCarToUpdate);
+		}
+	}
 
-    protected async Task DeleteCar(Car carToDelete)
-    {
-        var carList = await _service.GetAllCars();
-        var actualCarToDelete = carList.FirstOrDefault(c => c.Id == carToDelete.Id);
+	protected async Task DeleteCar(Car carToDelete)
+	{
+		var carList = await _service.GetAllCars();
+		var actualCarToDelete = carList.FirstOrDefault(c => c.Id == carToDelete.Id);
 
-        if (actualCarToDelete != null)
-        {
-            await _service.DeleteCar(actualCarToDelete);
-        }
-    }
+		if (actualCarToDelete != null)
+		{
+			await _service.DeleteCar(actualCarToDelete);
+		}
+	}
 }
