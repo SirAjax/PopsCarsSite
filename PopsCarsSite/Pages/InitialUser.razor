@@ -11,7 +11,6 @@
 	<tr>
 		<th>Initial User</th>
 		<th>Add a Car</th>
-		<th>Create a Comment</th>
 	</tr>
 
 	<tr>
@@ -30,12 +29,6 @@
 				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
 				<InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
 				<button type="submit">Add Car</button>
-			</EditForm>
-		</td>
-		<td>
-			<EditForm Model="@newNote" OnSubmit="@AddNote">
-				<InputText @bind-Value="@newNote!.Comments" placeholder="Add a Comment" />
-				<button type="submit">Add Comment</button>
 			</EditForm>
 		</td>
 	</tr>
@@ -78,7 +71,13 @@
 			@foreach (var car in ListOfCars)
 			{
 				<tr>
+					<CarDetail Car="@car"></CarDetail>
+					<td>
 						<CarDetail Car="@car"></CarDetail>
+					<MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
+						Open Car Details
+					</MudButton>
+					</td>
 					<td>
 						@{
 							var notes = ListOfNotes.Where(c => c.CarId == car.Id).ToList();

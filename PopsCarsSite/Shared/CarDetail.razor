@@ -1,8 +1,15 @@
 ﻿@using EFTest.Models
 @using PopsCars
 @inject IService _service
-    
-        <td>@Car.Id</td>
+
+
+<td>@Car.Id</td>
+<td>@Car.Year</td>
+<td>@Car.Make</td>
+<td>@Car.Model</td>
+<td>@Car.Color</td>
+    <MudDialog>
+        <DialogContent>
         <td>
             <EditForm Model="@Car" OnSubmit="@(async () => await UpdateCar(Car))">
                 <InputNumber @bind-Value="@Car.Year" placeholder="Enter Car Year" />
@@ -17,12 +24,24 @@
                 <button type="submit">Delete Car</button>
             </EditForm>
         </td>
-    
+        </DialogContent>
+        <DialogActions>
+            <MudButton OnClick="Cancel">Cancel</MudButton>
+            <MudButton Color="Color.Primary" OnClick="Submit">Ok</MudButton>
+        </DialogActions>
+    </MudDialog>
+
 
 @code {
     [Parameter]
 
     public Car Car { get; set; } = null;
+
+    [CascadingParameter] MudDialogInstance MudDialog { get; set; }
+
+    void Submit() => MudDialog.Close(DialogResult.Ok(true));
+    void Cancel() => MudDialog.Cancel();
+
 
     protected async Task UpdateCar(Car carToUpdate)
     {
