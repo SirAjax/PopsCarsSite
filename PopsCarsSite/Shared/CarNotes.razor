@@ -7,11 +7,6 @@
 
 <MudDialog>
 	<DialogContent>
-		<table>
-			@foreach (var note in ListOfNotes)
-			{
-				<tr>
-					<td>@note.Comments</td>
 					<td>
 						<EditForm Model="@note" OnSubmit="@(async () => await AddNote(note))">
 							<InputText @bind-Value="@note!.Comments" placeholder="Add a Comment" />
@@ -28,10 +23,7 @@
 						<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
 							<button type="submit">Delete Comment</button>
 						</EditForm>
-					</td>
-				</tr>
-			}
-		</table>
+					</td>		
 	</DialogContent>
 	<DialogActions>
 		<MudButton OnClick="Cancel">Cancel</MudButton>
@@ -45,7 +37,7 @@
 
 	[Parameter]
 
-	public List<Note> ListOfNotes { get; set; } = null;
+	public Note note { get; set; } = null;
 
 	[CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
@@ -59,13 +51,22 @@
 
 	protected async Task UpdateNote(Note noteToUpdate)
 	{
-		await _noteService.UpdateNote(noteToUpdate);
+		var noteList = await _noteService.GetNotes();
+		var actualNoteToUpdate = noteList.FirstOrDefault(n => n.NoteId == noteToUpdate.NoteId);
+		if (actualNoteToUpdate != null)
+		{
+			await _noteService.UpdateNote(actualNoteToUpdate);
+		}
 	}
 
 	protected async Task DeleteNote(Note noteToDelete)
 	{
-		await _noteService.DeleteNote(noteToDelete);
+		var noteList = await _noteService.GetNotes();
+		var actualNoteToDelete = noteList.FirstOrDefault(n => n.NoteId == noteToDelete.NoteId);
+		if (actualNoteToDelete != null)
+		{
+			await _noteService.DeleteNote(actualNoteToDelete);
+		}
 	}
-
 
 }

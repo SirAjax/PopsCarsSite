@@ -92,10 +92,10 @@ namespace PopsCarsSite.Pages
 		}
 
 
-		protected void OpenDialog(List<Note> listOfNotes)
+		protected void OpenDialog(Note listOfNotes)
 		{
 			var parameters = new DialogParameters<CarNotes>();
-			parameters.Add(p => p.ListOfNotes, listOfNotes);
+			parameters.Add(p => p.note, listOfNotes);
 			var options = new DialogOptions { CloseOnEscapeKey = true };
 			DialogService.Show<CarNotes>("Car Comments", parameters, options);
 		}
