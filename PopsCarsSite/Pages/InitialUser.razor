@@ -52,7 +52,7 @@
 
 	<thead>
 		<tr>
-			<th>Id</th>
+			<th>Pop's Cars</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -67,20 +67,24 @@
 			@foreach (var car in ListOfCars)
 			{
 				<tr>
-					<CarDetail Car="@car"></CarDetail>
-					<td>
-						<CarDetail Car="@car"></CarDetail>
-					<MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
-						Open Car Details
-					</MudButton>
+					<td>@car.Id</td>
+					<td>@car.Year</td>
+					<td>@car.Make</td>
+					<td>@car.Model</td>
+					<td>@car.Color</td>
+					
+					<td>					
+						<MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
+							Open Car Details
+						</MudButton>
 					</td>
 					<td>
 						@{
 							var notes = ListOfNotes.Where(c => c.CarId == car.Id).ToList();
 						}
-						<MudButton @onclick="_ => OpenDialog(notes)" Variant="Variant.Filled" Color="Color.Primary">
+							<MudButton @onclick="_ => OpenDialog(notes)" Variant="Variant.Filled" Color="Color.Primary">
 							Open Notes
-						</MudButton>
+							</MudButton>
 					</td>
 				</tr>
 			}
