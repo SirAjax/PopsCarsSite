@@ -1,5 +1,7 @@
-﻿@using EFTest.Models
-@using PopsCars
+﻿@using EFTest.Models;
+@using PopsCars;
+
+
 @inject IService _service
 
 
@@ -58,5 +60,6 @@
 		{
 			await _service.DeleteCar(actualCarToDelete);
 		}
+		
 	}
 }

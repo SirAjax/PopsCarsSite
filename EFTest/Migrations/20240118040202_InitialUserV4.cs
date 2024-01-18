@@ -7,7 +7,7 @@
 namespace EFTest.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialUserMigrationV3 : Migration
+    public partial class InitialUserV4 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -70,7 +70,12 @@ namespace EFTest.Migrations
             migrationBuilder.InsertData(
                 table: "User",
                 columns: new[] { "ID", "UserName" },
-                values: new object[] { 1, "Pop" });
+                values: new object[,]
+                {
+                    { 1, "Pop" },
+                    { 2, "AJ" },
+                    { 3, "Michael" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Car",

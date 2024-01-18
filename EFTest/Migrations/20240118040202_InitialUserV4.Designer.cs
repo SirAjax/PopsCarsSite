@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFTest.Migrations
 {
     [DbContext(typeof(PopsCarsContext))]
-    [Migration("20240111052500_InitialUserMigrationV3")]
-    partial class InitialUserMigrationV3
+    [Migration("20240118040202_InitialUserV4")]
+    partial class InitialUserV4
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -424,6 +424,16 @@ namespace EFTest.Migrations
                         {
                             ID = 1,
                             UserName = "Pop"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            UserName = "AJ"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            UserName = "Michael"
                         });
                 });
 

@@ -80,7 +80,7 @@ namespace PopsCarsSite.Pages
 
 		protected async Task PopulateNoteList()
 		{
-			ListOfNotes = await _noteservice.GetNoteById(1);
+				ListOfNotes = await _noteservice.GetNoteById(currentUser.ID);
 		}
 		//protected async Task AddNote()
 		//{
