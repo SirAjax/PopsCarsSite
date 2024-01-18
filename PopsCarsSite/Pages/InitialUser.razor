@@ -18,7 +18,7 @@
 
 <table>
 	<tr>
-		<th>Initial User</th>
+		<th>^Select User^</th>
 		<th>Add a Car</th>
 	</tr>
 	<tr>
@@ -31,7 +31,7 @@
 			</div>
 		</td>
 		<td>
-			<EditForm Model="@newCar" id="addNewCar" OnSubmit="@AddCar">
+			<EditForm Model="@newCar" OnSubmit="@AddCar">
 				<InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
 				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
 				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
@@ -60,7 +60,7 @@
 
 	<thead>
 		<tr>
-			<th>@currentUser.UserName "s" Cars</th>
+			<th>@currentUser.UserName 's Cars</th>
 		</tr>
 	</thead>
 	<tbody>
