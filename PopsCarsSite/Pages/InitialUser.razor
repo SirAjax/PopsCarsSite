@@ -5,14 +5,22 @@
 
 @inherits InitialUserComponent
 
-
+<table>
+	<tr>
+		<td>
+			<EditForm Model="@currentUser" OnSubmit="@PopulateCarList">
+				<InputNumber @bind-Value="@currentUser.ID" placeholder="Enter User Id" />
+				<button type="submit">Select User</button>
+			</EditForm>
+		</td>
+	</tr>
+</table>
 
 <table>
 	<tr>
 		<th>Initial User</th>
 		<th>Add a Car</th>
 	</tr>
-
 	<tr>
 		<td>
 			<div style="padding: 10px;">
@@ -52,7 +60,7 @@
 
 	<thead>
 		<tr>
-			<th>Pop's Cars</th>
+			<th>@currentUser.UserName "s" Cars</th>
 		</tr>
 	</thead>
 	<tbody>

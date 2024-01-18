@@ -40,7 +40,6 @@ namespace PopsCarsSite.Pages
         protected async Task AddCar()
         {
             {
-
                 await _service.AddCar(newCar);
                 await PopulateList();
             }
