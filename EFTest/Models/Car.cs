@@ -1,4 +1,7 @@
-﻿namespace EFTest.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EFTest.Models;
 
 public class Car
 {
@@ -6,6 +9,9 @@ public class Car
     public string? Model { get; set; }
     public int Year { get; set; }
     public string? Color { get; set; }
+
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
     public int? UserId { get; set; }

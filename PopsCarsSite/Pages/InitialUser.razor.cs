@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using PopsCars;
 using PopsCarsSite.Shared;
-using System;
-using System.Runtime.CompilerServices;
 
 
 namespace PopsCarsSite.Pages
@@ -38,12 +36,20 @@ namespace PopsCarsSite.Pages
 		private IDialogService DialogService { get; set; } = default!;
 		protected override async Task OnInitializedAsync()
 		{
-			await PopulateCarList();
 			await PopulateUserList();
+			await PopulateCarList();
+			await PopulateNoteList();
+		}
+
+		protected async Task ChangeUser()
+		{
+			await PopulateUserList();
+			await PopulateCarList();
 			await PopulateNoteList();
 		}
 		protected async Task PopulateCarList()
 		{
+
 			ListOfCars = await _service.GetCarByUserId(currentUser!.ID);
 		}
 		protected async Task AddCar()
@@ -51,6 +57,7 @@ namespace PopsCarsSite.Pages
 			newCar.UserId = currentUser.ID;
 			await _service.AddCar(newCar);
 			await PopulateCarList();
+			newCar = new();
 		}
 		protected async Task FilterBySearch()
 		{
@@ -78,10 +85,10 @@ namespace PopsCarsSite.Pages
 			currentUser = await _userservice.GetUserById(initialUser);
 		}
 
-
+		
 		protected async Task PopulateNoteList()
 		{
-				ListOfNotes = await _noteservice.GetNoteById(currentUser!.ID);
+				ListOfNotes = await _noteservice.GetNoteById(currentUser.ID);
 		}
 		//protected async Task AddNote()
 		//{

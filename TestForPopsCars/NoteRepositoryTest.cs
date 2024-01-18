@@ -25,7 +25,7 @@ public class NoteRepositoryTest
     {
 
 
-        var note = new Note { Comments = "This is a test 1", NoteId = 1 };
+        var note = new Note { Comments = "This is a test 1", Id = 1 };
         var noteRepository = new NoteRepository(context);
         var newNote = noteRepository.Add(note);
         Assert.IsNotNull(newNote);
@@ -51,7 +51,7 @@ public class NoteRepositoryTest
     {
         // arrange
         string originalComment = "originalTestComment", updatedComment = "updatedTestComment";
-        var note = new Note { Comments = originalComment, NoteId = 1 };
+        var note = new Note { Comments = originalComment, Id = 1 };
         var noteRepository = new NoteRepository(context);
         context.Add(note);
         context.SaveChanges();
@@ -69,11 +69,11 @@ public class NoteRepositoryTest
     {
 
         var noteRepository = new NoteRepository(context);
-        var note = new Note { Comments = "test comments", NoteId = 1 };
+        var note = new Note { Comments = "test comments", Id = 1 };
         context.Add(note);
         context.SaveChanges();
         noteRepository.Delete(note);
-        var deletedNote = context.Note.FirstOrDefault(n => n.NoteId == 1);
+        var deletedNote = context.Note.FirstOrDefault(n => n.Id == 1);
         Assert.IsNull(deletedNote);
 
     }

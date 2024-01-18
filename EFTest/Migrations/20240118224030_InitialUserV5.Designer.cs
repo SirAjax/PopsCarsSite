@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFTest.Migrations
 {
     [DbContext(typeof(PopsCarsContext))]
-    [Migration("20240118040202_InitialUserV4")]
-    partial class InitialUserV4
+    [Migration("20240118224030_InitialUserV5")]
+    partial class InitialUserV5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -375,11 +375,11 @@ namespace EFTest.Migrations
 
             modelBuilder.Entity("EFTest.Models.Note", b =>
                 {
-                    b.Property<int>("NoteId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NoteId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("CarId")
                         .HasColumnType("int");
@@ -390,14 +390,14 @@ namespace EFTest.Migrations
                     b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("NoteId");
+                    b.HasKey("Id");
 
                     b.ToTable("Note");
 
                     b.HasData(
                         new
                         {
-                            NoteId = 1,
+                            Id = 1,
                             CarId = 1,
                             Comments = "this car should be a Chevy Biscayne",
                             UserId = 1

@@ -1,8 +1,13 @@
-﻿namespace EFTest.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace EFTest.Models;
 
 public class Note
 {
-	public int NoteId { get; set; }
+	[Key]
+	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+	public int Id { get; set; }
 	public string? Comments { get; set; }
 
 	public int? UserId { get; set; }
@@ -15,7 +20,7 @@ public class Note
 
 	public Note(int noteId, int userId, int carId, string? comments)
     {
-        this.NoteId = noteId;
+        this.Id = noteId;
 		this.UserId = userId;
 		this.CarId = carId;
 		this.Comments = comments;

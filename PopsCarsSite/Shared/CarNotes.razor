@@ -75,7 +75,7 @@
 	protected async Task UpdateNote(Note noteToUpdate)
 	{
 		var noteList = await _noteService.GetNotes();
-		var actualNoteToUpdate = noteList.FirstOrDefault(n => n.NoteId == noteToUpdate.NoteId);
+		var actualNoteToUpdate = noteList.FirstOrDefault(n => n.Id == noteToUpdate.Id);
 		if (actualNoteToUpdate != null)
 		{
 			await _noteService.UpdateNote(actualNoteToUpdate);
@@ -85,7 +85,7 @@
 	protected async Task DeleteNote(Note noteToDelete)
 	{
 		var noteList = await _noteService.GetNotes();
-		var actualNoteToDelete = noteList.FirstOrDefault(n => n.NoteId == noteToDelete.NoteId);
+		var actualNoteToDelete = noteList.FirstOrDefault(n => n.Id == noteToDelete.Id);
 		if (actualNoteToDelete != null)
 		{
 			await _noteService.DeleteNote(actualNoteToDelete);

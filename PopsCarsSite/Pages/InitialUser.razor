@@ -8,8 +8,8 @@
 <table>
 	<tr>
 		<td>
-			<EditForm Model="@currentUser" OnSubmit="@PopulateCarList">
-				<InputNumber @bind-Value="@currentUser.ID" placeholder="Enter User Id" />
+			<EditForm Model="@currentUser" OnSubmit="@ChangeUser">
+				<InputNumber @bind-Value="@initialUser" placeholder="Enter User Id" />
 				<button type="submit">Select User</button>
 			</EditForm>
 		</td>

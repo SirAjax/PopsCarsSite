@@ -7,7 +7,7 @@
 namespace EFTest.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialUserV4 : Migration
+    public partial class InitialUserV5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,7 +16,7 @@ namespace EFTest.Migrations
                 name: "Note",
                 columns: table => new
                 {
-                    NoteId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UserId = table.Column<int>(type: "int", nullable: true),
@@ -24,7 +24,7 @@ namespace EFTest.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Note", x => x.NoteId);
+                    table.PrimaryKey("PK_Note", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -64,7 +64,7 @@ namespace EFTest.Migrations
 
             migrationBuilder.InsertData(
                 table: "Note",
-                columns: new[] { "NoteId", "CarId", "Comments", "UserId" },
+                columns: new[] { "Id", "CarId", "Comments", "UserId" },
                 values: new object[] { 1, 1, "this car should be a Chevy Biscayne", 1 });
 
             migrationBuilder.InsertData(
