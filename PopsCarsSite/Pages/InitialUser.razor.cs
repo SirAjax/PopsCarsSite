@@ -17,6 +17,7 @@ namespace PopsCarsSite.Pages
 		protected Car? newCar = new();
 		protected Car? carToUpdate = new();
 		protected Car? carToDelete = new();
+		protected int initialUser { get; set; } = 1;
 		protected User? currentUser = new();
 		protected Note? newNote = new();
 		protected Note? noteToUpdate = new();
@@ -43,7 +44,7 @@ namespace PopsCarsSite.Pages
 		}
 		protected async Task PopulateCarList()
 		{
-			ListOfCars = await _service.GetCarByUserId(currentUser.ID);
+			ListOfCars = await _service.GetCarByUserId(currentUser!.ID);
 		}
 		protected async Task AddCar()
 		{
@@ -74,13 +75,13 @@ namespace PopsCarsSite.Pages
 		//}
 		protected async Task PopulateUserList()
 		{
-			currentUser = await _userservice.GetUserById(1);
+			currentUser = await _userservice.GetUserById(initialUser);
 		}
 
 
 		protected async Task PopulateNoteList()
 		{
-				ListOfNotes = await _noteservice.GetNoteById(currentUser.ID);
+				ListOfNotes = await _noteservice.GetNoteById(currentUser!.ID);
 		}
 		//protected async Task AddNote()
 		//{
