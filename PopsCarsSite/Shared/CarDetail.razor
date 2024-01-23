@@ -15,12 +15,13 @@
 				<InputText @bind-Value="@Car.Make" placeholder="Enter Car Make" />
 				<InputText @bind-Value="@Car.Model" placeholder="Enter Car Model" />
 				<InputText @bind-Value="@Car.Color" placeholder="Enter Car Color" />
-				<button type="submit">Update Car</button>
+				<MudButton Variant="Variant.Filled" Color="Color.Secondary" ButtonType="ButtonType.Submit">Update Car</MudButton>
+				
 			</EditForm>
 		</td>
 		<td>
 			<EditForm Model="@Car" OnSubmit="@(async () => await DeleteCar(Car))">
-				<button type="submit">Delete Car</button>
+				<MudButton Variant="Variant.Filled" Color="Color.Error" ButtonType="ButtonType.Submit">Delete Car</MudButton>
 			</EditForm>
 		</td>
 	</DialogContent>

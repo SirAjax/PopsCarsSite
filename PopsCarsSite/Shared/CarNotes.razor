@@ -13,18 +13,18 @@
 			<td>
 				<EditForm Model="@note" OnSubmit="@(async () => await AddNote(note))">
 					<InputText @bind-Value="@note!.Comments" placeholder="Add a Comment" />
-					<button type="submit">Add Comment</button>
+					<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Comment</MudButton>
 				</EditForm>
 			</td>
 			<td>
 				<EditForm Model="@note" OnSubmit="@(async () => await UpdateNote(note))">
 					<InputText @bind-Value="@note.Comments" placeholder="Change Comment" />
-					<button type="submit">Change Comment</button>
+					<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Update Comment</MudButton>
 				</EditForm>
 			</td>
 			<td>
 				<EditForm Model="@note" OnSubmit="@(async () => await DeleteNote(note))">
-					<button type="submit">Delete Comment</button>
+					<MudButton Variant="Variant.Filled" Color="Color.Error" ButtonType="ButtonType.Submit">Delete Comment</MudButton>
 				</EditForm>
 			</td>
 		}
@@ -51,13 +51,10 @@
 
 	public Car Car { get; set; }
 
-	[Parameter]
-
-	public EventCallback Cancel { get; set; }
 
 	[Parameter]
 
-	public EventCallback Submit { get; set; }
+	public EventCallback OnClickEvent { get; set; }
 
 	[CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
@@ -74,9 +71,10 @@
 
 	protected async Task AddNote(Note note)
 	{
-			note.UserId = User.ID;
-			note.CarId = Car.Id;
-			await _noteService.AddNote(note);
+		note.UserId = User.ID;
+		note.CarId = Car.Id;
+		await _noteService.AddNote(note);
+		await OnClickEvent.InvokeAsync();
 	}
 
 
@@ -98,6 +96,8 @@
 		{
 			await _noteService.DeleteNote(actualNoteToDelete);
 		}
+		await OnClickEvent.InvokeAsync();
+		StateHasChanged();
 	}
 
 }

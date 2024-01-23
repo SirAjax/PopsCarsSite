@@ -1,7 +1,7 @@
 ﻿@page "/InitialUser"
 
 
-<h3>Initial User</h3>
+<h3> @currentUser.UserName</h3>
 
 @inherits InitialUserComponent
 
@@ -10,7 +10,7 @@
 		<td>
 			<EditForm Model="@currentUser" OnSubmit="@ChangeUser">
 				<InputNumber @bind-Value="@initialUser" placeholder="Enter User Id" />
-				<button type="submit">Select User</button>
+				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Select User</MudButton>
 			</EditForm>
 		</td>
 	</tr>
@@ -26,7 +26,7 @@
 			<div style="padding: 10px;">
 				<EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
 					<InputText @bind-Value="@search" placeholder="Enter Car Details" />
-					<button type="submit">Search for Car</button>
+					<MudButton Variant="Variant.Filled" Color="Color.Secondary" ButtonType="ButtonType.Submit">Search for Car</MudButton>
 				</EditForm>
 			</div>
 		</td>
@@ -36,33 +36,16 @@
 				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
 				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
 				<InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
-				<button type="submit">Add Car</button>
+				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
 			</EditForm>
 		</td>
 	</tr>
 </table>
 
 
-<table border="1">
-	<thead>
-		<tr>
-			<th>UserName</th>
-		</tr>
 
-	</thead>
-	<tbody>
-		<tr>
-			<td>@currentUser!.UserName</td>
-		</tr>
-	</tbody>
-</table>
 <table>
 
-	<thead>
-		<tr>
-			<th>@currentUser.UserName 's Cars</th>
-		</tr>
-	</thead>
 	<tbody>
 		@if (ListOfCars == null || ListOfCars.Count == 0)
 		{

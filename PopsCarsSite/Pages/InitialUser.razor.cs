@@ -105,6 +105,7 @@ namespace PopsCarsSite.Pages
 			parameters.Add(p => p.Notes, listOfNotes);
 			parameters.Add(p => p.Car, car);
 			parameters.Add(p => p.User, currentUser);
+			parameters.Add(p => p.OnClickEvent, EventCallback.Factory.Create(this, PopulateNoteList));
 			var options = new DialogOptions { CloseOnEscapeKey = true };
 			DialogService.Show<CarNotes>("Car Comments", parameters, options);
 		}
