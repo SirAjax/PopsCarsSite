@@ -51,6 +51,14 @@
 
 	public Car Car { get; set; }
 
+	[Parameter]
+
+	public EventCallback Cancel { get; set; }
+
+	[Parameter]
+
+	public EventCallback Submit { get; set; }
+
 	[CascadingParameter] MudDialogInstance MudDialog { get; set; }
 
 	void Submit() => MudDialog.Close(DialogResult.Ok(true));
