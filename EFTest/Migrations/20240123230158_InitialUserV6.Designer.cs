@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFTest.Migrations
 {
     [DbContext(typeof(PopsCarsContext))]
-    [Migration("20240118224030_InitialUserV5")]
-    partial class InitialUserV5
+    [Migration("20240123230158_InitialUserV6")]
+    partial class InitialUserV6
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -385,6 +385,7 @@ namespace EFTest.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Comments")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")

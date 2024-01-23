@@ -7,7 +7,7 @@
 namespace EFTest.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialUserV5 : Migration
+    public partial class InitialUserV6 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,7 +18,7 @@ namespace EFTest.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     CarId = table.Column<int>(type: "int", nullable: true)
                 },

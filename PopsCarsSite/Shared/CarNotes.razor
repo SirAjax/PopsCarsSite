@@ -12,7 +12,8 @@
 		{
 			<td>
 				<EditForm Model="@note" OnSubmit="@(async () => await AddNote(note))">
-					<InputText @bind-Value="@note!.Comments" placeholder="Add a Comment" />
+					<DataAnnotationsValidator />
+					<InputText @bind-Value="@note.Comments" placeholder="Add a Comment" />
 					<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Comment</MudButton>
 				</EditForm>
 			</td>

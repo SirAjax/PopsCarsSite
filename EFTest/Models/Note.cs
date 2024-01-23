@@ -10,7 +10,7 @@ public class Note
 	public int Id { get; set; }
 
 	[Required]
-	public string? Comments { get; set; } 
+	public string Comments { get; set; } 
 
 	public int? UserId { get; set; }
 
@@ -20,7 +20,7 @@ public class Note
 
 	}
 
-	public Note(int noteId, int userId, int carId, string? comments)
+	public Note(int noteId, int userId, int carId, string comments)
     {
         this.Id = noteId;
 		this.UserId = userId;

@@ -10,6 +10,7 @@ List of Instructions:
 1. Change Table Layout to DataGrid (MudBlazor)
 2. Show Table Layout in TimeLine Format
 3. ReCreate Nullable comment entry data and fix error. 
+4. Fix AddCar error. Find error through breakpoints.
 4. Add HyperLink to ListOfUsers to pass UserId into InitialUser
 
 
