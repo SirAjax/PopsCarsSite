@@ -8,7 +8,9 @@ public class Note
 	[Key]
 	[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 	public int Id { get; set; }
-	public string? Comments { get; set; }
+
+	[Required]
+	public string? Comments { get; set; } 
 
 	public int? UserId { get; set; }
 
