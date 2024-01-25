@@ -6,79 +6,71 @@
 @inherits InitialUserComponent
 
 <table>
-	<tr>
-		<td>
-			<EditForm Model="@currentUser" OnSubmit="@ChangeUser">
-				<InputNumber @bind-Value="@initialUser" placeholder="Enter User Id" />
-				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Select User</MudButton>
-			</EditForm>
-		</td>
-	</tr>
+    <tr>
+        <td>
+            <EditForm Model="@currentUser" OnSubmit="@ChangeUser">
+                <InputNumber @bind-Value="@initialUser" placeholder="Enter User Id" />
+                <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Select User</MudButton>
+            </EditForm>
+        </td>
+    </tr>
 </table>
 
 <table>
-	<tr>
-		<th>^Select User^</th>
-		<th>Add a Car</th>
-	</tr>
-	<tr>
-		<td>
-			<div style="padding: 10px;">
-				<EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
-					<InputText @bind-Value="@search" placeholder="Enter Car Details" />
-					<MudButton Variant="Variant.Filled" Color="Color.Secondary" ButtonType="ButtonType.Submit">Search for Car</MudButton>
-				</EditForm>
-			</div>
-		</td>
-		<td>
-			<EditForm Model="@newCar" OnSubmit="@AddCar">
-				<InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
-				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
-				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
-				<InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
-				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
-			</EditForm>
-		</td>
-	</tr>
+    <tr>
+        <th>^Select User^</th>
+        <th>Add a Car</th>
+    </tr>
+    <tr>
+        <td>
+            <div style="padding: 10px;">
+                <EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
+                    <InputText @bind-Value="@search" placeholder="Enter Car Details" />
+                    <MudButton Variant="Variant.Filled" Color="Color.Secondary" ButtonType="ButtonType.Submit">Search for Car</MudButton>
+                </EditForm>
+            </div>
+        </td>
+        <td>
+            <EditForm Model="@newCar" OnSubmit="@AddCar">
+                <InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
+                <InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
+                <InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
+                <InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
+                <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
+            </EditForm>
+        </td>
+    </tr>
 </table>
 
 
 
-<table>
+<MudDataGrid Items="@ListOfCars">
 
-	<tbody>
-		@if (ListOfCars == null || ListOfCars.Count == 0)
-		{
-			<p style="color: red; font-weight: bold;">
-				No Cars have been found
-			</p>
-		}
-		else
-		{
-			@foreach (var car in ListOfCars)
-			{
-				<tr>
-					<td>@car.Id</td>
-					<td>@car.Year</td>
-					<td>@car.Make</td>
-					<td>@car.Model</td>
-					<td>@car.Color</td>
-					
-					<td>
-						<MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
-							Open Car Details
-						</MudButton>
-					</td>
-					<td>
-						@{
-							var notes = ListOfNotes.Where(n => n.CarId == car.Id).ToList();
-						}
-							<MudButton @onclick="_ => OpenDialog(notes, car)" Variant="Variant.Filled" Color="Color.Primary">
-							Open Notes
-							</MudButton>
-					</td>
-				</tr>
-			}
-		}
-	</tbody>
-</table>
+    <Columns>
+       
+        <PropertyColumn Property="c => c.Id" Title="Id" />
+        <PropertyColumn Property="c => c.Year" Title="Year" />
+        <PropertyColumn Property="c => c.Make" Title="Make" />
+        <PropertyColumn Property="c => c.Model" Title="Model" />
+        <PropertyColumn Property="c => c.Color" Title="Color" />
+        
+        <TemplateColumn>
+            <CellTemplate>
+                @{
+                    var car = ListOfCars.;
+                    }
+            <MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
+                Open Car Details
+            </MudButton>
+                
+            @{
+                var notes = ListOfNotes.Where(n => n.CarId == car.Id).ToList();
+            }
+            <MudButton @onclick="_ => OpenDialog(notes, car)" Variant="Variant.Filled" Color="Color.Primary">
+                Open Notes
+            </MudButton>
+            </CellTemplate>
+        </TemplateColumn>
+
+    </Columns>
+</MudDataGrid>
