@@ -10,6 +10,7 @@ public class Car
     public int Year { get; set; }
     public string? Color { get; set; }
 
+    
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
@@ -18,7 +19,7 @@ public class Car
 
     public User User { get; set; } = null!;
 
-
+    public virtual List<Note> Notes { get; set; }
 
     public Car()
     { 

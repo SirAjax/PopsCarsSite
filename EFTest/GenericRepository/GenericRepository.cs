@@ -4,7 +4,7 @@ namespace EFTest.GenericRepository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private DbContext _gdb;
+        protected DbContext _gdb;
         DbSet<T> _entity = null;
         public GenericRepository(DbContext gdb)
         {

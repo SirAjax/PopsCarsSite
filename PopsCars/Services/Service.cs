@@ -17,9 +17,10 @@ namespace PopsCars
 			return _carsRepository.GetAll().ToList();
 		}
 
+		
 		public async Task<List<Car>> GetCarByUserId(int userId)
 		{
-			List<Car> carList = _carsRepository.GetAll().ToList();
+			List<Car> carList = await _carsRepository.GetAllCarsWithNotes(userId);
 			var usersCars = carList.Where(c => c.UserId == userId).ToList();
 			return usersCars;
 		}
@@ -38,7 +39,6 @@ namespace PopsCars
 			).ToList();
 
 			return searchResults;
-
 		}
 
         public async Task<bool> AddCar(Car car)
@@ -53,8 +53,7 @@ namespace PopsCars
 
 		public async Task<bool> UpdateCar(Car car)
 		{
-            return await _carsRepository.UpdateAsync(car);
-        }
-
+			return await _carsRepository.UpdateAsync(car);
+		}
 	}
 }
