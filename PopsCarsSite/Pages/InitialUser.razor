@@ -53,23 +53,20 @@
         <PropertyColumn Property="c => c.Make" Title="Make" />
         <PropertyColumn Property="c => c.Model" Title="Model" />
         <PropertyColumn Property="c => c.Color" Title="Color" />
-        <PropertyColumn Property="c => c.Id"    Title="CarDetails" />
-        <PropertyColumn Property="c => c.Id"    Title="Comments" />
+       
         
         <TemplateColumn>
             <CellTemplate>
               
-                @{
-                    var car = ListOfCars.First();
-                }
-            <MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
+               
+            <MudButton OnClick="@(() => OpenDialog(context.Item))" Variant="Variant.Filled" Color="Color.Primary">
                 Open Car Details
             </MudButton>
                 
             @{
-                var notes = ListOfNotes.Where(n => n.CarId == car.Id).ToList();
+                var notes = ListOfNotes.Where(n => n.CarId == context.Item.Id).ToList();
             }
-            <MudButton @onclick="_ => OpenDialog(notes, car)" Variant="Variant.Filled" Color="Color.Primary">
+            <MudButton @onclick="_ => OpenDialog(notes, context.Item)" Variant="Variant.Filled" Color="Color.Primary">
                 Open Notes
             </MudButton>
             </CellTemplate>
