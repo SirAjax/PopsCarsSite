@@ -53,12 +53,15 @@
         <PropertyColumn Property="c => c.Make" Title="Make" />
         <PropertyColumn Property="c => c.Model" Title="Model" />
         <PropertyColumn Property="c => c.Color" Title="Color" />
+        <PropertyColumn Property="c => c.Id"    Title="CarDetails" />
+        <PropertyColumn Property="c => c.Id"    Title="Comments" />
         
         <TemplateColumn>
             <CellTemplate>
+              
                 @{
-                    var car = ListOfCars.;
-                    }
+                    var car = ListOfCars.First();
+                }
             <MudButton @onclick="_ => OpenDialog(car)" Variant="Variant.Filled" Color="Color.Primary">
                 Open Car Details
             </MudButton>
@@ -74,3 +77,5 @@
 
     </Columns>
 </MudDataGrid>
+
+
