@@ -51,6 +51,11 @@ namespace PopsCarsSite.Pages
 		{
 			ListOfCars = await _service.GetCarByUserId(currentUser!.ID);
 		}
+
+		protected async Task SortCarsByYear()
+		{
+			ListOfCars = await _service.SortUsersCarsByYear(currentUser!.ID);
+		}
 		protected async Task AddCar()
 		{
 			newCar.UserId = currentUser.ID;
@@ -97,7 +102,7 @@ namespace PopsCarsSite.Pages
 		//	await PopulateNoteList();
 		//}
 
-
+		
 		protected void OpenDialog(List<Note> listOfNotes, Car car)
 		{
 			var parameters = new DialogParameters<CarNotes>();

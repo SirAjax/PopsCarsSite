@@ -4,6 +4,9 @@ namespace PopsCars;
 public interface IService
 {
 	Task <List<Car>> GetAllCars();
+
+	Task<List<Car>> GetAllCarsByYear();
+	Task<List<Car>> SortUsersCarsByYear(int userId);
 	Task<List<Car>> MainSearch(string search);
 	
 	Task<List<Car>> GetCarByUserId(int id);
@@ -12,5 +15,6 @@ public interface IService
 	Task<bool> DeleteCar(Car car);
 	Task<bool> UpdateCar(Car car);
 
+	
 
 }

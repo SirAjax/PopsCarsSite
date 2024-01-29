@@ -1,5 +1,6 @@
 ﻿using EFTest;
 using EFTest.Models;
+using System.Diagnostics;
 
 namespace PopsCars
 {
@@ -15,6 +16,18 @@ namespace PopsCars
 		public async Task<List<Car>> GetAllCars()
 		{
 			return _carsRepository.GetAll().ToList();
+		}
+
+		public async Task<List<Car>> GetAllCarsByYear()
+		{
+			return _carsRepository.GetAll().OrderBy(x => x.Year).ToList();
+		}
+		
+		public async Task<List<Car>> SortUsersCarsByYear(int userId)
+		{
+			List<Car> carList = await _carsRepository.GetAllCarsWithNotes(userId);
+			var usersCarsSorted = carList.Where(c => c.UserId == userId).OrderBy(c => c.Year).ToList();
+			return usersCarsSorted;
 		}
 
 		
