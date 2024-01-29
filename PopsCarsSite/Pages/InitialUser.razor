@@ -16,8 +16,7 @@
     </tr>
 </table>
 
-<table>
-  
+<MudGrid>
     <MudStack Row="true">
         <td>
             <div style="padding: 10px;">
@@ -44,10 +43,8 @@
                 <MudItem md="4">
                     <MudPaper Height="400px" Class="px-4 pt-2 pb-4">
                         <MudText Typo="Typo.h6">Choose Car Color</MudText>
-                        <MudSelect Label="Color Picker Mode" Variant="Variant.Outlined" Dense="true" Margin="Margin.Dense" @bind-Value="ColorPickerMode" Class="mt-4">
-                            <MudSelectItem T="ColorPickerMode" Value="ColorPickerMode.RGB">RGB</MudSelectItem>
-                            <MudSelectItem T="ColorPickerMode" Value="ColorPickerMode.HSL">HSL</MudSelectItem>
-                            <MudSelectItem T="ColorPickerMode" Value="ColorPickerMode.HEX">HEX</MudSelectItem>
+                        <MudSelect Variant="Variant.Outlined" Dense="true" Margin="Margin.Dense" @bind-Value="ColorPickerMode" Class="mt-4">
+                            
                         </MudSelect>
                     </MudPaper>
                 </MudItem>
@@ -55,7 +52,7 @@
         </MudStack>
         
     </MudStack>
-</table>
+</MudGrid>
 
 
 
@@ -107,7 +104,7 @@
                     <MudText>@car.Model</MudText>
                     <MudText>@car.Color</MudText>
                 </MudStack>
-            </MudTimelineItem>
+        </MudTimelineItem>
     }
 </MudTimeline>
 
