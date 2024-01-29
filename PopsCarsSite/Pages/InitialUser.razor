@@ -38,19 +38,11 @@
         <MudStack Row="true">
             <MudGrid>
                 <MudItem md="8" Class="d-flex justify-center">
-                    <MudColorPicker ColorPickerMode="ColorPickerMode" PickerVariant="PickerVariant.Static" />
-                </MudItem>
-                <MudItem md="4">
-                    <MudPaper Height="400px" Class="px-4 pt-2 pb-4">
-                        <MudText Typo="Typo.h6">Choose Car Color</MudText>
-                        <MudSelect Variant="Variant.Outlined" Dense="true" Margin="Margin.Dense" @bind-Value="ColorPickerMode" Class="mt-4">
-                            
-                        </MudSelect>
-                    </MudPaper>
+                    <MudColorPicker Label="Choose Car Color" ColorPickerView="ColorPickerView.GridCompact" />
                 </MudItem>
             </MudGrid>
         </MudStack>
-        
+
     </MudStack>
 </MudGrid>
 
@@ -104,7 +96,7 @@
                     <MudText>@car.Model</MudText>
                     <MudText>@car.Color</MudText>
                 </MudStack>
-        </MudTimelineItem>
+            </MudTimelineItem>
     }
 </MudTimeline>
 
