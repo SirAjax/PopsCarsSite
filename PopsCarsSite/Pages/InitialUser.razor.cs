@@ -21,6 +21,7 @@ namespace PopsCarsSite.Pages
 		protected Note? noteToUpdate = new();
 		protected Note? noteToDelete = new();
 		protected string search;
+		protected string selectedColor;
 
 		[Inject]
 		private IService _service { get; set; } = default!;
@@ -60,6 +61,7 @@ namespace PopsCarsSite.Pages
 		{
 			newCar.UserId = currentUser.ID;
 			await _service.AddCar(newCar);
+			newCar.Color = selectedColor;
 			await PopulateCarList();
 			newCar = new();
 		}
@@ -74,16 +76,7 @@ namespace PopsCarsSite.Pages
 				ListOfCars = await _service.MainSearch(search);
 			}
 		}
-		//protected async Task UpdateCar(Car carToUpdate)
-		//{
-		//	var carList = await _service.GetAllCars();
-		//	var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
-		//	if (actualCarToUpdate != null)
-		//	{
-		//		await _service.UpdateCar(actualCarToUpdate);
-		//		await PopulateCarList();
-		//	}
-		//}
+	
 		protected async Task PopulateUserList()
 		{
 			currentUser = await _userservice.GetUserById(initialUser);
@@ -94,13 +87,7 @@ namespace PopsCarsSite.Pages
 		{
 				ListOfNotes = await _noteservice.GetNoteById(currentUser.ID);
 		}
-		//protected async Task AddNote()
-		//{
-		//	newNote.UserId = currentUser.ID;
-		//	newNote.CarId = newCar.Id;
-		//	await _noteservice.AddNote(newNote);
-		//	await PopulateNoteList();
-		//}
+	
 
 		
 		protected void OpenDialog(List<Note> listOfNotes, Car car)

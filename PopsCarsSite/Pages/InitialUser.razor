@@ -9,7 +9,7 @@
     <tr>
         <td>
             <EditForm Model="@currentUser" OnSubmit="@ChangeUser">
-                <InputNumber @bind-Value="@initialUser" placeholder="Enter User Id" />
+                <InputNumber @bind-Value="@initialUser" placeholder="Select a User" />
                 <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Select User</MudButton>
             </EditForm>
         </td>
@@ -21,7 +21,7 @@
         <td>
             <div style="padding: 10px;">
                 <EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
-                    <InputText @bind-Value="@search" placeholder="Enter Car Details" />
+                    <InputText @bind-Value="@search" placeholder="Search for Car" />
                     <MudButton Variant="Variant.Filled" Color="Color.Secondary" ButtonType="ButtonType.Submit">Search for Car</MudButton>
                 </EditForm>
             </div>
@@ -31,18 +31,10 @@
                 <InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
                 <InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
                 <InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
-                <InputText @bind-Value="@newCar!.Color" placeholder="Enter Car Color" />
+                 <MudColorPicker Label="Select Car Color" @bind-Text="selectedColor" ColorPickerView="ColorPickerView.GridCompact" />
                 <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
             </EditForm>
         </td>
-        <MudStack Row="true">
-            <MudGrid>
-                <MudItem md="8" Class="d-flex justify-center">
-                    <MudColorPicker Label="Choose Car Color" ColorPickerView="ColorPickerView.GridCompact"/>
-                </MudItem>
-            </MudGrid>
-        </MudStack>
-
     </MudStack>
 </MudGrid>
 
@@ -69,7 +61,6 @@
                 </MudButton>
             </CellTemplate>
         </TemplateColumn>
-
     </Columns>
 </MudDataGrid>
 
@@ -104,3 +95,7 @@
 {
     public ColorPickerMode ColorPickerMode { get; set; }
 }
+
+
+
+
