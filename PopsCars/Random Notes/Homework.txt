@@ -11,8 +11,9 @@ List of Instructions:
 
 1.	 Add View Model Folder in PopsCars project to store properties listed in IntialUser code behind
 2.   Read about Enumeration
-3.	 Add HyperLink to ListOfUsers to pass UserId into 
-4.	 Look into changing format of Generic Repository ( changing return value away from bool)
+3.	 Check out Virtual Box 
+4.	 Add HyperLink to ListOfUsers to pass UserId into 
+5.	 Look into changing format of Generic Repository ( changing return value away from bool)
 
 
 
