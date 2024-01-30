@@ -21,7 +21,7 @@ namespace PopsCarsSite.Pages
 		protected Note? noteToUpdate = new();
 		protected Note? noteToDelete = new();
 		protected string search;
-		protected string selectedColor;
+		
 
 		[Inject]
 		private IService _service { get; set; } = default!;
@@ -61,7 +61,6 @@ namespace PopsCarsSite.Pages
 		{
 			newCar.UserId = currentUser.ID;
 			await _service.AddCar(newCar);
-			newCar.Color = selectedColor;
 			await PopulateCarList();
 			newCar = new();
 		}

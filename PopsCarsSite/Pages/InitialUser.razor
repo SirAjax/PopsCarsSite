@@ -31,7 +31,7 @@
                 <InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
                 <InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
                 <InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
-                 <MudColorPicker Label="Select Car Color" @bind-Text="selectedColor" ColorPickerView="ColorPickerView.GridCompact" />
+                <MudColorPicker Label="Select Car Color" @bind-Text="@newCar!.Color" ColorPickerView="ColorPickerView.GridCompact" />
                 <MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
             </EditForm>
         </td>
