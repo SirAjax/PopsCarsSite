@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using PopsCars;
 using PopsCarsSite.Shared;
+using System.Linq.Expressions;
 
 
 namespace PopsCarsSite.Pages
@@ -21,7 +22,10 @@ namespace PopsCarsSite.Pages
 		protected Note? noteToUpdate = new();
 		protected Note? noteToDelete = new();
 		protected string search;
-		
+		protected bool isSortedById = true;
+		protected string sortButtonText;
+		public ColorPickerMode ColorPickerMode { get; set; }
+
 
 		[Inject]
 		private IService _service { get; set; } = default!;
@@ -53,9 +57,17 @@ namespace PopsCarsSite.Pages
 			ListOfCars = await _service.GetCarByUserId(currentUser!.ID);
 		}
 
-		protected async Task SortCarsByYear()
+		protected async Task SortCarsByYearOrId()
 		{
-			ListOfCars = await _service.SortUsersCarsByYear(currentUser!.ID);
+			Expression<Func<Car, int>> expression = c => c.Id;
+			isSortedById = !isSortedById;
+
+			if (!isSortedById)
+			{
+				expression = c => c.Year;
+			}
+			
+			ListOfCars = ListOfCars.AsQueryable().OrderBy(expression).ToList();
 		}
 		protected async Task AddCar()
 		{
@@ -75,20 +87,20 @@ namespace PopsCarsSite.Pages
 				ListOfCars = await _service.MainSearch(search);
 			}
 		}
-	
+
 		protected async Task PopulateUserList()
 		{
 			currentUser = await _userservice.GetUserById(initialUser);
 		}
 
-		
+
 		protected async Task PopulateNoteList()
 		{
-				ListOfNotes = await _noteservice.GetNoteById(currentUser.ID);
+			ListOfNotes = await _noteservice.GetNoteById(currentUser.ID);
 		}
-	
 
-		
+
+
 		protected void OpenDialog(List<Note> listOfNotes, Car car)
 		{
 			var parameters = new DialogParameters<CarNotes>();
@@ -104,6 +116,7 @@ namespace PopsCarsSite.Pages
 		{
 			var parameters = new DialogParameters<CarDetail>();
 			parameters.Add(p => p.Car, listOfCars);
+			parameters.Add(p => p.OnClickEvent, EventCallback.Factory.Create(this, PopulateNoteList));
 			var options = new DialogOptions { CloseOnEscapeKey = true };
 			DialogService.Show<CarDetail>("Car Details", parameters, options);
 		}

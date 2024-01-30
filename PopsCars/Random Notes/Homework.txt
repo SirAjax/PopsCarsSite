@@ -1,4 +1,4 @@
-﻿Notes for 1/25/24
+﻿Notes for 1/30/24
 
 
 -Begin creating an Administrator view-
@@ -8,13 +8,10 @@ List of Instructions:
 
 
 
-1. Show Table Layout in TimeLine Format
-	-create foreach loop within timeline
-	-Align by Id view in TimeLine
-	-lookup color picker in mudblazor add to AddCar Method
 
-2.	 Add HyperLink to ListOfUsers to pass UserId into InitialUser
-
+1.	 Add View Model Folder to store properties listed in IntialUser code behind.
+2.   Read about Enumeration.
+2.	 Add HyperLink to ListOfUsers to pass UserId into 
 3.	 Look into changing format of Generic Repository ( changing return value away from bool)
 
 
