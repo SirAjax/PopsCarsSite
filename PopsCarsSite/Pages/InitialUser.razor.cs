@@ -12,23 +12,22 @@ namespace PopsCarsSite.Pages
 	public class InitialUserComponent : ComponentBase
 	{
 
-		protected List<Car> ListOfCars = new();
-		protected List<Note> ListOfNotes = new();
-		protected Car? newCar = new();
-		protected Car? carToUpdate = new();
-		protected Car? carToDelete = new();
-		protected int initialUser { get; set; } = 1;
-		protected User? currentUser = new();
-		protected Note? newNote = new();
-		protected Note? noteToUpdate = new();
-		protected Note? noteToDelete = new();
-		protected string search;
-		protected bool isSortedById = true;
-		protected string sortButtonText;
-		public ColorPickerMode ColorPickerMode { get; set; }
+		//protected List<Car> ListOfCars = new();
+		//protected List<Note> ListOfNotes = new();
+		//protected Car? newCar = new();
+		//protected Car? carToUpdate = new();
+		//protected Car? carToDelete = new();
+		//protected int initialUser { get; set; } = 1;
+		//protected User? currentUser = new();
+		//protected Note? newNote = new();
+		//protected Note? noteToUpdate = new();
+		//protected Note? noteToDelete = new();
+		//protected string search;
+		//protected bool isSortedById = true;
+		//protected string sortButtonText;
+		//public ColorPickerMode ColorPickerMode { get; set; }
 
-		
-
+		public InitialUserViewModel initialUserViewModel = new InitialUserViewModel();
 
 		[Inject]
 		private IService _service { get; set; } = default!;
@@ -57,49 +56,49 @@ namespace PopsCarsSite.Pages
 		}
 		protected async Task PopulateCarList()
 		{
-			ListOfCars = await _service.GetCarByUserId(currentUser!.ID);
+			initialUserViewModel.ListOfCars = await _service.GetCarByUserId(initialUserViewModel.currentUser!.ID);
 		}
 
 		protected async Task SortCarsByYearOrId()
 		{
 			Expression<Func<Car, int>> expression = c => c.Id;
-			isSortedById = !isSortedById;
+			initialUserViewModel.isSortedById = !initialUserViewModel.isSortedById;
 
-			if (!isSortedById)
+			if (!initialUserViewModel.isSortedById)
 			{
 				expression = c => c.Year;
 			}
-			
-			ListOfCars = ListOfCars.AsQueryable().OrderBy(expression).ToList();
+
+			initialUserViewModel.ListOfCars = initialUserViewModel.ListOfCars.AsQueryable().OrderBy(expression).ToList();
 		}
 		protected async Task AddCar()
 		{
-			newCar.UserId = currentUser.ID;
-			await _service.AddCar(newCar);
+			initialUserViewModel.newCar.UserId = initialUserViewModel.currentUser.ID;
+			await _service.AddCar(initialUserViewModel.newCar);
 			await PopulateCarList();
-			newCar = new();
+			initialUserViewModel.newCar = new();
 		}
 		protected async Task FilterBySearch()
 		{
-			if (string.IsNullOrEmpty(search))
+			if (string.IsNullOrEmpty(initialUserViewModel.search))
 			{
 				Console.WriteLine("no search results");
 			}
 			else
 			{
-				ListOfCars = await _service.MainSearch(search);
+				initialUserViewModel.ListOfCars = await _service.MainSearch(initialUserViewModel.search);
 			}
 		}
 
 		protected async Task PopulateUserList()
 		{
-			currentUser = await _userservice.GetUserById(initialUser);
+			initialUserViewModel.currentUser = await _userservice.GetUserById(initialUserViewModel.initialUser);
 		}
 
 
 		protected async Task PopulateNoteList()
 		{
-			ListOfNotes = await _noteservice.GetNoteById(currentUser.ID);
+			initialUserViewModel.ListOfNotes = await _noteservice.GetNoteById(initialUserViewModel.currentUser.ID);
 		}
 
 
@@ -109,7 +108,7 @@ namespace PopsCarsSite.Pages
 			var parameters = new DialogParameters<CarNotes>();
 			parameters.Add(p => p.Notes, listOfNotes);
 			parameters.Add(p => p.Car, car);
-			parameters.Add(p => p.User, currentUser);
+			parameters.Add(p => p.User, initialUserViewModel.currentUser);
 			parameters.Add(p => p.OnClickEvent, EventCallback.Factory.Create(this, PopulateNoteList));
 			var options = new DialogOptions { CloseOnEscapeKey = true };
 			DialogService.Show<CarNotes>("Car Comments", parameters, options);
@@ -124,7 +123,4 @@ namespace PopsCarsSite.Pages
 			DialogService.Show<CarDetail>("Car Details", parameters, options);
 		}
 	}
-
-
-
 }

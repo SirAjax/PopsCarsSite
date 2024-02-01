@@ -1,15 +1,15 @@
 ﻿@page "/InitialUser"
 
 
-<h3> @currentUser.UserName</h3>
+<h3> @initialUserViewModel.currentUser.UserName</h3>
 
 @inherits InitialUserComponent
 
 <table>
 	<tr>
 		<td>
-			<EditForm Model="@currentUser" OnSubmit="@ChangeUser">
-				<InputNumber @bind-Value="@initialUser" placeholder="Select a User" />
+			<EditForm Model="@initialUserViewModel.currentUser" OnSubmit="@ChangeUser">
+				<InputNumber @bind-Value="@initialUserViewModel.initialUser" placeholder="Select a User" />
 				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Select User</MudButton>
 			</EditForm>
 		</td>
@@ -20,19 +20,19 @@
 	<MudStack Row="true">
 		<td>
 			<div style="padding: 10px;">
-				<EditForm Model="@ListOfCars" OnSubmit="@FilterBySearch">
-					<InputText @bind-Value="@search" placeholder="Search for Car" />
+				<EditForm Model="@initialUserViewModel.ListOfCars" OnSubmit="@FilterBySearch">
+					<InputText @bind-Value="@initialUserViewModel.search" placeholder="Search for Car" />
 					<MudButton Variant="Variant.Filled" Color="Color.Secondary" ButtonType="ButtonType.Submit">Search for Car</MudButton>
 				</EditForm>
 			</div>
 		</td>
 		<td>
-			<EditForm Model="@newCar" OnSubmit="@AddCar">
-				<InputNumber @bind-Value="@newCar!.Year" placeholder="Enter Car Year" />
-				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
-				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
-				<MudColorPicker Label="Select Car Color" @bind-Text="@newCar!.Color" ColorPickerView="ColorPickerView.GridCompact" />
-				<div style="background-color: @newCar.Color; width: 30px; height: 30px; top: 10px;"></div>
+			<EditForm Model="@initialUserViewModel.newCar" OnSubmit="@AddCar">
+				<InputNumber @bind-Value="@initialUserViewModel.newCar!.Year" placeholder="Enter Car Year" />
+				<InputText @bind-Value="@initialUserViewModel.newCar!.Make" placeholder="Enter Car Make" />
+				<InputText @bind-Value="@initialUserViewModel.newCar!.Model" placeholder="Enter Car Model" />
+				<MudColorPicker Label="Select Car Color" @bind-Text="@initialUserViewModel.newCar!.Color" ColorPickerView="ColorPickerView.GridCompact" />
+				<div style="background-color: @initialUserViewModel.newCar.Color; width: 30px; height: 30px; top: 10px;"></div>
 				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
 			</EditForm>
 		</td>
@@ -41,7 +41,7 @@
 
 
 
-<MudDataGrid Items="@ListOfCars">
+<MudDataGrid Items="@initialUserViewModel.ListOfCars">
 
 	<Columns>
 
@@ -70,21 +70,21 @@
 <MudTimeline>
 
 
-	@if (isSortedById)
+	@if (initialUserViewModel.isSortedById)
 	{
-		sortButtonText = "Sort By Year";
+		initialUserViewModel.sortButtonText = "Sort By Year";
 	}
 
 	else
 	{
-		sortButtonText = "Sort By Id";
+		initialUserViewModel.sortButtonText = "Sort By Id";
 	}
 	<MudStack Row="true" AlignItems="AlignItems.Start">
 		<MudButton @onclick="_ => SortCarsByYearOrId()" Variant="Variant.Filled" Color="Color.Primary">
-			@sortButtonText
+			@initialUserViewModel.sortButtonText
 		</MudButton>
 	</MudStack>
-	@foreach (var car in ListOfCars)
+	@foreach (var car in initialUserViewModel.ListOfCars)
 	{
 		<MudTimelineItem>
 			<MudStack Row="true" AlignItems="AlignItems.Stretch">

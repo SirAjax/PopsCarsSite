@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFTest", "EFTest\EFTest.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestForPopsCars", "TestForPopsCars\TestForPopsCars.csproj", "{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopsCarSite.Common", "PopsCarSite.Common\PopsCarSite.Common.csproj", "{3334B556-5774-4B59-A551-44F232A5BC8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3334B556-5774-4B59-A551-44F232A5BC8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3334B556-5774-4B59-A551-44F232A5BC8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3334B556-5774-4B59-A551-44F232A5BC8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3334B556-5774-4B59-A551-44F232A5BC8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

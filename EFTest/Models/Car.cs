@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using MudBlazor;
 namespace EFTest.Models;
 
 public class Car
@@ -9,6 +9,8 @@ public class Car
     public string? Model { get; set; }
     public int Year { get; set; }
     public string? Color { get; set; }
+
+    
     
     
     [Key]
