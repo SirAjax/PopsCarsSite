@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PopsCarSite.Common.Helpers;
+namespace PopsCarsSite.Common.Helpers;
 public static class ExceptionHelper
 {
 

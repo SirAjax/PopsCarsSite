@@ -1,11 +1,11 @@
-﻿using PopsCarSite.Common.Helpers;
+﻿using PopsCarsSite.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PopsCarSite.Common.Models;
+namespace PopsCarsSite.Common.Models;
 public class GenericResponse<T>
 {
 	public Exception? ResponseException { get; set; }
