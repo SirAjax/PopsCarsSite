@@ -32,6 +32,7 @@
 				<InputText @bind-Value="@newCar!.Make" placeholder="Enter Car Make" />
 				<InputText @bind-Value="@newCar!.Model" placeholder="Enter Car Model" />
 				<MudColorPicker Label="Select Car Color" @bind-Text="@newCar!.Color" ColorPickerView="ColorPickerView.GridCompact" />
+				<div style="background-color: @newCar.Color; width: 30px; height: 30px; top: 10px;"></div>
 				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
 			</EditForm>
 		</td>
@@ -49,6 +50,8 @@
 		<PropertyColumn Property="c => c.Make" Title="Make" />
 		<PropertyColumn Property="c => c.Model" Title="Model" />
 		<PropertyColumn Property="c => c.Color" Title="Color" />
+
+		
 
 
 		<TemplateColumn>
@@ -84,12 +87,13 @@
 	@foreach (var car in ListOfCars)
 	{
 		<MudTimelineItem>
-			<MudStack Row="true">
-				<MudText>@car.Id</MudText>
+			<MudStack Row="true" AlignItems="AlignItems.Stretch">
+					
+					<MudText>@car.Id</MudText>
 					<MudText>@car.Year</MudText>
 					<MudText>@car.Make</MudText>
 					<MudText>@car.Model</MudText>
-					<MudText>@car.Color</MudText>
+					<div style="background-color: @car.Color; width: 30px; height: 30px; top: 10px;"></div>
 				</MudStack>
 			</MudTimelineItem>
 	}
