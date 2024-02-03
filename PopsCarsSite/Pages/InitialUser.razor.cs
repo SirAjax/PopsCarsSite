@@ -12,21 +12,6 @@ namespace PopsCarsSite.Pages
 	public class InitialUserComponent : ComponentBase
 	{
 
-		//protected List<Car> ListOfCars = new();
-		//protected List<Note> ListOfNotes = new();
-		//protected Car? newCar = new();
-		//protected Car? carToUpdate = new();
-		//protected Car? carToDelete = new();
-		//protected int initialUser { get; set; } = 1;
-		//protected User? currentUser = new();
-		//protected Note? newNote = new();
-		//protected Note? noteToUpdate = new();
-		//protected Note? noteToDelete = new();
-		//protected string search;
-		//protected bool isSortedById = true;
-		//protected string sortButtonText;
-		//public ColorPickerMode ColorPickerMode { get; set; }
-
 		public InitialUserViewModel initialUserViewModel = new InitialUserViewModel();
 
 		[Inject]

@@ -72,6 +72,7 @@ public class CarsRepositoryTest
 		car.Year = 2010;
 
 		var updatedCar = await carRepository.UpdateAsync(car);
+
 		Assert.IsTrue(updatedCar);
 	}
 
