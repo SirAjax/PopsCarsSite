@@ -29,9 +29,9 @@
 		<td>
 			<EditForm Model="@initialUserViewModel.newCar" OnSubmit="@AddCar">
 				<InputNumber @bind-Value="@initialUserViewModel.newCar.Year" placeholder="Enter Car Year" />
-				<InputText @bind-Value="@initialUserViewModel.newCar!.Make" placeholder="Enter Car Make" />
-				<InputText @bind-Value="@initialUserViewModel.newCar!.Model" placeholder="Enter Car Model" />
-				<MudColorPicker Label="Select Car Color" @bind-Text="@initialUserViewModel.newCar!.Color" ColorPickerView="ColorPickerView.GridCompact" />
+				<InputText @bind-Value="@initialUserViewModel.newCar.Make" placeholder="Enter Car Make" />
+				<InputText @bind-Value="@initialUserViewModel.newCar.Model" placeholder="Enter Car Model" />
+				<MudColorPicker Label="Select Car Color" @bind-Text="@initialUserViewModel.newCar.Color" ColorPickerView="ColorPickerView.GridCompact" />
 				<div style="background-color: @initialUserViewModel.newCar.Color; width: 30px; height: 30px; top: 10px;"></div>
 				<MudButton Variant="Variant.Filled" Color="Color.Success" ButtonType="ButtonType.Submit">Add Car</MudButton>
 			</EditForm>
