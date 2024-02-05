@@ -4,3 +4,9 @@ HW for 2/1/24
 1. Generic Repository Reformatting
 2. In list of users in User Page passes UsderId into InitialUserPage
 3. Virtual Machine
+
+
+Questions: 
+
+1. How useful/normal is a designated "Guard Class"? (class designed specifically for validation of inputs that can be called within operating methods)
+
