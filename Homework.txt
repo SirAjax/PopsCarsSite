@@ -1,13 +1,12 @@
-HW for 2/1/24
-
-!!! Deborah Kurata Defensive Coding in C#
-1. Generic Repository Reformatting
-2. In list of users in User Page passes UsderId into InitialUserPage
-3. Virtual Machine
+HW for 2/6/24
 
 
-Questions: 
+1. Fix Methods to introduce code safety
+2. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
 
-1. How useful/normal is a designated "Guard Class"? (class designed specifically for validation of inputs that can be called within operating methods)
-2. Validation when using a generic repository (best practices to create predicatble results)
-3. Custom Exception Class
+
+
+
+ for Later: In list of users in User Page passes UsderId into InitialUserPage
+check out Virtual Machine
+

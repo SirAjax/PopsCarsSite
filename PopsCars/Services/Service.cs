@@ -24,17 +24,28 @@ namespace PopsCars
 			return _carsRepository.GetAll().OrderBy(x => x.Year).ToList();
 		}
 		
-		public async Task<List<Car>> SortUsersCarsByYear(int userId)
+		public async Task<CommonResponse<List<Car>>> SortUsersCarsByYear(int userId)
+
 		{
-			GenericResponse<List<Car>> carList = await _carsRepository.GetAllCarsWithNotes(userId);
-			var usersCarsSorted = carList.Value.Where(c => c.UserId == userId).OrderBy(c => c.Year).ToList();
-			return usersCarsSorted;
+			var usersCarsSorted  = new CommonResponse<List<Car>>();
+
+			try
+			{
+				CommonResponse<List<Car>> carList = await _carsRepository.GetAllCarsWithNotes(userId);
+				usersCarsSorted.Value = carList.Value.Where(c => c.UserId == userId).OrderBy(c => c.Year).ToList();
+			}
+			catch (Exception ex)
+			{
+				await usersCarsSorted.SetExceptionAsync(ex);
+			}
+				return usersCarsSorted;
+
 		}
 
 		
 		public async Task<List<Car>> GetCarByUserId(int userId)
 		{
-			GenericResponse<List<Car>> carList = await _carsRepository.GetAllCarsWithNotes(userId);
+			CommonResponse<List<Car>> carList = await _carsRepository.GetAllCarsWithNotes(userId);
 			var usersCars = carList.Value.Where(c => c.UserId == userId).ToList();
 			return usersCars;
 		}
@@ -55,9 +66,23 @@ namespace PopsCars
 			return searchResults;
 		}
 
-        public async Task<bool> AddCar(Car car)
+        public async Task<CommonResponse<bool>> AddCar(Car car)
         {
-            return await _carsRepository.Add(car);
+			var retVal = new CommonResponse<bool>();
+
+			try
+			{
+				retVal.Value = await _carsRepository.Add(car);
+			}
+			
+			catch (Exception ex) 
+			
+			{
+				await retVal.SetExceptionAsync(ex);
+			}
+
+			return retVal;
+
         }
 
 		public async Task<bool> DeleteCar(Car car)

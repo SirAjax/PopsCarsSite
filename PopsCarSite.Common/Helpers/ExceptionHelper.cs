@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PopsCarsSite.Common.Helpers;
-public static class ExceptionHelper
+public static class ExceptionHelper 
 {
 
 	public static IEnumerable<Exception> GetAllExceptions(this Exception exception)

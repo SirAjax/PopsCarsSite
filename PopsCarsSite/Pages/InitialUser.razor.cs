@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using MudBlazor;
 using MudBlazor.Utilities;
 using PopsCars;
+using PopsCarsSite.Common.Models;
 using PopsCarsSite.Shared;
 using System.Linq.Expressions;
 
@@ -12,7 +13,11 @@ namespace PopsCarsSite.Pages
 	public class InitialUserComponent : ComponentBase
 	{
 
+
 		public InitialUserViewModel initialUserViewModel = new InitialUserViewModel();
+
+		[Inject]
+		private ISnackbar _snackBar { get; set; } = default!;
 
 		[Inject]
 		private IService _service { get; set; } = default!;
@@ -58,10 +63,24 @@ namespace PopsCarsSite.Pages
 		}
 		protected async Task AddCar()
 		{
-			initialUserViewModel.newCar.UserId = initialUserViewModel.currentUser.ID;
-			await _service.AddCar(initialUserViewModel.newCar);
-			await PopulateCarList();
-			initialUserViewModel.newCar = new();
+			try
+			{
+				initialUserViewModel.newCar.UserId = initialUserViewModel.currentUser.ID;
+				CommonResponse<bool> addCarResponse = await _service.AddCar(initialUserViewModel.newCar);
+				if (addCarResponse.Error || !addCarResponse.Value)
+				{
+					_snackBar.Add("Please enter a value for each slot", Severity.Error, );
+				}
+				else
+				{
+					await PopulateCarList();
+					initialUserViewModel.newCar = new();
+				}
+			}
+			catch (Exception ex)
+			{
+				_snackBar.Add("Unable to Add Car", Severity.Error);
+			}
 		}
 		protected async Task FilterBySearch()
 		{

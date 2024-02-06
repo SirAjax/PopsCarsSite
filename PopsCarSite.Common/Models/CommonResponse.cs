@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace PopsCarsSite.Common.Models;
-public class GenericResponse<T>
+public class CommonResponse<T> 
 {
 	public Exception? ResponseException { get; set; }
 	public bool Error { get; set; }
@@ -35,6 +35,5 @@ public class GenericResponse<T>
 				ResponseErrorMsgs.Add(msg);
 			}
 		}
-
 	}
 }

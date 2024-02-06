@@ -12,9 +12,9 @@ namespace EFTest
 		{
 		}
 
-		public async Task<GenericResponse<List<Car>>> GetAllCarsWithNotes(int userId)
+		public async Task<CommonResponse<List<Car>>> GetAllCarsWithNotes(int userId)
 		{
-			var output = new GenericResponse<List<Car>>();
+			var output = new CommonResponse<List<Car>>();
 			try
 			{
 				output.Value = await _gdb.Set<Car>().Include(_gdb => _gdb.Notes).Where(n => n.UserId == userId).ToListAsync();

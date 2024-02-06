@@ -4,6 +4,6 @@ using PopsCarsSite.Common.Models;
 namespace EFTest;
 public interface ICarsRepository : IGenericRepository <Car>
 {
-    Task<GenericResponse<List<Car>>> GetAllCarsWithNotes(int userId);
+    Task<CommonResponse<List<Car>>> GetAllCarsWithNotes(int userId);
 }
 
