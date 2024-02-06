@@ -9,4 +9,5 @@ HW for 2/1/24
 Questions: 
 
 1. How useful/normal is a designated "Guard Class"? (class designed specifically for validation of inputs that can be called within operating methods)
-
+2. Validation when using a generic repository (best practices to create predicatble results)
+3. Custom Exception Class
