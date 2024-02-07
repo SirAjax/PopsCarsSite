@@ -5,6 +5,10 @@ HW for 2/6/24
 2. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
 
 
+Questions
+
+- How difficult is it to switch how the data is pulled for the Finance App? How difficult to implement 2FA?
+
 
 
  for Later: In list of users in User Page passes UsderId into InitialUserPage
