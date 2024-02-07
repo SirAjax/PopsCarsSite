@@ -69,7 +69,7 @@ namespace PopsCarsSite.Pages
 				CommonResponse<bool> addCarResponse = await _service.AddCar(initialUserViewModel.newCar);
 				if (addCarResponse.Error || !addCarResponse.Value)
 				{
-					_snackBar.Add("Please enter a value for each slot", Severity.Error, );
+					_snackBar.Add("Please enter a value for each slot", Severity.Error);
 				}
 				else
 				{

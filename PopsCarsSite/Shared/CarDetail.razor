@@ -48,7 +48,7 @@
 	protected async Task UpdateCar(Car carToUpdate)
 	{
 		var carList = await _service.GetAllCars();
-		var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
+		var actualCarToUpdate = carList.Value.FirstOrDefault(c => c.Id == carToUpdate.Id);
 		if (actualCarToUpdate != null)
 		{
 			await _service.UpdateCar(actualCarToUpdate);
@@ -60,7 +60,7 @@
 	protected async Task DeleteCar(Car carToDelete)
 	{
 		var carList = await _service.GetAllCars();
-		var actualCarToDelete = carList.FirstOrDefault(c => c.Id == carToDelete.Id);
+		var actualCarToDelete = carList.Value.FirstOrDefault(c => c.Id == carToDelete.Id);
 
 		if (actualCarToDelete != null)
 		{

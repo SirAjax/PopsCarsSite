@@ -1,20 +1,21 @@
 ﻿using EFTest.Models;
+using PopsCarsSite.Common.Models;
 
 namespace PopsCars
 {
     public interface IUserService
 	{
-		Task<List<User>> GetAllUsers();
+		Task<CommmonResponse<List<User>>> GetAllUsers();
 
-		Task<List<User>> MainUserSearch(string search);
+		Task<CommonResponse<List<User>>> MainUserSearch(string search);
 
-		Task<bool> AddUser(User user);
+		Task<CommonResponse<bool>> AddUser(User user);
 
-		Task<bool> DeleteUser(User user);
-	
-		Task<bool> UpdateUser(User user);
+		TTask<CommonResponse<bool>> DeleteUser(User user);
 
-		Task<User> GetUserById(int id);
+		Task<CommonResponse<bool>> UpdateUser(User user);
+
+		Task<CommonResponse<User>> GetUserById(int id);
 
 	}
 }

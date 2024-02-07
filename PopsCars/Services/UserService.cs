@@ -1,5 +1,6 @@
 ﻿using EFTest.Models;
 using EFTest;
+using PopsCarsSite.Common.Models;
 
 namespace PopsCars
 {
@@ -12,17 +13,44 @@ namespace PopsCars
 			_userRepository = userRepository;
 		}
 
-		public async Task<bool> AddUser(User user)
+		public async Task<CommonResponse<bool>> AddUser(User user)
 		{
-			return await _userRepository.Add(user);
+			var retValue = new CommonResponse<bool>();
+
+			try
+			{
+				retValue.Value = await _userRepository.Add(user);
+			}
+			catch (Exception ex)
+			{
+				await retValue.SetExceptionAsync(ex);
+			}
+
+			return retValue;
 		}
 
 		public async Task<List<User>> GetAllUsers()
 		{
-			return  _userRepository.GetAll().ToList();
+			var listOfAllUsers = new CommonResponse<List<User>>();
+
+			try 
+			{
+				CommonResponse<List<User>> userList = _userRepository.GetAll().ToList();
+				listOfAllUsers.Value = userList.Value;
+			}
+
+			catch (Exception ex) 
+			
+			{ 
+				await listOfAllUsers.SetExceptionAsync(ex);
+			}
+
+			return listOfAllUsers;
 		}
 
 		public async Task<User> GetUserById(int Id)
+
+
 		{
 			return _userRepository.GetById(Id);
 		}

@@ -1,12 +1,14 @@
 ﻿using EFTest.Models;
 using Microsoft.AspNetCore.Components;
 using PopsCars;
+using PopsCarsSite.Common.Models;
+
 
 namespace PopsCarsSite.Pages
 {
     public class CarListComponent : ComponentBase
     {
-        protected List<Car> ListOfCars = new();
+        protected CommonResponse<List<Car>> ListOfCars = new();
         protected string search;
         protected Car? newCar = new();
         protected Car? carToDelete = new();
@@ -48,7 +50,7 @@ namespace PopsCarsSite.Pages
         protected async Task UpdateCar(Car carToUpdate)
         {
             var carList = await _service.GetAllCars();
-            var actualCarToUpdate = carList.FirstOrDefault(c => c.Id == carToUpdate.Id);
+            var actualCarToUpdate = carList.Value.FirstOrDefault(c => c.Id == carToUpdate.Id);
             if (actualCarToUpdate != null)
             {
                 await _service.UpdateCar(actualCarToUpdate);
@@ -56,11 +58,11 @@ namespace PopsCarsSite.Pages
             }
         }
 
-        //Admin Method
+        
         protected async Task DeleteCar(Car carToDelete)
         {
             var carList = await _service.GetAllCars();
-            var actualCarToDelete = carList.FirstOrDefault(c => c.Id == carToDelete.Id);
+            var actualCarToDelete = carList.Value.FirstOrDefault(c => c.Id == carToDelete.Id);
 
             if (actualCarToDelete != null)
             {
