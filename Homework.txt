@@ -2,13 +2,8 @@ HW for 2/8/24
 
 
 1. Fix Methods to introduce code safety
-2. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
-
-
-Questions
-
-
-
+2. Add Error versions for each unit test
+3. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
 
  for Later: In list of users in User Page passes UsderId into InitialUserPage
 check out Virtual Machine
