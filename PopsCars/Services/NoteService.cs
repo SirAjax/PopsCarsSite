@@ -1,5 +1,6 @@
 ﻿using EFTest;
 using EFTest.Models;
+using PopsCarsSite.Common.Models;
 
 namespace PopsCars
 {
@@ -14,9 +15,20 @@ namespace PopsCars
 			_noteRepository = noteRepository;
 		}
 
-		public async Task<bool> AddNote(Note note)
+		public async Task<CommonResponse<bool>> AddNote(Note note)
 		{
-			return await _noteRepository.Add(note);
+			var retVal = new CommonResponse<bool>();
+
+			try
+			{
+				retVal.Value = await _noteRepository.Add(note);
+			}
+
+			catch (Exception ex) 
+			{ 
+				retVal.SetExceptionAsync(ex);
+			}
+			return retVal;
 		}
 
 		public async Task<List<Note>> MainSearch(string search)
@@ -32,8 +44,14 @@ namespace PopsCars
             
         }
 
-		public async Task<List<Note>> GetNotes()
+		public async Task<CommonResponse<List<Note>>> GetNotes()
 		{
+			var noteList = new CommonResponse<List<Note>>();
+
+			try 
+			{ 
+			
+			}
 			return _noteRepository.GetAll().ToList();
 		}
 

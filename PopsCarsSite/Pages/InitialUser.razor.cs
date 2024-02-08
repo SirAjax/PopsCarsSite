@@ -46,7 +46,23 @@ namespace PopsCarsSite.Pages
 		}
 		protected async Task PopulateCarList()
 		{
-			initialUserViewModel.ListOfCars = await _service.GetCarByUserId(initialUserViewModel.currentUser!.ID);
+			try
+			{
+				var carList = new CommonResponse<List<Car>>();
+				carList = await _service.GetCarByUserId(initialUserViewModel.currentUser!.ID);
+				if (carList.Error)
+				{
+					_snackBar.Add("Error in retrieving car list", Severity.Error);
+				}
+				else
+				{
+					initialUserViewModel.ListOfCars = carList.Value;
+				}
+			}
+			catch (Exception ex)
+			{
+				_snackBar.Add("Error in retrieving car list", Severity.Error);
+			}
 		}
 
 		protected async Task SortCarsByYearOrId()

@@ -1,12 +1,12 @@
 ﻿using EFTest.Models;
-
+using PopsCarsSite.Common.Models;
 namespace PopsCars;
 
 
 public interface INoteService 
 {
-	Task<bool> AddNote(Note note);
-	Task <List<Note>> GetNotes();
+	Task<CommonResponse<bool>> AddNote(Note note);
+	Task <CommonResponse<List<Note>>> GetNotes();
 	
 	Task<List<Note>> GetNoteById(int id);	
 	Task<bool> DeleteNote(Note note);

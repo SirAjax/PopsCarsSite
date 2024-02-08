@@ -35,8 +35,8 @@ namespace PopsCars
 
 			try 
 			{
-				CommonResponse<List<User>> userList = await _userRepository.GetAll().ToList();
-				listOfAllUsers.Value = userList.Value;
+				List<User> userList = _userRepository.GetAll().ToList();
+				listOfAllUsers.Value = userList;
 			}
 
 			catch (Exception ex) 
@@ -70,10 +70,10 @@ namespace PopsCars
 
 			try
 			{
-				CommonResponse<List<User>> userList = await _userRepository.GetAll().ToList();
+				List<User> userList =  _userRepository.GetAll().ToList();
 				string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-					searchResults.Value = userList.Value.Where(c =>
+					searchResults.Value = userList.Where(c =>
 					searchOptions.All(term => c.UserName.ToString().Contains(term, StringComparison.InvariantCultureIgnoreCase))
 				).ToList();
 			}

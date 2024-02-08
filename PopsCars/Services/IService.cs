@@ -15,7 +15,4 @@ public interface IService
 
 	Task<CommonResponse<bool>> DeleteCar(Car car);
 	Task<CommonResponse<bool>> UpdateCar(Car car);
-
-	
-
 }
