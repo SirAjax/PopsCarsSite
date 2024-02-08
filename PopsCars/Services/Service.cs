@@ -19,7 +19,7 @@ namespace PopsCars
 
 			try
 			{
-				CommonResponse<List<Car>> carList = _carsRepository.GetAll().ToList();
+				CommonResponse<List<Car>> carList = await _carsRepository.GetAll().ToList();
 				listOfAllCars.Value = carList.Value;
 			}
 			catch (Exception ex)
@@ -35,7 +35,8 @@ namespace PopsCars
 
 			try
 			{
-				listOfAllCarsByYear.Value = _carsRepository.GetAll().OrderBy(x => x.Year).ToList();
+				CommonResponse<List<Car>> carList = await _carsRepository.GetAll().OrderBy(x => x.Year).ToList();
+				listOfAllCarsByYear.Value = carList.Value;
 			}
 
 			catch (Exception ex)

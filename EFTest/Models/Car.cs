@@ -23,7 +23,7 @@ public class Car
 
     public virtual List<Note> Notes { get; set; }
 
-    public Car()
+    public Car() 
     { 
         //intentially left blank for CRUD operations
     }
