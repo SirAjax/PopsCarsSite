@@ -28,7 +28,7 @@ namespace TestForPopsCars
             mockRepo.Setup(repo => repo.Add(It.IsAny<Note>())).ReturnsAsync(true);
             Note note = new Note { Comments = "unitTest1" };
             var result = await service.AddNote(note);
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.Value);
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace TestForPopsCars
             mockRepo.Setup(repo => repo.Delete(It.IsAny<Note>())).ReturnsAsync(true);
             Note note = new Note { Comments = "unitTest1" };
             var result = await service.DeleteNote(note);
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.Value);
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@ namespace TestForPopsCars
             mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Note>())).ReturnsAsync(true);
             Note note = new Note { Comments = "unitTest1" };
             var result = await service.UpdateNote(note);
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.Value);
         }
 
         [TestMethod]

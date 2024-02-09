@@ -1,7 +1,6 @@
 using EFTest.Models;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;
-using MudBlazor.Utilities;
 using PopsCars;
 using PopsCarsSite.Common.Models;
 using PopsCarsSite.Shared;
@@ -106,19 +105,69 @@ namespace PopsCarsSite.Pages
 			}
 			else
 			{
-				initialUserViewModel.ListOfCars = await _service.MainSearch(initialUserViewModel.search);
+				try
+				{
+					var carList = new CommonResponse<List<Car>>();
+					carList = await _service.MainSearch(initialUserViewModel.search);
+					if (carList.Error)
+					{
+						_snackBar.Add("could not find any cars by that search", Severity.Error);
+					}
+					else
+					{
+						initialUserViewModel.ListOfCars = carList.Value;
+					}
+				}
+				catch (Exception ex)
+				{
+					_snackBar.Add("could not find any cars by that search", Severity.Error);
+				}
 			}
 		}
 
 		protected async Task PopulateUserList()
 		{
-			initialUserViewModel.currentUser = await _userservice.GetUserById(initialUserViewModel.initialUser);
+			try
+			{
+				var initialUser = new CommonResponse<User>();
+				initialUser = await _userservice.GetUserById(initialUserViewModel.initialUser);
+				if (initialUser.Error)
+				{
+					_snackBar.Add("Error in retrieving user list", Severity.Error);
+				}
+				else
+				{
+					initialUserViewModel.currentUser = initialUser.Value;
+				}
+			}
+
+			catch (Exception ex)
+			{
+				_snackBar.Add("Error in retrieving car list", Severity.Error);
+			}
+			
 		}
 
 
 		protected async Task PopulateNoteList()
 		{
-			initialUserViewModel.ListOfNotes = await _noteservice.GetNoteById(initialUserViewModel.currentUser.ID);
+			try
+			{
+				var noteList = new CommonResponse<List<Note>>();
+				noteList = await _noteservice.GetNoteById(initialUserViewModel.currentUser.ID);
+				if (noteList.Error)
+				{
+					_snackBar.Add("Error in retrieving note list", Severity.Error);
+				}
+				else
+				{
+					initialUserViewModel.ListOfNotes = noteList.Value;
+				}
+			}
+			catch (Exception ex)
+			{
+				_snackBar.Add("Error in retrieving note list", Severity.Error);
+			}
 		}
 
 

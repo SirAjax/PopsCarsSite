@@ -26,19 +26,28 @@ namespace PopsCars
 
 			catch (Exception ex) 
 			{ 
-				retVal.SetExceptionAsync(ex);
+				await retVal.SetExceptionAsync(ex);
 			}
 			return retVal;
 		}
 
-		public async Task<List<Note>> MainSearch(string search)
+		public async Task<CommonResponse<List<Note>>> MainSearch(string search)
 		{
-            List<Note> noteList = _noteRepository.GetAll().ToList();
-            string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+			var searchResults = new CommonResponse<List<Note>>();
 
-            var searchResults = noteList.Where(c =>
-                searchOptions.All(term => c.Comments.ToString().Contains(term, StringComparison.InvariantCultureIgnoreCase))
-            ).ToList();
+			try
+			{
+				List<Note> noteList = _noteRepository.GetAll().ToList();
+				string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+
+				searchResults.Value = noteList.Where(c =>
+					searchOptions.All(term => c.Comments.ToString().Contains(term, StringComparison.InvariantCultureIgnoreCase))
+				).ToList();
+			}
+			catch (Exception ex)
+			{
+				searchResults.SetExceptionAsync(ex);
+			}
 
             return searchResults;
             
@@ -49,26 +58,65 @@ namespace PopsCars
 			var noteList = new CommonResponse<List<Note>>();
 
 			try 
-			{ 
-			
+			{
+				noteList.Value = _noteRepository.GetAll().ToList();
 			}
-			return _noteRepository.GetAll().ToList();
+
+			catch (Exception ex)
+			{
+				await noteList.SetExceptionAsync(ex);
+			}
+			
+			return noteList;
 		}
 
-		public async Task<List<Note>> GetNoteById(int userId)
+		public async Task<CommonResponse<List<Note>>> GetNoteById(int userId)
 		{
-			List<Note> noteList = _noteRepository.GetAll().ToList();
-			var usersNotes = noteList.Where(c => c.UserId == userId).ToList();
+			var usersNotes = new CommonResponse<List<Note>>();
+			try
+			{
+				List<Note> noteList = _noteRepository.GetAll().ToList();
+				usersNotes.Value = noteList.Where(c => c.UserId == userId).ToList();
+
+			}
+
+			catch (Exception ex)
+			{
+			   await usersNotes.SetExceptionAsync(ex);
+			}
 			return usersNotes;
+			
 		}
-		public async Task<bool> DeleteNote(Note note)
+		public async Task<CommonResponse<bool>> DeleteNote(Note note)
 		{
-			return await _noteRepository.Delete(note);
+			var returnVal = new CommonResponse<bool>();
+			try
+			{
+				returnVal.Value = await _noteRepository.Delete(note);
+			}
+
+			catch (Exception ex)
+			{
+				await returnVal.SetExceptionAsync(ex);
+			}
+			return returnVal;
 		}
 
-		public async Task<bool> UpdateNote(Note comments)
+		public async Task<CommonResponse<bool>> UpdateNote(Note comments)
 		{
-			return await _noteRepository.UpdateAsync(comments);
+			var returnVal = new CommonResponse<bool>();
+
+			try
+			{
+				returnVal.Value = await _noteRepository.UpdateAsync(comments);
+			}
+			
+			catch (Exception ex)
+			{
+				await returnVal.SetExceptionAsync(ex);
+			}
+				
+			return returnVal;
 		}
 
 		

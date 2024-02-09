@@ -1,5 +1,6 @@
 ﻿@using EFTest.Models;
 @using PopsCars;
+@using PopsCarsSite.Common.Models;
 @inject IService _service;
 @inject INoteService _noteService;
 @inject IUserService _userService;
@@ -81,8 +82,10 @@
 
 	protected async Task UpdateNote(Note noteToUpdate)
 	{
-		var noteList = await _noteService.GetNotes();
-		var actualNoteToUpdate = noteList.FirstOrDefault(n => n.Id == noteToUpdate.Id);
+
+		var noteList = new CommonResponse<List<Note>>();
+		noteList = await _noteService.GetNotes();
+		var actualNoteToUpdate = noteList.Value.FirstOrDefault(n => n.Id == noteToUpdate.Id);
 		if (actualNoteToUpdate != null)
 		{
 			await _noteService.UpdateNote(actualNoteToUpdate);
@@ -91,8 +94,9 @@
 
 	protected async Task DeleteNote(Note noteToDelete)
 	{
-		var noteList = await _noteService.GetNotes();
-		var actualNoteToDelete = noteList.FirstOrDefault(n => n.Id == noteToDelete.Id);
+		var noteList = new CommonResponse<List<Note>>();
+		noteList = await _noteService.GetNotes();
+		var actualNoteToDelete = noteList.Value.FirstOrDefault(n => n.Id == noteToDelete.Id);
 		if (actualNoteToDelete != null)
 		{
 			await _noteService.DeleteNote(actualNoteToDelete);

@@ -34,7 +34,7 @@ namespace TestForPopsCars
             mockRepo.Setup(repo => repo.Add(It.IsAny<User>())).ReturnsAsync(true);
             User user = new User { UserName = "Unit Test" };
             var newUser = await service.AddUser(user);
-            Assert.IsTrue(newUser);
+            Assert.IsTrue(newUser.Value);
         }
 
         [TestMethod]
@@ -46,7 +46,7 @@ namespace TestForPopsCars
             mockRepo.Setup(repo => repo.Delete(It.IsAny<User>())).ReturnsAsync(true);
             User user = new User { UserName = "Unit Test" };
             var result =  await service.DeleteUser(user);
-            Assert.IsTrue(result);
+            Assert.IsTrue(result.Value);
         }
 
         [TestMethod]
