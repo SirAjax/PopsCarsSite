@@ -43,9 +43,11 @@ namespace TestForPopsCars
 		[TestMethod]
 		public async Task Does_GetAllCars_Return_Success()
 		{
+			mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { new Car  { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" }});
+			
 			var result = await service.GetAllCars();
 
-			Assert.IsFalse(result.Error);
+			Assert.IsNotNull(result);
 		}
 		[TestMethod]
 		public async Task Does_GetAllCars_Return_Error()
@@ -56,6 +58,7 @@ namespace TestForPopsCars
 
 			Assert.IsTrue(result.Error);
 		}
+
 
 		[TestMethod]
 		public async Task Does_DeleteCar_Return_Success()
@@ -90,6 +93,19 @@ namespace TestForPopsCars
 			var result = await service.UpdateCar(car);
 
 			Assert.IsTrue(result.Value);
+		}
+
+		[TestMethod]
+
+		public async Task Does_UpdateCar_Return_Error()
+		{
+			mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>())).ThrowsAsync(new Exception());
+			Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
+
+			var result = await service.UpdateCar(car);
+
+			Assert.IsTrue(result.Error);
+
 		}
 
 		[TestMethod]

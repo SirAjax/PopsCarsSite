@@ -29,41 +29,8 @@ namespace PopsCars
 			return listOfAllCars;
 		}
 
-		public async Task<CommonResponse<List<Car>>> GetAllCarsByYear()
-		{
-			var listOfAllCarsByYear = new CommonResponse<List<Car>>();
 
-			try
-			{
-				List<Car> carList = _carsRepository.GetAll().OrderBy(x => x.Year).ToList();
-				listOfAllCarsByYear.Value = carList;
-			}
 
-			catch (Exception ex)
-			{
-				await listOfAllCarsByYear.SetExceptionAsync(ex);
-			}
-
-			return listOfAllCarsByYear;
-		}
-
-		public async Task<CommonResponse<List<Car>>> SortUsersCarsByYear(int userId)
-
-		{
-			var usersCarsSorted = new CommonResponse<List<Car>>();
-
-			try
-			{
-				CommonResponse<List<Car>> carList = await _carsRepository.GetAllCarsWithNotes(userId);
-				usersCarsSorted.Value = carList.Value.Where(c => c.UserId == userId).OrderBy(c => c.Year).ToList();
-			}
-			catch (Exception ex)
-			{
-				await usersCarsSorted.SetExceptionAsync(ex);
-			}
-			return usersCarsSorted;
-
-		}
 
 
 		public async Task<CommonResponse<List<Car>>> GetCarByUserId(int userId)
