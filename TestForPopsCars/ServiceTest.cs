@@ -69,6 +69,19 @@ namespace TestForPopsCars
 		}
 
 		[TestMethod]
+
+		public async Task Does_DeleteCar_Return_Error()
+		{
+			mockRepo.Setup(repo => repo.Delete(It.IsAny<Car>())).ThrowsAsync(new Exception());
+			Car car = new Car { Year = 1980, Make = "unit tet", Model = "Test Car", Color = "Red" };
+
+			var result = await service.DeleteCar(car);
+
+			Assert.IsTrue(result.Error);
+
+		}
+
+		[TestMethod]
 		public async Task Does_UpdateCar_Return_Success()
 		{
 			mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>())).ReturnsAsync(true);
