@@ -1,9 +1,10 @@
-HW for 2/8/24
+HW for 2/13/24
 
 
-1. Fix Methods to introduce code safety
-2. Add Error versions for each unit test
-3. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
+1. Add Error versions for Unit Tests in Repositories
+2. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
+3. Check out https://bunit.dev/docs/
+
 
  for Later: In list of users in User Page passes UsderId into InitialUserPage
 check out Virtual Machine
@@ -11,6 +12,4 @@ check out Virtual Machine
 Change Generic Repository from boolean to Objects
 
 
-Questions:
-
-1. Currently reading Data Structures & Algorithms 
+ 

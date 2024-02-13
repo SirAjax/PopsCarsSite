@@ -1,16 +1,21 @@
+using EFTest.Models;
+using Moq;
 namespace TestForPopsCars;
+
 
 [TestClass]
 public class CarsRepositoryTest
 {
 	private DbContextOptions<PopsCarsContext> dbContextOptions;
 	private PopsCarsContext context;
+	private Mock<PopsCarsContext> contextMoq;
 
 	[TestInitialize]
 	public void Setup()
 	{
 		dbContextOptions = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test").Options;
 		context = new(dbContextOptions);
+		contextMoq = new(dbContextOptions);
 	}
 	[TestCleanup]
 	public void Cleanup()
@@ -22,14 +27,28 @@ public class CarsRepositoryTest
 	[TestMethod]
 	public async Task Does_AddCar_Return_Success()
 	{
-		{
-			var car = new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 };
 
-			var carsRepository = new CarsRepository(context);
-			var newCar = carsRepository.Add(car);
-			Assert.IsNotNull(newCar);
-		}
+		var car = new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 };
+
+		var carsRepository = new CarsRepository(context);
+		var newCar = carsRepository.Add(car);
+		Assert.IsNotNull(newCar);
+
 	}
+
+	[TestMethod]
+	public async Task Does_AddCar_Return_Error()
+	{
+		contextMoq.Setup(x => x.Add(It.IsAny<Car>())).Throws(new Exception());
+		var carsRepository = new CarsRepository(context);
+		Car car = new();
+
+		var result = await carsRepository.Add(car);
+
+		Assert.IsFalse(result);
+
+	}
+
 	[TestMethod]
 	public async Task Does_DeleteCar_Return_Success()
 	{

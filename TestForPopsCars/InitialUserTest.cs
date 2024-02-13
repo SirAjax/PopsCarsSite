@@ -3,7 +3,6 @@ using PopsCarsSite;
 using Bunit;
 using PopsCars;
 using PopsCarsSite.Pages;
-using
 using PopsCarsSite.Common.Models;
 
 namespace TestForPopsCars;
@@ -28,7 +27,7 @@ public class InitialUserTest : InitialUserComponent
 		servicemoq.Setup(x => x.AddCar(It.IsAny<Car>())).ReturnsAsync(new CommonResponse<bool>());
 		Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 
-		var result = initialUserComponent.AddCar(car);
+		await AddCar();
 
 		
 	}

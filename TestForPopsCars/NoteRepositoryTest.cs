@@ -1,16 +1,19 @@
-﻿namespace TestForPopsCars;
+﻿using Moq;
+namespace TestForPopsCars;
 
 [TestClass]
 public class NoteRepositoryTest
 {
     private DbContextOptions<PopsCarsContext> dbContextOptions;
     private PopsCarsContext context;
+    private Mock<PopsCarsContext> contextMoq;
 
     [TestInitialize]
     public void Setup()
     {
         dbContextOptions = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test").Options;
         context = new(dbContextOptions);
+        contextMoq = new(dbContextOptions);
     }
     [TestCleanup]
     public void Cleanup()
