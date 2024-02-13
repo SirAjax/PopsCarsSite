@@ -9,3 +9,8 @@ HW for 2/8/24
 check out Virtual Machine
 
 Change Generic Repository from boolean to Objects
+
+
+Questions:
+
+1. Currently reading Data Structures & Algorithms 
