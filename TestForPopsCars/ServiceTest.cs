@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using Moq;
+﻿using Moq;
 using PopsCars;
 
 namespace TestForPopsCars
@@ -49,6 +48,7 @@ namespace TestForPopsCars
 
 			Assert.IsNotNull(result);
 		}
+
 		[TestMethod]
 		public async Task Does_GetAllCars_Return_Error()
 		{
@@ -112,12 +112,23 @@ namespace TestForPopsCars
 
 		public async Task Does_MainSearch_Return_Success()
 		{
-			var carList = new List<Car> { new Car { Year = 1975 }, new Car { Year = 1985 }, new Car { Year = 1975 } };
+			var carList = new List<Car> { new Car { Year = 1975, Make = "Test Make1", Model = "Test Model1", Color = "Test Color1" }, new Car { Year = 1985, Make = "Test Make2", Model = "Test Model2", Color = "Test Color2" }, new Car { Year = 1975, Make = "Test Make3", Model = "Test Model3", Color = "Test Color3" } };
 			mockRepo.Setup(repo => repo.GetAll()).Returns(carList);
 
 			var result = await service.MainSearch("1975");
 
 			Assert.AreEqual(2, result.Value.Count);
+		}
+
+		[TestMethod]
+
+		public async Task Does_MainSearch_Return_Error()
+		{
+			mockRepo.Setup(repo => repo.GetAll()).Throws(new Exception());
+
+			var result = await service.MainSearch("1975");
+
+			Assert.IsTrue(result.Error);
 		}
 	}
 }

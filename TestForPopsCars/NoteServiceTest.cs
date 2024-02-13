@@ -97,15 +97,15 @@ namespace TestForPopsCars
             Assert.IsNotNull(result);
         }
 
-   //     [TestMethod]
-   //     public async Task Does_GetNotes_Return_Error()
-   //     {
-			//mockRepo.Setup(repo => repo.GetAll()).ThrowsAsync(new Exception());
+        [TestMethod]
+        public async Task Does_GetNotes_Return_Error()
+        {
+            mockRepo.Setup(repo => repo.GetAll()).Throws(new Exception());
 
-   //         var result = await service.GetNotes();
+            var result = await service.GetNotes();
 
-   //         Assert.IsTrue(result.Error);
-   //     }
+            Assert.IsTrue(result.Error);
+        }
 
     }
 }
