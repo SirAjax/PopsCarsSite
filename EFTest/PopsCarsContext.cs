@@ -14,26 +14,16 @@ namespace EFTest
 		{
 
 		}
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 			optionsBuilder.
 				LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Name }, Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
         }
-
-
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new CarConfiguration());
 			modelBuilder.ApplyConfiguration(new UserConfiguration());
 			modelBuilder.ApplyConfiguration(new NoteConfiguration());
-
-			//modelBuilder.Entity<User>().HasMany(u => u.Cars).WithOne(u => u.User);
 		}
-
-		
-
-
     }
 }

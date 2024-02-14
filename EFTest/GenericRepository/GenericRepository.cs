@@ -60,7 +60,6 @@ namespace EFTest.GenericRepository
             }
             catch (Exception ex)
             {
-                
                 return false;
             }
         }
