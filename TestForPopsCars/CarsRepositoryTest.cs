@@ -86,17 +86,17 @@ public class CarsRepositoryTest
 		Assert.IsNotNull(carsRepository);
 	}
 
-	//[TestMethod]
+	[TestMethod]
 
-	//public async Task Does_GetCarsAsync_Return_Error()
-	//{
-	//	contextMoq.Setup(x => x.GetType(It.IsAny<Car>())).Throws(new Exception());
-	//	var carsRepository = new CarsRepository(context);
+	public async Task Does_GetCarsAsync_Return_Error()
+	{
+		contextMoq.Setup(x => x.(It.IsAny<Car>())).Throws(new Exception());
+		var carsRepository = new CarsRepository(context);
 
-	//	var result = carsRepository.GetAll();
+		var result = carsRepository.GetAll();
 
-	//	Assert.IsFalse(result);
-	//}
+		Assert.IsFalse(result);
+	}
 
 	[TestMethod]
 

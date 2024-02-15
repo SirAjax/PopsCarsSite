@@ -19,13 +19,13 @@ namespace TestForPopsCars
             
         }
 
-        //[TestMethod]
-        //public async Task GetAllUsers_Returns_List_Of_Users()
-        //{
-        //    mockRepo.Setup(repo => repo.GetAll()).Returns(new List<User> { new User { UserName = "Unit Test" } });
-        //    var result = await service.GetAllUsers();            
-        //    Assert.AreEqual(1, result.Count);
-        //}
+        [TestMethod]
+        public async Task GetAllUsers_Returns_List_Of_Users()
+        {
+            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<User> { new User { UserName = "Unit Test" } });
+            var result = await service.GetAllUsers();
+            Assert.AreEqual(1, result.Value.Count);
+        }
 
         [TestMethod]
 

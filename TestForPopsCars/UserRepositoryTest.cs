@@ -34,6 +34,13 @@ public class UserRepositoryTest
 
 	public async Task Does_CreatUser_Return_Error()
 	{
+		moqContext.Setup(x => x.Add(It.IsAny<User>())).Throws(new Exception());
+		var userRepository = new UserRepository(context);
+		User user = new User();
+
+		var result = await userRepository.Add(user);
+
+		Assert.IsFalse(result);
 
 	}
 
@@ -44,6 +51,12 @@ public class UserRepositoryTest
 		var actualListOfUsers = userRepository.GetAll();
 		Assert.IsNotNull(actualListOfUsers);
 
+	}
+
+	[TestMethod]
+	public async Task Does_GetAllUserAsync_Return_Error()
+	{
+		moqContext.Setup(x => x.)
 	}
 
 
