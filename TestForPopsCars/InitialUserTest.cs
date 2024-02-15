@@ -28,7 +28,5 @@ public class InitialUserTest : InitialUserComponent
 		Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 
 		await AddCar();
-
-		
 	}
 }

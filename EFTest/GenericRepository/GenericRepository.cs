@@ -11,32 +11,32 @@ namespace EFTest.GenericRepository
             _gdb = gdb;
             _entity = _gdb.Set<T>();
         }
-        public async Task<bool> Add(T model)
+        public async Task<T> Add(T model)
         {
             try
             {
                 _entity.Add(model);
                 _gdb.SaveChanges();
-                return true;
+                return model;
             }
 
             catch (Exception ex)
             {
-                return false;
+                return model;
             }
         }
 
-        public async Task<bool> Delete(T model)
+        public async Task<T> Delete(T model)
         {
             try
             {
                 _gdb.Remove(model);
                 _gdb.SaveChanges();
-                return true;
+                return model;
             }
             catch (Exception ex) 
             {
-                return false;
+                return model;
             }
         }
 
@@ -50,17 +50,17 @@ namespace EFTest.GenericRepository
             return _entity.Find(id);
         }
 
-        public async Task<bool> UpdateAsync(T model)
+        public async Task<T> UpdateAsync(T model)
         {
             try
             {
                 _entity.Update(model);
                 await _gdb.SaveChangesAsync();
-                return true;
+                return model;
             }
             catch (Exception ex)
             {
-                return false;
+                return model;
             }
         }
     }

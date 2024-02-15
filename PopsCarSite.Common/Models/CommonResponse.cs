@@ -1,12 +1,8 @@
 ﻿using PopsCarsSite.Common.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PopsCarsSite.Common.Models;
-public class CommonResponse<T> 
+
+public class CommonResponse<T>
 {
 	public Exception? ResponseException { get; set; }
 	public bool Error { get; set; }

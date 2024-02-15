@@ -15,9 +15,9 @@ namespace PopsCars
 			_noteRepository = noteRepository;
 		}
 
-		public async Task<CommonResponse<bool>> AddNote(Note note)
+		public async Task<CommonResponse<Note>> AddNote(Note note)
 		{
-			var retVal = new CommonResponse<bool>();
+			var retVal = new CommonResponse<Note>();
 
 			try
 			{
@@ -87,9 +87,9 @@ namespace PopsCars
 			return usersNotes;
 			
 		}
-		public async Task<CommonResponse<bool>> DeleteNote(Note note)
+		public async Task<CommonResponse<Note>> DeleteNote(Note note)
 		{
-			var returnVal = new CommonResponse<bool>();
+			var returnVal = new CommonResponse<Note>();
 			try
 			{
 				returnVal.Value = await _noteRepository.Delete(note);
@@ -102,9 +102,9 @@ namespace PopsCars
 			return returnVal;
 		}
 
-		public async Task<CommonResponse<bool>> UpdateNote(Note comments)
+		public async Task<CommonResponse<Note>> UpdateNote(Note comments)
 		{
-			var returnVal = new CommonResponse<bool>();
+			var returnVal = new CommonResponse<Note>();
 
 			try
 			{

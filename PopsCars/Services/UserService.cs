@@ -13,9 +13,9 @@ namespace PopsCars
 			_userRepository = userRepository;
 		}
 
-		public async Task<CommonResponse<bool>> AddUser(User user)
+		public async Task<CommonResponse<User>> AddUser(User user)
 		{
-			var retValue = new CommonResponse<bool>();
+			var retValue = new CommonResponse<User>();
 
 			try
 			{
@@ -86,9 +86,9 @@ namespace PopsCars
 			return searchResults;
 		}
 
-		public async Task<CommonResponse<bool>> UpdateUser(User user)
+		public async Task<CommonResponse<User>> UpdateUser(User user)
 		{
-			var retVal = new CommonResponse<bool>();
+			var retVal = new CommonResponse<User>();
 
 			try
 			{
@@ -102,9 +102,9 @@ namespace PopsCars
 
 			return retVal;
         }
-		public async Task<CommonResponse<bool>> DeleteUser(User user) 
+		public async Task<CommonResponse<User>> DeleteUser(User user) 
 		{
-			var retVal = new CommonResponse<bool>();
+			var retVal = new CommonResponse<User>();
 			try
 			{
 				retVal.Value = await _userRepository.Delete(user);

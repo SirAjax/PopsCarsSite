@@ -76,9 +76,9 @@ namespace PopsCars
 			return searchResults;
 		}
 
-		public async Task<CommonResponse<bool>> AddCar(Car car)
+		public async Task<CommonResponse<Car>> AddCar(Car car)
 		{
-			var retVal = new CommonResponse<bool>();
+			var retVal = new CommonResponse<Car>();
 
 			try
 			{
@@ -95,9 +95,9 @@ namespace PopsCars
 
 		}
 
-		public async Task<CommonResponse<bool>> DeleteCar(Car car)
+		public async Task<CommonResponse<Car>> DeleteCar(Car car)
 		{
-			var retVal = new CommonResponse<bool>();
+			var retVal = new CommonResponse<Car>();
 
 			try
 			{
@@ -112,9 +112,9 @@ namespace PopsCars
 			return retVal;
 		}
 
-		public async Task<CommonResponse<bool>> UpdateCar(Car car)
+		public async Task<CommonResponse<Car>> UpdateCar(Car car)
 		{
-			var retVal = new CommonResponse<bool>();
+			var retVal = new CommonResponse<Car>();
 
 			try
 			{

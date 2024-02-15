@@ -9,11 +9,11 @@ namespace PopsCars
 
 		Task<CommonResponse<List<User>>> MainUserSearch(string search);
 
-		Task<CommonResponse<bool>> AddUser(User user);
+		Task<CommonResponse<User>> AddUser(User user);
 
-		Task<CommonResponse<bool>> DeleteUser(User user);
+		Task<CommonResponse<User>> DeleteUser(User user);
 
-		Task<CommonResponse<bool>> UpdateUser(User user);
+		Task<CommonResponse<User>> UpdateUser(User user);
 
 		Task<CommonResponse<User>> GetUserById(int id);
 
