@@ -1,15 +1,18 @@
-﻿namespace TestForPopsCars;
+﻿using Moq;
+namespace TestForPopsCars;
 [TestClass]
 public class UserRepositoryTest
 {
 	private DbContextOptions<PopsCarsContext> dbContextOptions;
 	private PopsCarsContext context;
+	private Mock<PopsCarsContext> moqContext;
 
 	[TestInitialize]
 	public void Setup()
 	{
 		dbContextOptions = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test").Options;
 		context = new(dbContextOptions);
+		moqContext = new(dbContextOptions);
 	}
 
 	[TestCleanup]
@@ -25,6 +28,13 @@ public class UserRepositoryTest
 		var userRepository = new UserRepository(context);
 		var newUser = userRepository.Add(user);
 		Assert.IsNotNull(newUser);
+	}
+
+	[TestMethod]
+
+	public async Task Does_CreatUser_Return_Error()
+	{
+
 	}
 
 	[TestMethod]
