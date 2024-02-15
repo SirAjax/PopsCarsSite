@@ -1,7 +1,7 @@
 HW for 2/13/24
 
 
-1. Add Error versions for Unit Tests in Repositories
+1. Add Error versions for Unit Tests in Repositories 
 2. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
 3. Check out https://bunit.dev/docs/
 

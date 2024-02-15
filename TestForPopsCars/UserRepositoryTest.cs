@@ -41,7 +41,6 @@ public class UserRepositoryTest
 		var result = await userRepository.Add(user);
 
 		Assert.IsFalse(result);
-
 	}
 
 	[TestMethod]
@@ -68,9 +67,26 @@ public class UserRepositoryTest
 		var userRepository = new UserRepository(context);
 		context.Add(user);
 		context.SaveChanges();
+		
 		userRepository.Delete(user);
 		var SavedUserDetails = context.User.FirstOrDefault(user => user.ID == 5);
+		
 		Assert.IsNull(SavedUserDetails);
+	}
+
+	[TestMethod]
+	public async Task Does_DeleteUser_Return_Error()
+	{
+		moqContext.Setup(x => x.Remove(It.IsAny<User>())).Throws(new Exception());
+
+		var user = new User { UserName = "testName", ID = 5 };
+		var userRepository = new UserRepository(context);
+		context.Add(user);
+		context.SaveChanges();
+
+		var result = await userRepository.Delete(user);
+
+		Assert.IsFalse(result);
 	}
 
 
@@ -82,8 +98,25 @@ public class UserRepositoryTest
 		var userRepository = new UserRepository(context);
 		context.Add(user);
 		context.SaveChanges();
+
 		user.UserName = updatedUserName;
 		var actual = await userRepository.UpdateAsync(user);
+
 		Assert.IsTrue(actual);
+	}
+
+	[TestMethod]
+	public async Task Does_UpdateUser_Return_Error()
+	{
+		moqContext.Setup(x => x.Update(It.IsAny<User>())).Throws(new Exception());
+		string originalUserName = "testName", updatedUserName = "updatedTestName";
+		var user = new User { UserName = originalUserName, ID = 5 };
+		var userRepository = new UserRepository(context);
+		context.Add(user);
+		context.SaveChanges();
+
+		var result = await userRepository.UpdateAsync(user);
+
+		Assert.IsFalse(result);
 	}
 }
