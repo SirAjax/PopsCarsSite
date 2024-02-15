@@ -30,9 +30,6 @@ namespace PopsCars
 		}
 
 
-
-
-
 		public async Task<CommonResponse<List<Car>>> GetCarByUserId(int userId)
 		{
 			var usersCars = new CommonResponse<List<Car>>();
@@ -58,6 +55,7 @@ namespace PopsCars
 			try
 			{
 				var carList = _carsRepository.GetAll().ToList();
+
 				string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 				searchResults.Value = carList.Where(c =>
 				searchOptions.All(term =>   //received help for line 19 
@@ -82,27 +80,24 @@ namespace PopsCars
 
 			try
 			{
-				retVal.Value = await _carsRepository.Add(car);
+				retVal = await _carsRepository.Add(car);
 			}
 
 			catch (Exception ex)
-
 			{
 				await retVal.SetExceptionAsync(ex);
 			}
 
 			return retVal;
-
 		}
 
-		public async Task<CommonResponse<Car>> DeleteCar(Car car)
+		public async Task<CommonResponse<bool>> DeleteCar(Car car)
 		{
-			var retVal = new CommonResponse<Car>();
+			var retVal = new CommonResponse<bool>();
 
 			try
 			{
-				retVal.Value = await _carsRepository.Delete(car);
-
+				retVal = await _carsRepository.Delete(car);
 			}
 
 			catch (Exception ex)
@@ -115,10 +110,10 @@ namespace PopsCars
 		public async Task<CommonResponse<Car>> UpdateCar(Car car)
 		{
 			var retVal = new CommonResponse<Car>();
-
+				
 			try
 			{
-				retVal.Value = await _carsRepository.UpdateAsync(car);
+				retVal = await _carsRepository.UpdateAsync(car);
 			}
 			
 			catch (Exception ex) 

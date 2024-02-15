@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PopsCarsSite.Common.Models;
 
 namespace EFTest.GenericRepository
 {
@@ -11,38 +12,76 @@ namespace EFTest.GenericRepository
             _gdb = gdb;
             _entity = _gdb.Set<T>();
         }
-        public async Task<T> Add(T model)
+        public async Task<CommonResponse<T>> Add(T model)
         {
+            var retVal = new CommonResponse<T>();
             try
             {
                 _entity.Add(model);
                 _gdb.SaveChanges();
-                return model;
+                retVal.Value = model;
             }
 
             catch (Exception ex)
             {
-                return model;
+                await retVal.SetExceptionAsync(ex);
             }
+
+            return retVal;
         }
 
-        public async Task<T> Delete(T model)
+        public async Task<CommonResponse<bool>> Delete(T model)
         {
+            var retVal = new CommonResponse<bool>();
+
             try
             {
                 _gdb.Remove(model);
                 _gdb.SaveChanges();
-                return model;
+                retVal.Value = true;
             }
+
             catch (Exception ex) 
             {
-                return model;
+                await retVal.SetExceptionAsync(ex);
             }
+
+            return retVal;
         }
 
-        public IEnumerable<T> GetAll()
+        public async Task<CommonResponse<int>> DeleteListAsync(List<T> recordsToDelete)
         {
-            return _entity.ToList();
+            var retVal = new CommonResponse<int>();
+
+            try
+            {
+				_gdb.RemoveRange(recordsToDelete);
+				_gdb.SaveChanges();
+                retVal.Value = recordsToDelete.Count;
+            }
+
+            catch (Exception ex) 
+            { 
+                await retVal.SetExceptionAsync(ex); 
+            }
+
+            return retVal;
+        }
+
+        public async Task<CommonResponse<IEnumerable<T>>> GetAll()
+        {
+            var retVal = new CommonResponse<IEnumerable<T>>();
+            try
+            {
+                retVal.Value = _entity.ToList();
+            }
+
+            catch (Exception ex)
+            {
+                await retVal.SetExceptionAsync(ex);
+            }
+
+            return retVal;
         }
 
         public T GetById(int id)
@@ -50,18 +89,21 @@ namespace EFTest.GenericRepository
             return _entity.Find(id);
         }
 
-        public async Task<T> UpdateAsync(T model)
+        public async Task<CommonResponse<T>> UpdateAsync(T model)
         {
+            var retVal = new CommonResponse<T>();
             try
             {
                 _entity.Update(model);
                 await _gdb.SaveChangesAsync();
-                return model;
+                retVal.Value = model;   
             }
             catch (Exception ex)
             {
-                return model;
+                await retVal.SetExceptionAsync(ex);
             }
+
+            return retVal;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace PopsCars
 
 			try
 			{
-				retVal.Value = await _noteRepository.Add(note);
+				retVal= await _noteRepository.Add(note);
 			}
 
 			catch (Exception ex) 
@@ -87,12 +87,12 @@ namespace PopsCars
 			return usersNotes;
 			
 		}
-		public async Task<CommonResponse<Note>> DeleteNote(Note note)
+		public async Task<CommonResponse<bool>> DeleteNote(Note note)
 		{
-			var returnVal = new CommonResponse<Note>();
+			var returnVal = new CommonResponse<bool>();
 			try
 			{
-				returnVal.Value = await _noteRepository.Delete(note);
+				returnVal = await _noteRepository.Delete(note);
 			}
 
 			catch (Exception ex)
@@ -108,7 +108,7 @@ namespace PopsCars
 
 			try
 			{
-				returnVal.Value = await _noteRepository.UpdateAsync(comments);
+				returnVal = await _noteRepository.UpdateAsync(comments);
 			}
 			
 			catch (Exception ex)

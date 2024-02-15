@@ -1,4 +1,5 @@
 ﻿using Moq;
+using PopsCarsSite.Common.Models;
 namespace TestForPopsCars;
 [TestClass]
 public class UserRepositoryTest
@@ -26,13 +27,15 @@ public class UserRepositoryTest
 	{
 		var user = new User { UserName = "test", ID = 5 };
 		var userRepository = new UserRepository(context);
-		var newUser = userRepository.Add(user);
-		Assert.IsNotNull(newUser);
+		
+		CommonResponse<User> newUser =  await userRepository.Add(user);
+
+		Assert.AreEqual(newUser.Value.ID, 5);
 	}
 
 	[TestMethod]
 
-	public async Task Does_CreatUser_Return_Error()
+	public async Task Does_CreateUser_Return_Error()
 	{
 		moqContext.Setup(x => x.Add(It.IsAny<User>())).Throws(new Exception());
 		var userRepository = new UserRepository(context);
@@ -40,16 +43,17 @@ public class UserRepositoryTest
 
 		var result = await userRepository.Add(user);
 
-		Assert.IsFalse(result);
+		Assert.IsNull(result);
 	}
 
 	[TestMethod]
 	public async Task Does_GetAllUserAsync_Return_Success()
 	{
 		var userRepository = new UserRepository(context);
+		
 		var actualListOfUsers = userRepository.GetAll();
+		
 		Assert.IsNotNull(actualListOfUsers);
-
 	}
 
 	[TestMethod]
@@ -58,19 +62,17 @@ public class UserRepositoryTest
 		moqContext.Setup(x => x.)
 	}
 
-
-
 	[TestMethod]
 	public async Task Does_DeleteUser_Return_Success()
 	{
 		var user = new User { UserName = "testName", ID = 5 };
+
 		var userRepository = new UserRepository(context);
 		context.Add(user);
 		context.SaveChanges();
-		
 		userRepository.Delete(user);
 		var SavedUserDetails = context.User.FirstOrDefault(user => user.ID == 5);
-		
+
 		Assert.IsNull(SavedUserDetails);
 	}
 

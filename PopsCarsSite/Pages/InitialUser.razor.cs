@@ -81,8 +81,8 @@ namespace PopsCarsSite.Pages
 			try
 			{
 				initialUserViewModel.newCar.UserId = initialUserViewModel.currentUser.ID;
-				CommonResponse<bool> addCarResponse = await _service.AddCar(initialUserViewModel.newCar);
-				if (addCarResponse.Error || !addCarResponse.Value)
+				CommonResponse<Car> addCarResponse = await _service.AddCar(initialUserViewModel.newCar);
+				if (addCarResponse.Error || addCarResponse.Value is null)
 				{
 					_snackBar.Add("Please enter a value for each slot", Severity.Error);
 				}

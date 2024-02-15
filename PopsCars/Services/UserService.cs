@@ -19,7 +19,7 @@ namespace PopsCars
 
 			try
 			{
-				retValue.Value = await _userRepository.Add(user);
+				retValue = await _userRepository.Add(user);
 			}
 			catch (Exception ex)
 			{
@@ -72,7 +72,6 @@ namespace PopsCars
 			{
 				List<User> userList =  _userRepository.GetAll().ToList();
 				string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
 					searchResults.Value = userList.Where(c =>
 					searchOptions.All(term => c.UserName.ToString().Contains(term, StringComparison.InvariantCultureIgnoreCase))
 				).ToList();
@@ -92,7 +91,7 @@ namespace PopsCars
 
 			try
 			{
-				retVal.Value = await _userRepository.UpdateAsync(user);
+				retVal = await _userRepository.UpdateAsync(user);
 			}
             
 			catch (Exception ex)
@@ -102,12 +101,12 @@ namespace PopsCars
 
 			return retVal;
         }
-		public async Task<CommonResponse<User>> DeleteUser(User user) 
+		public async Task<CommonResponse<bool>> DeleteUser(User user) 
 		{
-			var retVal = new CommonResponse<User>();
+			var retVal = new CommonResponse<bool>();
 			try
 			{
-				retVal.Value = await _userRepository.Delete(user);
+				retVal = await _userRepository.Delete(user);
 			}
 			catch (Exception ex)
 			{ 
@@ -116,7 +115,5 @@ namespace PopsCars
 
 			return retVal;
 		}
-
-
 	}
 }

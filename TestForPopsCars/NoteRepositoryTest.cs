@@ -57,12 +57,12 @@ public class NoteRepositoryTest
     [TestMethod]
     public async Task Does_GetAllNotes_Return_Error()
     {
-        contextMoq.Setup(x => x.GetAll(It.IsAny<Note>())).Throws(new Exception());
+        contextMoq.Setup(x => x.Note).Throws(new Exception());
 		var noteRepository = new NoteRepository(context);
 
-		var result = await noteRepository.GetAll();
+		var result = noteRepository.GetAll();
 
-        Assert.IsFalse(result);
+        Assert.IsNull(result);
 	}
 
     [TestMethod]

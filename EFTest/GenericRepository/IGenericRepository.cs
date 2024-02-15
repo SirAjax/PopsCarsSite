@@ -1,12 +1,14 @@
-﻿namespace EFTest.GenericRepository
+﻿using PopsCarsSite.Common.Models;
+
+namespace EFTest.GenericRepository
 {
     public interface IGenericRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        Task<CommonResponse<IEnumerable<T>>> GetAll();
 		T GetById(int id);
-		Task<T> Add(T model);
-        Task<T> UpdateAsync(T model);
+		Task<CommonResponse<T>> Add(T model);
+        Task<CommonResponse<T>> UpdateAsync(T model);
      
-        Task<T> Delete(T model);
+        Task<CommonResponse<bool>> Delete(T model);
     }
 }
