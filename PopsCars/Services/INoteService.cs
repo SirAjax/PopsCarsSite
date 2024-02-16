@@ -12,5 +12,5 @@ public interface INoteService
 	Task<CommonResponse<bool>> DeleteNote(Note note);
 	Task<CommonResponse<Note>> UpdateNote(Note comments);
 
-	Task<CommonResponse<List<Note>>> MainSearch(string search);
+	//Task<CommonResponse<List<Note>>> MainSearch(string search);
 }

@@ -15,18 +15,18 @@ namespace PopsCars
 
 		public async Task<CommonResponse<List<Car>>> GetAllCars()
 		{
-			var listOfAllCars = new CommonResponse<List<Car>>();
+			var retVal = new CommonResponse<List<Car>>();
 
 			try
 			{
-				List<Car> carList = _carsRepository.GetAll().ToList();
-				listOfAllCars.Value = carList;
+				var carList = await _carsRepository.GetAll();
+				retVal.Value = carList.Value.ToList();
 			}
 			catch (Exception ex)
 			{
-				await listOfAllCars.SetExceptionAsync(ex);
+				await retVal.SetExceptionAsync(ex);
 			}
-			return listOfAllCars;
+			return retVal;
 		}
 
 
@@ -50,14 +50,14 @@ namespace PopsCars
 
 		public async Task<CommonResponse<List<Car>>> MainSearch(string search)
 		{
-			var searchResults = new CommonResponse<List<Car>>();
+			var retVal = new CommonResponse<List<Car>>();
 
 			try
 			{
-				var carList = _carsRepository.GetAll().ToList();
+				var carList = await _carsRepository.GetAll();
 
 				string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-				searchResults.Value = carList.Where(c =>
+				retVal.Value = carList.Value.Where(c =>
 				searchOptions.All(term =>   //received help for line 19 
 					c.Color!.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
 					c.Make.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
@@ -68,10 +68,10 @@ namespace PopsCars
 
 			catch (Exception ex)
 			{
-				await searchResults.SetExceptionAsync(ex);
+				await retVal.SetExceptionAsync(ex);
 			}
-			
-			return searchResults;
+
+			return retVal;
 		}
 
 		public async Task<CommonResponse<Car>> AddCar(Car car)

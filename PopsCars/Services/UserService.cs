@@ -31,21 +31,21 @@ namespace PopsCars
 
 		public async Task<CommonResponse<List<User>>> GetAllUsers()
 		{
-			var listOfAllUsers = new CommonResponse<List<User>>();
+			var retVal = new CommonResponse<List<User>>();
 
 			try 
 			{
-				List<User> userList = _userRepository.GetAll().ToList();
-				listOfAllUsers.Value = userList;
+				var userList = await _userRepository.GetAll();
+				retVal.Value = userList.Value.ToList();
 			}
 
 			catch (Exception ex) 
 			
 			{ 
-				await listOfAllUsers.SetExceptionAsync(ex);
+				await retVal.SetExceptionAsync(ex);
 			}
 
-			return listOfAllUsers;
+			return retVal;
 		}
 
 		public async Task<CommonResponse<User>> GetUserById(int Id)
@@ -66,13 +66,13 @@ namespace PopsCars
 		}
 		public async Task<CommonResponse<List<User>>> MainUserSearch(string search)
 		{
-			var searchResults = new CommonResponse<List<User>>();
+			var retVal = new CommonResponse<List<User>>();
 
 			try
 			{
-				List<User> userList =  _userRepository.GetAll().ToList();
+				var userList = await _userRepository.GetAll();
 				string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-					searchResults.Value = userList.Where(c =>
+					retVal.Value = userList.Value.Where(c =>
 					searchOptions.All(term => c.UserName.ToString().Contains(term, StringComparison.InvariantCultureIgnoreCase))
 				).ToList();
 			}
@@ -80,9 +80,9 @@ namespace PopsCars
 			catch (Exception ex) 
 			
 			{
-				await searchResults.SetExceptionAsync(ex);
+				await retVal.SetExceptionAsync(ex);
 			}
-			return searchResults;
+			return retVal;
 		}
 
 		public async Task<CommonResponse<User>> UpdateUser(User user)
