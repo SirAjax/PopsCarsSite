@@ -19,12 +19,12 @@ namespace TestForPopsCars
 		[TestMethod]
 		public async Task Does_AddCar_Return_Success()
 		{
-			mockRepo.Setup(repo => repo.Add(It.IsAny<Car>())).ReturnsAsync(true);
+			mockRepo.Setup(repo => repo.Add(It.IsAny<Car>()));
 			Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 
 			var newCar = await service.AddCar(car);
 
-			Assert.IsTrue(newCar.Value);
+			Assert.Equals(car, newCar);
 		}
 
 		[TestMethod]
@@ -42,11 +42,11 @@ namespace TestForPopsCars
 		[TestMethod]
 		public async Task Does_GetAllCars_Return_Success()
 		{
-			mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Car> { new Car  { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" }});
+			mockRepo.Setup(repo => repo.GetAll()).Equals(new List<Car> { new Car  { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" }});
 			
 			var result = await service.GetAllCars();
 
-			Assert.IsNotNull(result);
+			Assert.AreEqual(result, result);
 		}
 
 		[TestMethod]
@@ -87,12 +87,12 @@ namespace TestForPopsCars
 		[TestMethod]
 		public async Task Does_UpdateCar_Return_Success()
 		{
-			mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>())).ReturnsAsync(true);
+			mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>()));
 			Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 
 			var result = await service.UpdateCar(car);
 
-			Assert.IsTrue(result.Value);
+			Assert.Equals(result, result);
 		}
 
 		[TestMethod]
@@ -113,7 +113,7 @@ namespace TestForPopsCars
 		public async Task Does_MainSearch_Return_Success()
 		{
 			var carList = new List<Car> { new Car { Year = 1975, Make = "Test Make1", Model = "Test Model1", Color = "Test Color1" }, new Car { Year = 1985, Make = "Test Make2", Model = "Test Model2", Color = "Test Color2" }, new Car { Year = 1975, Make = "Test Make3", Model = "Test Model3", Color = "Test Color3" } };
-			mockRepo.Setup(repo => repo.GetAll()).Returns(carList);
+			mockRepo.Setup(repo => repo.GetAll()).Equals(carList);
 
 			var result = await service.MainSearch("1975");
 

@@ -90,12 +90,12 @@ public class CarsRepositoryTest
 
 	public async Task Does_GetCarsAsync_Return_Error()
 	{
-		contextMoq.Setup(x => x.(It.IsAny<Car>())).Throws(new Exception());
+		contextMoq.Setup(x => x.GetAll(It.IsAny<Car>())).Throws(new Exception());
 		var carsRepository = new CarsRepository(context);
 
 		var result = carsRepository.GetAll();
 
-		Assert.IsFalse(result);
+		Assert.IsFalse(result.Value);
 	}
 
 	[TestMethod]

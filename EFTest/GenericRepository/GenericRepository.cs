@@ -86,7 +86,7 @@ namespace EFTest.GenericRepository
 
 		public T GetById(int id)
 		{
-			return _entity.Find(id);
+			return _entity.Find(id)!;
 		}
 
 		public async Task<CommonResponse<T>> UpdateAsync(T model)

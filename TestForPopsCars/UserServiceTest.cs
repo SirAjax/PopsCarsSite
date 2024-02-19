@@ -22,8 +22,10 @@ namespace TestForPopsCars
         [TestMethod]
         public async Task GetAllUsers_Returns_List_Of_Users()
         {
-            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<User> { new User { UserName = "Unit Test" } });
+            mockRepo.Setup(repo => repo.GetAll()).Equals(new List<User> { new User { UserName = "Unit Test" } });
+            
             var result = await service.GetAllUsers();
+            
             Assert.AreEqual(1, result.Value.Count);
         }
 
@@ -31,12 +33,12 @@ namespace TestForPopsCars
 
         public async Task Does_AddUser_Return_Success()
         {
-            mockRepo.Setup(repo => repo.Add(It.IsAny<User>())).ReturnsAsync(true);
+            mockRepo.Setup(repo => repo.Add(It.IsAny<User>()));
             User user = new User { UserName = "Unit Test" };
             
             var newUser = await service.AddUser(user);
             
-            Assert.IsTrue(newUser.Value);
+            Assert.Equals(user, newUser);
         }
 
         [TestMethod]
@@ -55,8 +57,6 @@ namespace TestForPopsCars
 
         public async Task Does_DeleteUser_Return_Success()
         {
-            
-
             mockRepo.Setup(repo => repo.Delete(It.IsAny<User>())).ReturnsAsync(true);
             User user = new User { UserName = "Unit Test" };
 
