@@ -16,7 +16,6 @@ namespace TestForPopsCars
         {
             mockRepo = new Mock<IUserRepository>();
             service = new UserService(mockRepo.Object);
-            
         }
 
         [TestMethod]
@@ -57,7 +56,7 @@ namespace TestForPopsCars
 
         public async Task Does_DeleteUser_Return_Success()
         {
-            mockRepo.Setup(repo => repo.Delete(It.IsAny<User>())).ReturnsAsync(true);
+            mockRepo.Setup(repo => repo.Delete(It.IsAny<User>()));
             User user = new User { UserName = "Unit Test" };
 
             var result =  await service.DeleteUser(user);
@@ -82,12 +81,12 @@ namespace TestForPopsCars
 
         public async Task Does_UpdateUser_Return_Success()
         {
-            mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<User>())).ReturnsAsync(true);
+            mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<User>()));
             User user = new User { UserName = "Unit Test" };
             
             var result = await service.UpdateUser(user);
             
-            Assert.IsNotNull(result);
+            Assert.AreEqual(result, user);
         }
 
         [TestMethod]
@@ -100,6 +99,5 @@ namespace TestForPopsCars
 
             Assert.IsTrue(result.Error);
 		}
-
 	}
 }

@@ -1,4 +1,5 @@
 using Moq;
+using PopsCarsSite.Common.Models;
 
 namespace TestForPopsCars;
 
@@ -25,109 +26,38 @@ public class CarsRepositoryTest
 
 
 	[TestMethod]
-	public async Task Does_AddCar_Return_Success()
+	public async Task Does_GetAllCarsWithNotes_Return_Success()
 	{
-		var car = new Car { Year = 5, Make = "unit test", Model = "TEST", Color = "Turqouise", Id = 18 };
 		var carsRepository = new CarsRepository(context);
-		
-		var newCar = carsRepository.Add(car);
-		
-		Assert.IsNotNull(newCar);
+
+		var result = await carsRepository.GetAllCarsWithNotes(0);
+
+		Assert.IsFalse(result.Error);
 	}
-
 	[TestMethod]
-	public async Task Does_AddCar_Return_Error()
+	public async Task Does_GetAllCarsWithNotes_Return_Success_WithNote()
 	{
-		contextMoq.Setup(x => x.Add(It.IsAny<Car>())).Throws(new Exception());
-		var carsRepository = new CarsRepository(context);
-		Car car = new();
-
-		var result = await carsRepository.Add(car);
-
-		Assert.IsFalse(result);
-	}
-
-	[TestMethod]
-	public async Task Does_DeleteCar_Return_Success()
-	{
-		var car = new Car { Make = "unit test" };
-		var carsRepository = new CarsRepository(context);
+		var car = new Car { Make = "test make", UserId = 1, Id = 1 };
+		var note = new Note { Comments = "test comment", CarId = 1 };
 		context.Add(car);
+		context.Add(note);
 		context.SaveChanges();
 
-		await carsRepository.Delete(car);
-
-		var savedCarDetails = context.Car.Where(c => c.Make == "unit test").FirstOrDefault();
-		Assert.IsNull(savedCarDetails);
-	}
-
-	[TestMethod]
-
-	public async Task Does_DeleteCar_Return_Error()
-	{
-		contextMoq.Setup(x => x.Remove(It.IsAny<Car>())).Throws(new Exception());
-		var car = new Car { Make = "unit test" };
-		var carsRepository = new CarsRepository(context);
-		context.Add(car);
-		context.SaveChanges();
-
-		var result = await carsRepository.Delete(car);
-
-		Assert.IsTrue(result);
-	}
-	
-	[TestMethod]
-	public async Task Does_GetCarsAsync_Return_Success()
-	{
 		var carsRepository = new CarsRepository(context);
 
-		carsRepository.GetAll();
-		
-		Assert.IsNotNull(carsRepository);
+		var result = await carsRepository.GetAllCarsWithNotes(1);
+
+		Assert.AreEqual(note, result.Value.First().Notes.First());
 	}
 
 	[TestMethod]
-
-	public async Task Does_GetCarsAsync_Return_Error()
+	public async Task Does_GetAllCarsWithNotes_Return_Error()
 	{
-		contextMoq.Setup(x => x.GetAll(It.IsAny<Car>())).Throws(new Exception());
-		var carsRepository = new CarsRepository(context);
+		contextMoq.Setup(x => x.Car).Throws(new Exception());
+		var carsRepository = new CarsRepository(contextMoq.Object);
 
-		var result = carsRepository.GetAll();
+		var result = await carsRepository.GetAllCarsWithNotes(0);
 
-		Assert.IsFalse(result.Value);
-	}
-
-	[TestMethod]
-
-	public async Task Does_UpdateCars_Return_Success()
-	{
-		var car = new Car { Make = "Test Car", Model = "Test Model", Year = 2008 };
-		var carRepository = new CarsRepository(context);
-		context.Add(car);
-		context.SaveChanges();
-		car.Model = "Updated Model";
-		car.Year = 2010;
-
-		var updatedCar = await carRepository.UpdateAsync(car);
-
-		Assert.IsTrue(updatedCar);
-	}
-
-	[TestMethod]
-
-	public async Task Does_UpdateCars_ReturnError()
-	{
-		contextMoq.Setup(x => x.Update(It.IsAny<Car>())).Throws(new Exception());
-		var car = new Car { Make = "Test Car", Model = "Test Model", Year = 2008 };
-		var carRepository = new CarsRepository(context);
-		context.Add(car);
-		context.SaveChanges();
-		car.Model = "Updated Model";
-		car.Year = 2010;
-
-		var updatedCar = await carRepository.UpdateAsync(car);
-
-		Assert.IsFalse(updatedCar);
+		Assert.IsTrue(result.Error); 
 	}
 }

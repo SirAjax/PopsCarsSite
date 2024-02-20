@@ -15,8 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopsCarsSite.Common", "Pops
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork", "HomeWork", "{E13C1575-EAE5-47F0-922D-18AA6A27BFD4}"
 	ProjectSection(SolutionItems) = preProject
-		example.json = example.json
 		Homework.txt = Homework.txt
+		example.json = example.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EBD676B0-EC89-4A24-950F-5C6B7551C333}"

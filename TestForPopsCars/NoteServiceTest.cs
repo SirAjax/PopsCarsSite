@@ -1,5 +1,6 @@
 ﻿using Moq;
 using PopsCars;
+using PopsCarsSite.Common.Models;
 
 namespace TestForPopsCars
 {
@@ -22,13 +23,13 @@ namespace TestForPopsCars
         [TestMethod]
 
         public async Task Does_AddNote_Return_Success()
-        { 
-            mockRepo.Setup(repo => repo.Add(It.IsAny<Note>())).ReturnsAsync(true);
-            Note note = new Note { Comments = "unitTest1" };
+        {
+			Note note = new Note { Comments = "unitTest1" };
+			mockRepo.Setup(repo => repo.Add(It.IsAny<Note>())).ReturnsAsync(new CommonResponse<Note> {Value = note });
           
             var result = await service.AddNote(note);
             
-            Assert.IsTrue(result.Value);
+            Assert.AreEqual(note, result.Value);
         }
 
         [TestMethod]
@@ -40,18 +41,17 @@ namespace TestForPopsCars
             var result = await service.AddNote(note);
 
             Assert.IsTrue(result.Error);
-
         }
 
         [TestMethod]
         public async Task Does_DeleteNote_Return_Success()
         {
-            mockRepo.Setup(repo => repo.Delete(It.IsAny<Note>())).ReturnsAsync(true);
+            mockRepo.Setup(repo => repo.Delete(It.IsAny<Note>())).ReturnsAsync(new CommonResponse<bool>());
             Note note = new Note { Comments = "unitTest1" };
             
             var result = await service.DeleteNote(note);
           
-            Assert.IsTrue(result.Value);
+            Assert.IsFalse(result.Value);
         }
 
         [TestMethod]
@@ -69,10 +69,13 @@ namespace TestForPopsCars
 
         public async Task Does_UpdateNote_Return_Success()
         {
-            mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Note>())).ReturnsAsync(true);
-            Note note = new Note { Comments = "unitTest1" };
+			Note note = new Note { Comments = "unitTest1" };
+            mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Note>())).ReturnsAsync(new CommonResponse<Note> { Value = note});
+            note.Comments = "changed Note";
+
             var result = await service.UpdateNote(note);
-            Assert.IsTrue(result.Value);
+
+            Assert.AreEqual(note.Comments, result.Value.Comments);
         }
 
         [TestMethod]
@@ -90,11 +93,12 @@ namespace TestForPopsCars
 
         public async Task Does_GetNotes_Return_Success()
         {
-            mockRepo.Setup(repo => repo.GetAll()).Returns(new List<Note> { new Note { Comments = "Test Comment" } });
+			List<Note> noteList = new List<Note> { new Note { Comments = "Test Comment" } };
+			mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(new CommonResponse<IEnumerable<Note>>{Value = noteList});
+
+			var result = await service.GetNotes();
             
-            var result = await service.GetNotes();
-            
-            Assert.IsNotNull(result);
+            Assert.AreEqual(noteList, result.Value);
         }
 
         [TestMethod]
@@ -106,6 +110,5 @@ namespace TestForPopsCars
 
             Assert.IsTrue(result.Error);
         }
-
     }
 }

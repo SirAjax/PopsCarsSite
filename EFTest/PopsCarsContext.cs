@@ -6,9 +6,9 @@ namespace EFTest
 {
     public class PopsCarsContext: DbContext
 	{
-		public DbSet<Car> Car { get; set; }
-		public DbSet<User> User { get; set; }
-		public DbSet<Note> Note { get; set; }
+		public virtual DbSet<Car> Car { get; set; }
+		public virtual DbSet<User> User { get; set; }
+		public virtual DbSet<Note> Note { get; set; }
 
 		public PopsCarsContext (DbContextOptions<PopsCarsContext> options) : base(options)
 		{

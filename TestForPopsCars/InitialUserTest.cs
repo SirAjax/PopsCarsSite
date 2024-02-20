@@ -24,9 +24,11 @@ public class InitialUserTest : InitialUserComponent
 
 	public async Task Does_AddCar_Return_Success()
 	{
-		servicemoq.Setup(x => x.AddCar(It.IsAny<Car>())).ReturnsAsync(new CommonResponse<bool>());
+		servicemoq.Setup(x => x.AddCar(It.IsAny<Car>()));
 		Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 
 		await AddCar();
+
+		Assert.IsNotNull(car);
 	}
 }

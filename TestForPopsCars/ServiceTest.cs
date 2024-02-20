@@ -1,5 +1,6 @@
 ﻿using Moq;
 using PopsCars;
+using PopsCarsSite.Common.Models;
 
 namespace TestForPopsCars
 {
@@ -19,12 +20,12 @@ namespace TestForPopsCars
 		[TestMethod]
 		public async Task Does_AddCar_Return_Success()
 		{
-			mockRepo.Setup(repo => repo.Add(It.IsAny<Car>()));
+			mockRepo.Setup(repo => repo.Add(It.IsAny<Car>())).ReturnsAsync(new CommonResponse<Car>());
 			Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 
 			var newCar = await service.AddCar(car);
 
-			Assert.Equals(car, newCar);
+			Assert.IsFalse(newCar.Error);
 		}
 
 		[TestMethod]
@@ -38,11 +39,10 @@ namespace TestForPopsCars
 			Assert.IsTrue(newCar.Error);
 		}
 
-
 		[TestMethod]
 		public async Task Does_GetAllCars_Return_Success()
 		{
-			mockRepo.Setup(repo => repo.GetAll()).Equals(new List<Car> { new Car  { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" }});
+			mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(new CommonResponse<IEnumerable<Car>>());
 			
 			var result = await service.GetAllCars();
 
@@ -60,15 +60,16 @@ namespace TestForPopsCars
 		}
 
 
+
 		[TestMethod]
 		public async Task Does_DeleteCar_Return_Success()
 		{
-			mockRepo.Setup(repo => repo.Delete(It.IsAny<Car>())).ReturnsAsync(true);
+			mockRepo.Setup(repo => repo.Delete(It.IsAny<Car>())).ReturnsAsync(new CommonResponse<bool>());
 			Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 			
 			var result = await service.DeleteCar(car);
 			
-			Assert.IsTrue(result.Value);
+			Assert.IsFalse(result.Value);
 		}
 
 		[TestMethod]
@@ -81,18 +82,17 @@ namespace TestForPopsCars
 			var result = await service.DeleteCar(car);
 
 			Assert.IsTrue(result.Error);
-
 		}
 
 		[TestMethod]
 		public async Task Does_UpdateCar_Return_Success()
 		{
-			mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>()));
+			mockRepo.Setup(repo => repo.UpdateAsync(It.IsAny<Car>())).ReturnsAsync(new CommonResponse<Car>());
 			Car car = new Car { Year = 1980, Make = "unit test", Model = "Test", Color = "Blue" };
 
 			var result = await service.UpdateCar(car);
 
-			Assert.Equals(result, result);
+			Assert.AreEqual(car, result.Value);
 		}
 
 		[TestMethod]
@@ -105,7 +105,6 @@ namespace TestForPopsCars
 			var result = await service.UpdateCar(car);
 
 			Assert.IsTrue(result.Error);
-
 		}
 
 		[TestMethod]
@@ -113,7 +112,7 @@ namespace TestForPopsCars
 		public async Task Does_MainSearch_Return_Success()
 		{
 			var carList = new List<Car> { new Car { Year = 1975, Make = "Test Make1", Model = "Test Model1", Color = "Test Color1" }, new Car { Year = 1985, Make = "Test Make2", Model = "Test Model2", Color = "Test Color2" }, new Car { Year = 1975, Make = "Test Make3", Model = "Test Model3", Color = "Test Color3" } };
-			mockRepo.Setup(repo => repo.GetAll()).Equals(carList);
+			mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(new CommonResponse<IEnumerable<Car>> {Value = carList});
 
 			var result = await service.MainSearch("1975");
 

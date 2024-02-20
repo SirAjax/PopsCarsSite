@@ -14,7 +14,6 @@ public class GenericRepositoryTest
 		dbContextOptions = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test").Options;
 		context = new(dbContextOptions);
 		repository = new GenericRepository<Car>(context);
-
 	}
 	[TestCleanup]
 	public void Cleanup()
@@ -26,9 +25,12 @@ public class GenericRepositoryTest
 	public async Task Does_Add_Return_Success()
 	{
 		var model = new Car() { Make = "testMake" };
-		bool actual = await repository.Add(model);
-		Assert.IsTrue(actual);
+
+		var actual = await repository.Add(model);
+
+		Assert.AreEqual(model, actual.Value);
 	}
+
 
 	[TestMethod]
 	public async Task Does_Delete_Return_Success()
@@ -36,8 +38,10 @@ public class GenericRepositoryTest
 		var model = new Car() { Make = "testMake" };
 		context.Add(model);
 		context.SaveChanges();
-		bool actual = await repository.Delete(model);
-		Assert.IsTrue(actual);
+
+		var result = await repository.Delete(model);
+		
+		Assert.IsTrue(result.Value);
 	}
 
 	[TestMethod]
@@ -46,7 +50,9 @@ public class GenericRepositoryTest
         var model = new Car() { Make = "testMake" };
         context.Add(model);
         context.SaveChanges();
+
         var actual = repository.GetAll();
+
         Assert.IsNotNull(actual);
     }
 
@@ -58,9 +64,9 @@ public class GenericRepositoryTest
         context.Add(model);
         context.SaveChanges();
         model.Make = "testMake2";
+
         var actual = await repository.UpdateAsync(model);
-        Assert.IsTrue(actual);
+
+        Assert.AreEqual(model, actual.Value);
     }
-
-
 }
