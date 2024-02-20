@@ -11,12 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFTest", "EFTest\EFTest.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestForPopsCars", "TestForPopsCars\TestForPopsCars.csproj", "{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopsCarsSite.Common", "PopsCarSite.Common\PopsCarsSite.Common.csproj", "{3334B556-5774-4B59-A551-44F232A5BC8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PopsCarsSite.Common", "PopsCarSite.Common\PopsCarsSite.Common.csproj", "{3334B556-5774-4B59-A551-44F232A5BC8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork", "HomeWork", "{E13C1575-EAE5-47F0-922D-18AA6A27BFD4}"
 	ProjectSection(SolutionItems) = preProject
+		example.json = example.json
 		Homework.txt = Homework.txt
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EBD676B0-EC89-4A24-950F-5C6B7551C333}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +50,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4DEB1F6C-2E01-453A-AF6F-4C799DE832DF} = {EBD676B0-EC89-4A24-950F-5C6B7551C333}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD04E847-346A-43D2-8975-5E89D39D67E6}

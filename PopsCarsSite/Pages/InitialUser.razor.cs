@@ -11,8 +11,6 @@ namespace PopsCarsSite.Pages
 {
 	public class InitialUserComponent : ComponentBase
 	{
-
-
 		public InitialUserViewModel initialUserViewModel = new InitialUserViewModel();
 
 		[Inject]
@@ -147,8 +145,6 @@ namespace PopsCarsSite.Pages
 			}
 			
 		}
-
-
 		protected async Task PopulateNoteList()
 		{
 			try
@@ -169,9 +165,6 @@ namespace PopsCarsSite.Pages
 				_snackBar.Add("Error in retrieving note list", Severity.Error);
 			}
 		}
-
-
-
 		protected void OpenDialog(List<Note> listOfNotes, Car car)
 		{
 			var parameters = new DialogParameters<CarNotes>();
