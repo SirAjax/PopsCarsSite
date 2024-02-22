@@ -52,8 +52,8 @@ namespace PopsCars
 			return retVal;
 
 		}
-
 		public async Task<CommonResponse<List<Note>>> GetNotes()
+
 		{
 			var retVal = new CommonResponse<List<Note>>();
 

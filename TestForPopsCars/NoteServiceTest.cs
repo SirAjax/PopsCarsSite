@@ -93,12 +93,12 @@ namespace TestForPopsCars
 
 		public async Task Does_GetNotes_Return_Success()
 		{
-			List<Note> noteList = new List<Note>();
+			List<Note> noteList = new List<Note>() { new Note { Comments = "Test Comment"}};
 			mockRepo.Setup(repo => repo.GetAll()).ReturnsAsync(new CommonResponse<IEnumerable<Note>> {Value = noteList});
 
 			var actual = await service.GetNotes();
 
-			Assert.AreEqual(noteList, actual);
+			CollectionAssert.AreEqual(noteList, actual.Value);
 		}
 
 		[TestMethod]

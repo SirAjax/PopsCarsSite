@@ -47,7 +47,7 @@ namespace TestForPopsCars
 			
 			var actual = await service.GetAllCars();
 
-			Assert.AreEqual(carList, actual);
+			CollectionAssert.AreEqual(carList, actual.Value);
 		}
 
 		[TestMethod]
