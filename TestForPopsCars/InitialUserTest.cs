@@ -10,13 +10,13 @@ namespace TestForPopsCars;
 [TestClass]
 public class InitialUserTest : InitialUserComponent
 {
-	private Mock<IService> servicemoq;
+	private Mock<ICarService> servicemoq;
 	private InitialUserComponent initialUserComponent;
 
 	[TestInitialize]
 	public void Setup()
 	{
-		servicemoq = new Mock<IService>();	
+		servicemoq = new Mock<ICarService>();	
 		initialUserComponent = new InitialUserComponent();
 	}
 

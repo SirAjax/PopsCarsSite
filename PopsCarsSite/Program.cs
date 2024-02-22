@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.ConfigRepositoryContext("Server=(localdb)\\MSSQLLocalDB;Database=PopsCars;Trusted_Connection=True;MultipleActiveResultSets=true");
 builder.Services.AddTransient<ICarsRepository, CarsRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
-builder.Services.AddTransient<IService, Service>();
+builder.Services.AddTransient<IService, CarService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<INoteRepository, NoteRepository>();
 builder.Services.AddTransient<INoteService, NoteService>();

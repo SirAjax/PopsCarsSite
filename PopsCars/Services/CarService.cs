@@ -4,11 +4,11 @@ using PopsCarsSite.Common.Models;
 
 namespace PopsCars
 {
-	public class Service : IService
+	public class CarService : ICarService
 	{
 		private readonly ICarsRepository _carsRepository;
 
-		public Service(ICarsRepository carsRepository)
+		public CarService(ICarsRepository carsRepository)
 		{
 			_carsRepository = carsRepository;
 		}

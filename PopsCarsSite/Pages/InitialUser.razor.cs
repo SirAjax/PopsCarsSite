@@ -17,7 +17,7 @@ namespace PopsCarsSite.Pages
 		private ISnackbar _snackBar { get; set; } = default!;
 
 		[Inject]
-		private IService _service { get; set; } = default!;
+		private ICarService _service { get; set; } = default!;
 
 		[Inject]
 		private IUserService _userservice { get; set; } = default!;

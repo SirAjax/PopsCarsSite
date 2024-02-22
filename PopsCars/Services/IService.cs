@@ -2,7 +2,7 @@
 using PopsCarsSite.Common.Models;
 
 namespace PopsCars;
-public interface IService
+public interface ICarService
 {
 	Task<CommonResponse<List<Car>>> GetAllCars();
 	Task<CommonResponse<List<Car>>> MainSearch(string search);

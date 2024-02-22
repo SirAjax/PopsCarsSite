@@ -7,14 +7,14 @@ namespace TestForPopsCars
 	[TestClass]
 	public class ServiceTest
 	{
-		private Service service;
+		private CarService service;
 		private Mock<ICarsRepository> mockRepo;
 
 		[TestInitialize]
 		public void Setup()
 		{
 			mockRepo = new Mock<ICarsRepository>();
-			service = new Service(mockRepo.Object);
+			service = new CarService(mockRepo.Object);
 		}
 
 		[TestMethod]
