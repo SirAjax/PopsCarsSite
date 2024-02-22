@@ -1,4 +1,4 @@
-HW for 2/20/24
+HW for 2/22/24
 
 PRIORITIES: reflection, SQL, Blazor, CSS, JSON
 
@@ -9,6 +9,12 @@ Fluxor
 FluidAssertions 
 AutoMapper
 DbUpDowngrade
+
+Pluralsight: 
+
+Agile Software Development Life Cycle
+
+
 
 1. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
 2. Check out https://bunit.dev/docs/
