@@ -13,6 +13,7 @@ builder.Services.AddTransient<ICarService, CarService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<INoteRepository, NoteRepository>();
 builder.Services.AddTransient<INoteService, NoteService>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();

@@ -1,5 +1,7 @@
-﻿using Moq;
+﻿using AutoMapper;
+using Moq;
 using PopsCars;
+using PopsCars.Services;
 using PopsCarsSite.Common.Models;
 
 namespace TestForPopsCars
@@ -9,12 +11,17 @@ namespace TestForPopsCars
 	{
 		private CarService service;
 		private Mock<ICarsRepository> mockRepo;
+		private IMapper mapper;
 
 		[TestInitialize]
 		public void Setup()
 		{
+			var mappings = new Profile[] { new CarFromRepoToDTO()};
+			var configuration = new MapperConfiguration(cfg => cfg.AddProfiles(mappings));
+			mapper = new Mapper(configuration);
 			mockRepo = new Mock<ICarsRepository>();
-			service = new CarService(mockRepo.Object);
+			service = new CarService(mockRepo.Object, mapper);
+
 		}
 
 		[TestMethod]

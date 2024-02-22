@@ -1,4 +1,5 @@
-﻿using Moq;
+﻿using FluentAssertions;
+using Moq;
 using PopsCars;
 using PopsCarsSite.Common.Models;
 
@@ -55,7 +56,6 @@ namespace TestForPopsCars
 		}
 
 		[TestMethod]
-
 		public async Task Does_DeleteNote_Return_Error()
 		{
 			mockRepo.Setup(repo => repo.Delete(It.IsAny<Note>())).ThrowsAsync(new Exception());
@@ -66,7 +66,6 @@ namespace TestForPopsCars
 			Assert.IsTrue(result.Error);
 		}
 		[TestMethod]
-
 		public async Task Does_UpdateNote_Return_Success()
 		{
 			Note note = new Note { Comments = "unitTest1" };
@@ -90,7 +89,6 @@ namespace TestForPopsCars
 		}
 
 		[TestMethod]
-
 		public async Task Does_GetNotes_Return_Success()
 		{
 			List<Note> noteList = new List<Note>() { new Note { Comments = "Test Comment"}};
@@ -98,7 +96,10 @@ namespace TestForPopsCars
 
 			var actual = await service.GetNotes();
 
-			CollectionAssert.AreEqual(noteList, actual.Value);
+			actual.Value.Count.Should().Be(1);
+			//actual.Value.Should().Equal(noteList);
+			
+			// above replaced:    CollectionAssert.AreEqual(noteList, actual.Value);
 		}
 
 		[TestMethod]

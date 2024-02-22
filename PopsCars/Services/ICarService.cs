@@ -10,4 +10,6 @@ public interface ICarService
 	Task<CommonResponse<Car>> AddCar(Car car);
 	Task<CommonResponse<bool>> DeleteCar(Car car);
 	Task<CommonResponse<Car>> UpdateCar(Car car);
+
+
 }

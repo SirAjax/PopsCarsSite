@@ -1,5 +1,6 @@
 using Moq;
 using PopsCarsSite.Common.Models;
+using FluentAssertions;
 
 namespace TestForPopsCars;
 
@@ -58,6 +59,9 @@ public class CarsRepositoryTest
 
 		var result = await carsRepository.GetAllCarsWithNotes(0);
 
-		Assert.IsTrue(result.Error); 
+		Assert.IsTrue(result.Error);
+		result.Error.Should().BeTrue();
 	}
+
+	
 }

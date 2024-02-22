@@ -1,5 +1,17 @@
 HW for 2/20/24
 
+Check out reflection, SQL, Blazor, CSS
+
+Check out libraries:
+
+MudBlazor
+Fluxor
+FluidAssertions https://fluentassertions.com/
+AutoMapper
+
+
+
+
 
 1. Learn JSON
 2. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage

@@ -1,6 +1,7 @@
 ﻿using EFTest;
 using EFTest.Models;
 using PopsCarsSite.Common.Models;
+using AutoMapper;
 
 namespace PopsCars
 {
@@ -8,9 +9,12 @@ namespace PopsCars
 	{
 		private readonly ICarsRepository _carsRepository;
 
-		public CarService(ICarsRepository carsRepository)
+		private readonly IMapper _mapper;
+
+		public CarService(ICarsRepository carsRepository, IMapper mapper)
 		{
 			_carsRepository = carsRepository;
+			_mapper = mapper;
 		}
 
 		public async Task<CommonResponse<List<Car>>> GetAllCars()
@@ -20,6 +24,7 @@ namespace PopsCars
 			try
 			{
 				var carList = await _carsRepository.GetAll();
+				var carDTOList = _mapper.Map<List<CarDTO>>(carList);
 				retVal.Value = carList.Value.ToList();
 			}
 			catch (Exception ex)
@@ -58,7 +63,7 @@ namespace PopsCars
 
 				string[] searchOptions = search.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 				retVal.Value = carList.Value.Where(c =>
-				searchOptions.All(term =>   //received help for line 19 
+				searchOptions.All(term =>   
 					c.Color!.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
 					c.Make.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
 					c.Model!.Contains(term, StringComparison.InvariantCultureIgnoreCase) ||
