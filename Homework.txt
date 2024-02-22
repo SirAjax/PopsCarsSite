@@ -1,21 +1,17 @@
 HW for 2/20/24
 
-Check out reflection, SQL, Blazor, CSS
+PRIORITIES: reflection, SQL, Blazor, CSS, JSON
 
 Check out libraries:
 
 MudBlazor
 Fluxor
-FluidAssertions https://fluentassertions.com/
+FluidAssertions 
 AutoMapper
+DbUpDowngrade
 
-
-
-
-
-1. Learn JSON
-2. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
-3. Check out https://bunit.dev/docs/
+1. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
+2. Check out https://bunit.dev/docs/
 
 
  for Later: In list of users in User Page passes UsderId into InitialUserPage
