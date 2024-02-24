@@ -3,7 +3,7 @@ using Moq;
 using PopsCars;
 using PopsCars.Services;
 using PopsCarsSite.Common.Models;
-
+using FluentAssertions;
 namespace TestForPopsCars
 {
 	[TestClass]
@@ -54,7 +54,7 @@ namespace TestForPopsCars
 			
 			var actual = await service.GetAllCars();
 
-			CollectionAssert.AreEqual(carList, actual.Value);
+			actual.Value.Should().BeSameAs(carList);
 		}
 
 		[TestMethod]

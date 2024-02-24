@@ -1,4 +1,7 @@
-﻿namespace TestForPopsCars;
+﻿using FluentAssertions;
+using Moq;
+
+namespace TestForPopsCars;
 
 [TestClass]
 public class GenericRepositoryTest
@@ -6,6 +9,7 @@ public class GenericRepositoryTest
 	private DbContextOptions<PopsCarsContext> dbContextOptions;
 	private PopsCarsContext context;
 	private IGenericRepository<Car> repository;
+	private Mock<PopsCarsContext> contextMoq;
 
 
 	[TestInitialize]
@@ -14,6 +18,7 @@ public class GenericRepositoryTest
 		dbContextOptions = new DbContextOptionsBuilder<PopsCarsContext>().UseInMemoryDatabase("test").Options;
 		context = new(dbContextOptions);
 		repository = new GenericRepository<Car>(context);
+		contextMoq = new(dbContextOptions);
 	}
 	[TestCleanup]
 	public void Cleanup()
@@ -31,6 +36,18 @@ public class GenericRepositoryTest
 		Assert.AreEqual(model, actual.Value);
 	}
 
+	[TestMethod]
+
+	public async Task Does_Add_Return_Error()
+	{
+		contextMoq.Setup(x => x.Add(It.IsAny<Car>())).Throws(new Exception());
+		var testRepository = new GenericRepository<Car>(contextMoq.Object);
+		var model = new Car() { Make = "Test Model" };
+
+		var actual = await testRepository.Add(model);
+
+		actual.Error.Should().BeTrue();
+	}
 
 	[TestMethod]
 	public async Task Does_Delete_Return_Success()
@@ -40,33 +57,70 @@ public class GenericRepositoryTest
 		context.SaveChanges();
 
 		var result = await repository.Delete(model);
-		
+
 		Assert.IsTrue(result.Value);
+	}
+
+	[TestMethod]
+	public async Task Does_Delete_Return_Error()
+	{
+		contextMoq.Setup(x => x.Remove(It.IsAny<Car>())).Throws(new Exception());
+		var testRepository = new GenericRepository<Car>(contextMoq.Object);
+		var model = new Car() { Make = "Test Make" };
+
+		var actual = await testRepository.Delete(model);
+
+		actual.Error.Should().BeTrue();
 	}
 
 	[TestMethod]
 	public async Task Does_GetAll_Return_Success()
 	{
-        var model = new Car() { Make = "testMake" };
-        context.Add(model);
-        context.SaveChanges();
+		var model = new Car() { Make = "testMake" };
+		context.Add(model);
+		context.SaveChanges();
 
-        var actual = repository.GetAll();
+		var actual = repository.GetAll();
 
-        Assert.IsNotNull(actual);
-    }
+		Assert.IsNotNull(actual);
+	}
+
+	[TestMethod]
+	public async Task Does_GetAll_Return_Error()
+	{
+		contextMoq.Setup(x => x.Car).Throws(new Exception());
+		var testRepository = new GenericRepository<List<Car>>(contextMoq.Object);
+		var model = new List<Car>() { new Car { Make = "Test Make" }, new Car { Make = "Test Make 2" } };
+
+		var actual = await testRepository.GetAll();
+
+		actual.Error.Should().BeTrue();
+	}
 
 	[TestMethod]
 
 	public async Task Does_UpdateAsync_Return_Success()
 	{
-        var model = new Car() { Make = "testMake" };
-        context.Add(model);
-        context.SaveChanges();
-        model.Make = "testMake2";
+		var model = new Car() { Make = "testMake" };
+		context.Add(model);
+		context.SaveChanges();
+		model.Make = "testMake2";
 
-        var actual = await repository.UpdateAsync(model);
+		var actual = await repository.UpdateAsync(model);
 
-        Assert.AreEqual(model, actual.Value);
-    }
+		Assert.AreEqual(model, actual.Value);
+	}
+
+	[TestMethod]
+	public async Task Does_UpdateAsync_Return_Error()
+	{
+
+		contextMoq.Setup(x => x.Car).Throws(new Exception());
+		var testRepository = new GenericRepository<Car>(contextMoq.Object);
+		var model = new Car() { Make = "Test Make" };
+
+		var actual = await testRepository.UpdateAsync(model);
+
+		actual.Error.Should().BeTrue();
+	}
 }
