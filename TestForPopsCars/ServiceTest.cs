@@ -4,6 +4,7 @@ using PopsCars;
 using PopsCars.Services;
 using PopsCarsSite.Common.Models;
 using FluentAssertions;
+using PopsCarsSite.Pages;
 namespace TestForPopsCars
 {
 	[TestClass]
@@ -54,7 +55,7 @@ namespace TestForPopsCars
 			
 			var actual = await service.GetAllCars();
 
-			actual.Value.Should().BeSameAs(carList);
+			actual.Value.Should().BeEquivalentTo(carList);
 		}
 
 		[TestMethod]

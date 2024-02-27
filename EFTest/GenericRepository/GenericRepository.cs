@@ -67,6 +67,9 @@ namespace EFTest.GenericRepository
 
 			return retVal;
 		}
+		
+
+		// public async Task<CommonResponse<IReadOnlyList<T>>> GetAll()
 
 		public async Task<CommonResponse<IEnumerable<T>>> GetAll()
 		{

@@ -24,12 +24,12 @@
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_URLS": "https://localhost:7198;http://localhost:5128"
       },
-      "distributionName": ""
+      "distributionName": "" 
     }
   },
   "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
+    "windowsAuthentication": true,
+    "anonymousAuthentication": false,
     "iisExpress": {
       "applicationUrl": "http://localhost:22791",
       "sslPort": 44321

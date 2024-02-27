@@ -1,5 +1,5 @@
 ﻿@inherits LayoutComponentBase
-
+@inject AuthenticationStateProvider provider
 
 <PageTitle>PopsCarsSite</PageTitle>
 <MudThemeProvider />
@@ -18,6 +18,21 @@
 
         <article class="content px-4">
             @Body
+            <p> @userName </p>
         </article>
     </main>
 </div>
+
+@code
+{
+    string userName;
+
+    protected async override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var authenticationState = await provider.GetAuthenticationStateAsync();
+            userName = authenticationState.User.Identity.Name;
+        }
+    }
+}

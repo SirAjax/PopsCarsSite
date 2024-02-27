@@ -1,7 +1,8 @@
 HW for 2/22/24
 
 PRIORITIES: reflection, SQL, Blazor, CSS, JSON
-
+CHECK OUT: 	// public async Task<CommonResponse<IReadOnlyList<T>>> GetAll()
+ 
 Check out libraries:
 
 MudBlazor

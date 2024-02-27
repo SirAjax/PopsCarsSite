@@ -24,7 +24,7 @@ namespace PopsCars
 			try
 			{
 				var carList = await _carsRepository.GetAll();
-				var carDTOList = _mapper.Map<List<CarDTO>>(carList);
+				//var carDTOList = _mapper.Map<List<CarDTO>>(carList);
 				retVal.Value = carList.Value.ToList();
 			}
 			catch (Exception ex)
