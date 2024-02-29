@@ -2,6 +2,7 @@
 using EFTest.Models;
 using PopsCarsSite.Common.Models;
 using AutoMapper;
+using PopsCarsSite.Common;
 
 namespace PopsCars
 {
@@ -42,7 +43,7 @@ namespace PopsCars
 			try
 			{
 				CommonResponse<List<Car>> carList = await _carsRepository.GetAllCarsWithNotes(userId);
-				usersCars.Value = carList.Value.Where(c => c.UserId == userId).ToList();
+				usersCars.Value = carList.Value.Where(c => c.UserId == userId && c.Make != StringConstants.Example).ToList();
 			}
 
 			catch (Exception ex)

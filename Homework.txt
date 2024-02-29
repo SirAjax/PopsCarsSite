@@ -1,8 +1,9 @@
-HW for 2/26/24
+HW for 2/29/24
 
-PRIORITIES: reflection, SQL, Blazor, CSS, JSON
-CHECK OUT: 	// public async Task<CommonResponse<IReadOnlyList<T>>> GetAll()
+PRIORITIES: reflection, SQL, Blazor, CSS, JSON, LINQ, HTML
+CHECK OUT: 	// public async Task<CommonResponse<IReadOnlyList<T>>> GetAll(),   learn more about const strings and const values.
  
+
 Check out libraries:
 
 MudBlazor
