@@ -18,10 +18,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork", "HomeWork", "{E1
 		DocumentationExample.txt = DocumentationExample.txt
 		example.json = example.json
 		Homework.txt = Homework.txt
-		JsonPasteExample.cs = JsonPasteExample.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EBD676B0-EC89-4A24-950F-5C6B7551C333}"
+	ProjectSection(SolutionItems) = preProject
+		Homework.txt = Homework.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

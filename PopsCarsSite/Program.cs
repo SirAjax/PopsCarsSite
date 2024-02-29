@@ -43,4 +43,4 @@ using (var scope = app.Services.CreateScope())
 	await context.Database.MigrateAsync();
 }
 
-app.Run();
+app.Run(); 

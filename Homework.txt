@@ -1,4 +1,4 @@
-HW for 2/22/24
+HW for 2/26/24
 
 PRIORITIES: reflection, SQL, Blazor, CSS, JSON
 CHECK OUT: 	// public async Task<CommonResponse<IReadOnlyList<T>>> GetAll()
@@ -11,23 +11,9 @@ FluidAssertions
 AutoMapper
 DbUpDowngrade
 
-Pluralsight: 
-
-Agile Software Development Life Cycle
-
-
-
 1. Edit mudblazor.Snackbar errors to display in better area on InitialUserPage
 2. Check out https://bunit.dev/docs/
-
 
  for Later: In list of users in User Page passes UsderId into InitialUserPage
 check out Virtual Machine
 
-
-
-
-learned more about JSON & SQL
-
-
- 
